@@ -20,7 +20,7 @@ namespace HomeHavenAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BrokerageFirm>>> GetAll()
         {
-            var firms = await brokerageFirmRepo.GetAll();
+            var firms = await brokerageFirmRepo.GetAllAsync();
             if (firms == null)
             {
                 return NotFound();
@@ -36,7 +36,7 @@ namespace HomeHavenAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<BrokerageFirm>> Get(int id)
         {
-            var firm = await brokerageFirmRepo.Get(id);
+            var firm = await brokerageFirmRepo.GetAsync(id);
             if (firm == null)
             {
                 return NotFound();

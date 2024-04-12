@@ -20,7 +20,7 @@ namespace HomeHavenAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetAsync()
         {
-            var categories = await categoryRepo.GetAll();
+            var categories = await categoryRepo.GetAllAsync();
             if (categories == null)
             {
                 return NotFound();
@@ -34,7 +34,7 @@ namespace HomeHavenAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Category>> Get(int id)
         {
-            Category category = await categoryRepo.Get(id);
+            Category category = await categoryRepo.GetAsync(id);
             if (category == null)
             {
                 return NotFound();

@@ -4,7 +4,7 @@ namespace HomeHavenAPI.Data.Interfaces
 {
     public interface IBrokerageFirm
     {
-        Task<BrokerageFirm> Get(int id);
-        Task<IEnumerable<BrokerageFirm>> GetAll();
+        Task<BrokerageFirm> GetAsync(int id);
+        Task<IEnumerable<BrokerageFirm>> GetAllAsync();
     }
 }

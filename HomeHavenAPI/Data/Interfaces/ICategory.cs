@@ -4,7 +4,7 @@ namespace HomeHavenAPI.Data.Interfaces
 {
     public interface ICategory
     {
-        Task<Category> Get(int id);
-        Task<IEnumerable<Category>> GetAll();
+        Task<Category> GetAsync(int id);
+        Task<IEnumerable<Category>> GetAllAsync();
     }
 }

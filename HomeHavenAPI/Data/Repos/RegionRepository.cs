@@ -11,11 +11,11 @@ namespace HomeHavenAPI.Data.Repos
         {
             this.applicationDbContext = applicationDbContext;
         }
-        public async Task<Region> Get(int id)
+        public async Task<Region> GetAsync(int id)
         {
             return await applicationDbContext.Regions.FindAsync(id);
         }
-        public async Task<IEnumerable<Region>> GetAll()
+        public async Task<IEnumerable<Region>> GetAllAsync()
         {
             var regions = await applicationDbContext.Regions.ToListAsync();
             return regions;

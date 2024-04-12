@@ -12,12 +12,12 @@ namespace HomeHavenAPI.Data.Repos
         {
             this.applicationDbContext = applicationDbContext;
         }
-        public async Task<Category> Get(int id)
+        public async Task<Category> GetAsync(int id)
         {
             return await applicationDbContext.Categories.FindAsync(id);
         }
 
-        public async Task<IEnumerable<Category>> GetAll()
+        public async Task<IEnumerable<Category>> GetAllAsync()
         {
             var categories = await applicationDbContext.Categories.ToListAsync();
             return categories;
