@@ -32,9 +32,9 @@ namespace HomeHavenAPI.Data.Repos
 
         public async Task<Broker> EditAsync(Broker broker)
         {
-            applicationDbContext.Brokers.Update(broker);
-            await applicationDbContext.SaveChangesAsync();
-            return broker;
+                applicationDbContext.Brokers.Update(broker);
+                await applicationDbContext.SaveChangesAsync();
+                return broker;
         }
 
         public async Task<Broker> GetAsync(int id)
