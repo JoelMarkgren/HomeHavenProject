@@ -10,5 +10,4 @@
         public string PhoneNumber { get; set; }
         public string ProfilePictureURL { get; set; }
     }
-
 }
