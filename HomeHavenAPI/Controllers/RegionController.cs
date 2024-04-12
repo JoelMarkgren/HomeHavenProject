@@ -22,7 +22,7 @@ namespace HomeHavenAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Region>>> GetAll()
         {
-            var regions = await regionRepo.GetAll();
+            var regions = await regionRepo.GetAllAsync();
             if (regions == null)
             {
                 return NotFound();
@@ -37,7 +37,7 @@ namespace HomeHavenAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Region>> Get(int id)
         {
-            Region region = await regionRepo.Get(id);
+            Region region = await regionRepo.GetAsync(id);
             if (region == null)
             {
                 return NotFound();

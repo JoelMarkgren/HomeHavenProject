@@ -12,12 +12,12 @@ namespace HomeHavenAPI.Data.Repos
         {
             this.applicationDbContext = applicationDbContext;
         }
-        public async Task<BrokerageFirm> Get(int id)
+        public async Task<BrokerageFirm> GetAsync(int id)
         {
             return await applicationDbContext.Firms.FindAsync(id);
         }
 
-        public async Task<IEnumerable<BrokerageFirm>> GetAll()
+        public async Task<IEnumerable<BrokerageFirm>> GetAllAsync()
         {
             var firms = await applicationDbContext.Firms.ToListAsync();
             return firms;

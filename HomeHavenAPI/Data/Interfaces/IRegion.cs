@@ -4,8 +4,8 @@ namespace HomeHavenAPI.Data.Interfaces
 {
     public interface IRegion
     {
-        Task<Region> Get(int id);
-        Task<IEnumerable<Region>> GetAll();
+        Task<Region> GetAsync(int id);
+        Task<IEnumerable<Region>> GetAllAsync();
         
     }
 }

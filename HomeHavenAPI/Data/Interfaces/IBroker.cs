@@ -4,11 +4,11 @@ namespace HomeHavenAPI.Data.Interfaces
 {
     public interface IBroker
     {
-        Task<Broker> Get(int id);
-        Task<IEnumerable<Broker>> GetAll();
-        Task<Broker> Edit(int id);
-        void Delete(int id);
-        Task<Broker> Create();
+        Task<Broker> GetAsync(int id);
+        Task<IEnumerable<Broker>> GetAllAsync();
+        Task<Broker> EditAsync(Broker broker);
+        Task DeleteAsync(int id);
+        Task CreateAsync(Broker broker);
 
     }
 }

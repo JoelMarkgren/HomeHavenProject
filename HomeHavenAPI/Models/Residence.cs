@@ -1,12 +1,16 @@
-﻿namespace HomeHavenAPI.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HomeHavenAPI.Models
 {
     
     public class Residence
     {
-        public int Id { get; set; }
-        public Category Category { get; set; }
+        public int ResidenceId { get; set; }
+        [ForeignKey("CategoryId")]
+        public int CategoryId { get; set; }
         public string Address { get; set; }
-        public Region Region { get; set; }
+        [ForeignKey("RegionId")]
+        public int RegionId { get; set; }
         public int StartingPrice { get; set; }
         public int LivingArea { get; set; }
         public int BiArea { get; set; }
@@ -17,6 +21,7 @@
         public decimal OperatingCost { get; set; }
         public int ConstructionYear { get; set; }
         public List<string> PictureListURL { get; set; }
-        public Broker Broker { get; set; }
+        [ForeignKey("BrokerId")]
+        public int BrokerId { get; set; }
     }
 }

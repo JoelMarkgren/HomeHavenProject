@@ -1,33 +1,50 @@
 ﻿using HomeHavenAPI.Data.Interfaces;
 using HomeHavenAPI.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace HomeHavenAPI.Data.Repos
 {
     public class BrokerRepository : IBroker
     {
-        public Task<Broker> Create()
+        private readonly ApplicationDbContext applicationDbContext;
+
+        public BrokerRepository(ApplicationDbContext applicationDbContext)
         {
-            throw new NotImplementedException();
+            this.applicationDbContext = applicationDbContext;
+        }
+        public async Task CreateAsync(Broker broker)
+        {           
+            await applicationDbContext.Brokers.AddAsync(broker);
+            await applicationDbContext.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var broker = await applicationDbContext.Brokers.FindAsync(id);
+            if(broker != null)
+            {
+                applicationDbContext.Brokers.Remove(broker);
+                await applicationDbContext.SaveChangesAsync();
+            }
         }
 
-        public Task<Broker> Edit(int id)
+        public async Task<Broker> EditAsync(Broker broker)
         {
-            throw new NotImplementedException();
+            applicationDbContext.Brokers.Update(broker);
+            await applicationDbContext.SaveChangesAsync();
+            return broker;
         }
 
-        public Task<Broker> Get(int id)
+        public async Task<Broker> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            return await applicationDbContext.Brokers.FindAsync(id);
         }
 
-        public Task<IEnumerable<Broker>> GetAll()
+        public async Task<IEnumerable<Broker>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await applicationDbContext.Brokers.ToListAsync();
         }
     }
 }
