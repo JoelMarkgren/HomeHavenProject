@@ -56,14 +56,19 @@ namespace HomeHavenAPI.Controllers
 
         // PUT api/<BrokerController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<Broker> Put(int id, [FromBody] Broker broker)
         {
+            broker.BrokerId = id;
+            await brokerRepo.EditAsync(broker);
+            return broker;
         }
 
         // DELETE api/<BrokerController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async void Delete(int id)
         {
+            await brokerRepo.DeleteAsync(id);
+
         }
     }
 }
