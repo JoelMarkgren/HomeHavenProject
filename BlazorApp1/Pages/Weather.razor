@@ -1,0 +1,32 @@
+﻿@page "/"
+@using BlazorApp1.Models
+@using HomHavenBlazorProject.Services
+@inject HttpClient Http
+@inject IBrokerageFirmService BrokerageFirmService
+
+
+<h1>BrokerageFirms</h1>
+
+@if(Firms == null){
+<h2>loading...</h2>
+}
+else{
+@foreach (var firm in Firms)
+{
+	<h2>@firm.FirmName</h2>
+}
+
+}
+
+
+
+
+@code {
+	public IEnumerable<BrokerageFirm> Firms { get; set; }
+	protected override async Task OnInitializedAsync()
+	{
+		Firms = await BrokerageFirmService.GetAllAsync();
+	}
+
+
+}

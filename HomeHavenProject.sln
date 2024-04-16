@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeHavenAPI", "HomeHavenAPI\HomeHavenAPI.csproj", "{9C551A17-AB6F-4CE7-A867-8918F2C06CEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomHavenBlazorProject", "HomHavenBlazorProject\HomHavenBlazorProject.csproj", "{05009E43-927C-4466-8A7A-88E3596F197D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeHavenBlazorProject", "BlazorApp1\HomeHavenBlazorProject.csproj", "{3427726C-0290-42A0-A1EF-E416EDA5B59E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{9C551A17-AB6F-4CE7-A867-8918F2C06CEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C551A17-AB6F-4CE7-A867-8918F2C06CEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C551A17-AB6F-4CE7-A867-8918F2C06CEE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{05009E43-927C-4466-8A7A-88E3596F197D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05009E43-927C-4466-8A7A-88E3596F197D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05009E43-927C-4466-8A7A-88E3596F197D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05009E43-927C-4466-8A7A-88E3596F197D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3427726C-0290-42A0-A1EF-E416EDA5B59E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3427726C-0290-42A0-A1EF-E416EDA5B59E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3427726C-0290-42A0-A1EF-E416EDA5B59E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3427726C-0290-42A0-A1EF-E416EDA5B59E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

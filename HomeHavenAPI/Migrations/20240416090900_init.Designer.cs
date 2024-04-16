@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240411104357_init")]
+    [Migration("20240416090900_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -27,18 +27,18 @@ namespace HomeHavenAPI.Migrations
 
             modelBuilder.Entity("HomeHavenAPI.Models.Broker", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BrokerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BrokerId"));
+
+                    b.Property<int>("BrokerageFirmId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("FirmId")
-                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -52,24 +52,22 @@ namespace HomeHavenAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProfilePicture")
+                    b.Property<string>("ProfilePictureURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("FirmId");
+                    b.HasKey("BrokerId");
 
                     b.ToTable("Brokers");
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.BrokerageFirm", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BrokerageFirmId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BrokerageFirmId"));
 
                     b.Property<string>("Descrpition")
                         .IsRequired()
@@ -79,56 +77,60 @@ namespace HomeHavenAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Logo")
+                    b.Property<string>("LogoURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("BrokerageFirmId");
 
                     b.ToTable("Firms");
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.Region", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RegionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RegionId"));
 
-                    b.Property<string>("RegionName")
+                    b.Property<string>("County")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Township")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RegionId");
 
                     b.ToTable("Regions");
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.Residence", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ResidenceId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ResidenceId"));
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -158,7 +160,7 @@ namespace HomeHavenAPI.Migrations
                     b.Property<decimal>("OperatingCost")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("PictureList")
+                    b.Property<string>("PictureListURL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -175,51 +177,9 @@ namespace HomeHavenAPI.Migrations
                     b.Property<int>("StartingPrice")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("BrokerId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("RegionId");
+                    b.HasKey("ResidenceId");
 
                     b.ToTable("Residences");
-                });
-
-            modelBuilder.Entity("HomeHavenAPI.Models.Broker", b =>
-                {
-                    b.HasOne("HomeHavenAPI.Models.BrokerageFirm", "Firm")
-                        .WithMany()
-                        .HasForeignKey("FirmId");
-
-                    b.Navigation("Firm");
-                });
-
-            modelBuilder.Entity("HomeHavenAPI.Models.Residence", b =>
-                {
-                    b.HasOne("HomeHavenAPI.Models.Broker", "Broker")
-                        .WithMany()
-                        .HasForeignKey("BrokerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HomeHavenAPI.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HomeHavenAPI.Models.Region", "Region")
-                        .WithMany()
-                        .HasForeignKey("RegionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Broker");
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Region");
                 });
 #pragma warning restore 612, 618
         }

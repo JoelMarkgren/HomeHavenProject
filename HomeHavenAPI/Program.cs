@@ -20,6 +20,17 @@ builder.Services.AddScoped<ICategory, CategoryRepository>();
 builder.Services.AddScoped<IRegion, RegionRepository>();
 builder.Services.AddScoped<IResidence, ResidenceRepository>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,7 +40,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(policy => policy.WithOrigins("http://localhost:7277/", "https://localhost:7277/").AllowAnyMethod().WithHeaders(HeaderNames.ContentType));
+app.UseCors();
 
 app.UseHttpsRedirection();
 

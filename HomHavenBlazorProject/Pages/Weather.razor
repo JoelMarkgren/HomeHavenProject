@@ -8,20 +8,26 @@
 
 <h1>BrokerageFirms</h1>
 
+if(firms == null){
+<h2>loading...</h2>
+}
+else{
 @foreach (var firm in firms)
 {
-    <h2>@firm.FirmName</h2>
+	<h2>@firm.FirmName</h2>
+}
+
 }
 
 
 
 
 @code {
-    public IEnumerable<BrokerageFirm> firms { get; set; }
-    protected override async Task OnInitializedAsync()
-    {
-        firms = await bfs.GetAllAsync();
-    }
+	public IEnumerable<BrokerageFirm> firms { get; set; }
+	protected override async Task OnInitializedAsync()
+	{
+		firms = await bfs.GetAllAsync();
+	}
 
 
 }
