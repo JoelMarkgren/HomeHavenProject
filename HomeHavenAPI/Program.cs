@@ -19,6 +19,7 @@ builder.Services.AddScoped<IBrokerageFirm, BrokerageFirmRepository>();
 builder.Services.AddScoped<ICategory, CategoryRepository>();
 builder.Services.AddScoped<IRegion, RegionRepository>();
 builder.Services.AddScoped<IResidence, ResidenceRepository>();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddCors(options =>
 {

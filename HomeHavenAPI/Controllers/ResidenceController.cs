@@ -1,4 +1,5 @@
-﻿using HomeHavenAPI.Data.Interfaces;
+﻿using AutoMapper;
+using HomeHavenAPI.Data.Interfaces;
 using HomeHavenAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,25 +12,27 @@ namespace HomeHavenAPI.Controllers
     public class ResidenceController : ControllerBase
     {
         private readonly IResidence residenceRepo;
+        private readonly IMapper mapper;
 
-        public ResidenceController(IResidence residenceRepo)
+        public ResidenceController(IResidence residenceRepo, IMapper mapper)
         {
             this.residenceRepo = residenceRepo;
+            this.mapper = mapper;
         }
-        // GET: api/<ResidenceController>
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Residence>>> Get()
-        {
-            var residences = await residenceRepo.GetAllAsync();
-            if (residences == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return Ok(residences);
-            }
-        }
+        //GET: api/<ResidenceController>
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Residence>>> Get()
+        //{
+        //    var residences = await residenceRepo.GetAllAsync();
+        //    if (residences == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    else
+        //    {
+        //        return Ok(residences);
+        //    }
+        //}
 
         // GET api/<ResidenceController>/5
         [HttpGet("{id}")]
@@ -67,6 +70,14 @@ namespace HomeHavenAPI.Controllers
         public async Task Delete(int id)
         {
             await residenceRepo.DeleteAsync(id);
+        }
+
+        //GET: api/<ResidenceController>
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Residence>>> Get()
+        {
+            var residences = await residenceRepo.GetAllAsync();
+            return Ok(residences.Select(resi => mapper.Map<ResidenceDto>(resi)));
         }
     }
 }
