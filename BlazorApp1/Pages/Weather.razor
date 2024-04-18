@@ -1,31 +1,70 @@
 ﻿@page "/"
-@using HomHavenBlazorProject.Models
-@using HomHavenBlazorProject.Services
-@inject HttpClient Http
+
+
 @inject IBrokerageFirmService BrokerageFirmService
+@inject ICategoryService categoryService
 
 <h1>BrokerageFirms</h1>
 
-@if(Firms == null){
-<h2>loading...</h2>
-}
-else{
-@foreach (var firm in Firms)
+@if (Firms == null)
 {
-	<h2>@firm.FirmName</h2>
+    <h2>loading...</h2>
 }
-
+else
+{
+    @foreach (var firm in Firms)
+    {
+        <h2>@firm.FirmName</h2>
+    }
 }
+<div>
+    @if (CategoryList == null)
+    {
+        <h2>loading...</h2>
+    }
+    else
+    {
+        @foreach (var category in CategoryList)
+        {
+            <ResidenceCheckbox Name="@category.CategoryName" OnCategorySelection="HandleCheckBox" />
+        }
+    }
+</div>
+<div>
+    <input type="range" id="vol" name="vol" min="0" max="20000000" value="500000" oninput="this.nextElementSibling.value = this.value"/>
+    <output>500000</output>
+   
+
+</div>
 
 
 
 
+   
 @code {
-	public IEnumerable<BrokerageFirm> Firms { get; set; }
-	protected override async Task OnInitializedAsync()
-	{
-		Firms = await BrokerageFirmService.GetAllAsync();
-	}
+    public IEnumerable<BrokerageFirm> Firms { get; set; }
+    public IEnumerable<Category> CategoryList { get; set; } 
+    public List<Category> SelectedCategoryList { get; set; }
+    public int SelectedPrice { get; set; }
 
+    protected override async Task OnInitializedAsync()
+    {
+        Firms = await BrokerageFirmService.GetAllAsync();
+        CategoryList = await categoryService.GetAllAsync();
+    }
+
+    private void HandleCheckBox(int id)
+    {
+        var category = CategoryList.FirstOrDefault(c => c.CategoryId ==id);
+
+        if (!SelectedCategoryList.Contains(category))
+        {
+             SelectedCategoryList.Add(category);
+        }
+        else
+        {
+            SelectedCategoryList.Remove(category);         
+        }
+    }
 
 }

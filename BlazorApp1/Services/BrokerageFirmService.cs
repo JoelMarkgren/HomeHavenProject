@@ -1,8 +1,8 @@
-﻿using HomHavenBlazorProject.Models;
+﻿using HomeHavenBlazorProject.Models;
 using System.Net;
 using System.Net.Http.Json;
 
-namespace HomHavenBlazorProject.Services
+namespace HomeHavenBlazorProject.Services
 {
 	public class BrokerageFirmService : IBrokerageFirmService
 	{
@@ -30,9 +30,10 @@ namespace HomHavenBlazorProject.Services
 
 		}
 
-		public Task<BrokerageFirm> GetAsync(int id)
+		public async Task<BrokerageFirm> GetAsync(int id)
 		{
-			throw new NotImplementedException();
+			var brokerageFirm = await _httpClient.GetFromJsonAsync<BrokerageFirm>($"api/BrokerageFirm/{id}");
+			return brokerageFirm;
 		}
 	}
 }

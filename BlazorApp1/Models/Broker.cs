@@ -1,4 +1,4 @@
-﻿namespace HomHavenBlazorProject.Models
+﻿namespace HomeHavenBlazorProject.Models
 {
     public class Broker
     {
