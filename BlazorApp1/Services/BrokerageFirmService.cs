@@ -1,8 +1,8 @@
-﻿using HomHavenBlazorProject.Models;
+﻿using HomeHavenBlazorProject.Models;
 using System.Net;
 using System.Net.Http.Json;
 
-namespace HomHavenBlazorProject.Services
+namespace HomeHavenBlazorProject.Services
 {
 	public class BrokerageFirmService : IBrokerageFirmService
 	{

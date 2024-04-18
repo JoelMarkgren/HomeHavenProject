@@ -1,0 +1,24 @@
+﻿@inject IResidenceService ResidenceService;
+
+@foreach (var Resi in Residences)
+{
+	<ul>
+		<li>
+			@Resi.MainPicture @Resi.Address @Resi.StartingPrice @Resi.LivingArea @Resi.RoomCount @Resi.RegionId
+		</li>
+	</ul>
+}
+
+
+
+
+@code {
+	[Parameter]
+	public List<ResidenceDto> DisplayResidences { get; set; }
+	public IEnumerable<ResidenceDto> Residences { get; set; }
+
+	protected override async Task OnInitializedAsync()
+	{
+		Residences = await ResidenceService.GetAllAsync();
+	}
+}

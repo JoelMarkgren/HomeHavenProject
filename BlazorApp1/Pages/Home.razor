@@ -1,14 +1,16 @@
-﻿
+﻿@page "/"
+
 
 @* NavBar *@
 
 @*Bostads filtrering*@
 
-@*Lista av filtrerade bostäder@*@
+<ResidenceList DisplayResidences="FilteredResidences"></ResidenceList>
 
 
 
 
 @code {
+	public List<ResidenceDto> FilteredResidences { get; set; }
 
 }
