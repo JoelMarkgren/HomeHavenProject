@@ -1,6 +1,6 @@
-﻿using HomHavenBlazorProject.Models;
+﻿using HomeHavenBlazorProject.Models;
 
-namespace HomHavenBlazorProject.Services
+namespace HomeHavenBlazorProject.Services
 {
     public interface IBrokerageFirmService
     {

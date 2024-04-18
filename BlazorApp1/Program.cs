@@ -1,5 +1,5 @@
 using HomeHavenBlazorProject;
-using HomHavenBlazorProject.Services;
+using HomeHavenBlazorProject.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -15,8 +15,9 @@ namespace BlazorApp1
 
 			builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7277/") });
 			builder.Services.AddScoped<IBrokerageFirmService, BrokerageFirmService>();
+            builder.Services.AddScoped<IResidenceService, ResidenceService>();
 
-			await builder.Build().RunAsync();
+            await builder.Build().RunAsync();
 		}
 	}
 }
