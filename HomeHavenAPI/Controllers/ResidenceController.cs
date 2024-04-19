@@ -19,21 +19,7 @@ namespace HomeHavenAPI.Controllers
             this.residenceRepo = residenceRepo;
             this.mapper = mapper;
         }
-        //GET: api/<ResidenceController>
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Residence>>> Get()
-        //{
-        //    var residences = await residenceRepo.GetAllAsync();
-        //    if (residences == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    else
-        //    {
-        //        return Ok(residences);
-        //    }
-        //}
-
+      
         // GET api/<ResidenceController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Residence>> Get(int id)

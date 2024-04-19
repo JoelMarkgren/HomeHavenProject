@@ -4,20 +4,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeHavenAPI.Data.Repos
 {
-    public class BrokerageFirmRepository : IBrokerageFirm
+    public class RealtorFirmRepository : IRealtorFirm
     {
         private readonly ApplicationDbContext applicationDbContext;
 
-        public BrokerageFirmRepository(ApplicationDbContext applicationDbContext)
+        public RealtorFirmRepository(ApplicationDbContext applicationDbContext)
         {
             this.applicationDbContext = applicationDbContext;
         }
-        public async Task<BrokerageFirm> GetAsync(int id)
+        public async Task<RealtorFirm> GetAsync(int id)
         {
             return await applicationDbContext.Firms.FindAsync(id);
         }
 
-        public async Task<IEnumerable<BrokerageFirm>> GetAllAsync()
+        public async Task<IEnumerable<RealtorFirm>> GetAllAsync()
         {
             var firms = await applicationDbContext.Firms.ToListAsync();
             return firms;

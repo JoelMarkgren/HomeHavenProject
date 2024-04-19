@@ -1,9 +1,11 @@
-﻿namespace HomeHavenBlazorProject.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HomeHavenAPI.Models
 {
-    public class Broker
+    public class Realtor
     {
-        public int BrokerId { get; set; }
-        public int BrokerageFirmId { get; set; }
+        public int RealtorId { get; set; }       
+        public int RealtorFirmId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

@@ -1,8 +1,8 @@
 ﻿namespace HomeHavenAPI.Models
 {
-    public class BrokerageFirm
+    public class RealtorFirm
     {
-        public int BrokerageFirmId { get; set; }
+        public int RealtorFirmId { get; set; }
         public string FirmName { get; set; }
         public string Descrpition { get; set; }
         public string LogoURL { get; set; }
