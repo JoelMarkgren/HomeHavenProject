@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240419084043_inital")]
-    partial class inital
+    [Migration("20240419104200_addedmore seed data")]
+    partial class addedmoreseeddata
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,33 @@ namespace HomeHavenAPI.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Villa"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Lägenhet"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "RadHus"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            CategoryName = "FritidsBoende"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            CategoryName = "Tomt"
+                        });
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.Realtor", b =>
@@ -76,6 +103,58 @@ namespace HomeHavenAPI.Migrations
                     b.HasKey("RealtorId");
 
                     b.ToTable("Realtors");
+
+                    b.HasData(
+                        new
+                        {
+                            RealtorId = 1,
+                            Email = "sofia.andersson@example.com",
+                            FirstName = "Sofia",
+                            LastName = "Andersson",
+                            PhoneNumber = "070-1234567",
+                            ProfilePictureURL = "URL",
+                            RealtorFirmId = 1
+                        },
+                        new
+                        {
+                            RealtorId = 2,
+                            Email = "erik.svensson@example.com",
+                            FirstName = "Erik",
+                            LastName = "Svensson",
+                            PhoneNumber = "073-9876543",
+                            ProfilePictureURL = "URL",
+                            RealtorFirmId = 3
+                        },
+                        new
+                        {
+                            RealtorId = 3,
+                            Email = "emma.johansson@example.com",
+                            FirstName = "Emma",
+                            LastName = "Johansson",
+                            PhoneNumber = "076-1112233",
+                            ProfilePictureURL = "URL",
+                            RealtorFirmId = 2
+                        },
+                        new
+                        {
+                            RealtorId = 4,
+                            Email = "anders.karlsson@example.com",
+                            FirstName = "Anders",
+                            LastName = "Karlsson",
+                            PhoneNumber = "072-5554441",
+                            ProfilePictureURL = "URL",
+                            RealtorFirmId = 2
+                        },
+                        new
+                        {
+                            RealtorId = 5,
+                            Email = "linnea.lindgren@example.com",
+                            FirstName = "Linnea",
+                            LastName = "Lindgren",
+                            PhoneNumber = "074-8889990",
+                            ProfilePictureURL = "URL",
+                            RealtorFirmId = 5
+                        });
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.RealtorFirm", b =>
@@ -101,6 +180,43 @@ namespace HomeHavenAPI.Migrations
                     b.HasKey("RealtorFirmId");
 
                     b.ToTable("Firms");
+
+                    b.HasData(
+                        new
+                        {
+                            RealtorFirmId = 1,
+                            Descrpition = "En mäklarfirm med fokus på att göra drömmar till verklighet för kunder genom att matcha dem med sitt perfekta hem.",
+                            FirmName = "Dream Home Realty",
+                            LogoURL = "URL"
+                        },
+                        new
+                        {
+                            RealtorFirmId = 2,
+                            Descrpition = "Specialiserade på lyxiga och exklusiva fastigheter, erbjuder Elite Properties en förstklassig service för kunder som söker det bästa av det bästa.",
+                            FirmName = "Elite Properties",
+                            LogoURL = "URL"
+                        },
+                        new
+                        {
+                            RealtorFirmId = 3,
+                            Descrpition = "Med starka förbindelser och expertis inom fastighetsmarknaden, strävar Prime Real Estate Solutions efter att hjälpa kunder att hitta de mest lönsamma fastighetsaffärerna.",
+                            FirmName = "Prime Real Estate Solutions",
+                            LogoURL = "URL"
+                        },
+                        new
+                        {
+                            RealtorFirmId = 4,
+                            Descrpition = "Fokuserar på att skapa en \"näste\" åt sina kunder där de kan känna sig hemma och bekväma i den stadsmiljö de älskar.",
+                            FirmName = "Urban Nest Realty",
+                            LogoURL = "URL"
+                        },
+                        new
+                        {
+                            RealtorFirmId = 5,
+                            Descrpition = "Tar sina kunder till nya horisonter genom att guida dem genom köp- och säljprocessen med en personlig och professionell approach.",
+                            FirmName = "Horizon Homes Real Estate",
+                            LogoURL = "URL"
+                        });
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.Region", b =>
@@ -122,6 +238,38 @@ namespace HomeHavenAPI.Migrations
                     b.HasKey("RegionId");
 
                     b.ToTable("Regions");
+
+                    b.HasData(
+                        new
+                        {
+                            RegionId = 1,
+                            County = "Stockholm",
+                            Township = "Sollentuna"
+                        },
+                        new
+                        {
+                            RegionId = 2,
+                            County = "Uppsala",
+                            Township = "Östhammar"
+                        },
+                        new
+                        {
+                            RegionId = 3,
+                            County = "Jönköpings",
+                            Township = "Gislaved"
+                        },
+                        new
+                        {
+                            RegionId = 4,
+                            County = "Kalmar",
+                            Township = "Torsås"
+                        },
+                        new
+                        {
+                            RegionId = 5,
+                            County = "Blekinge",
+                            Township = "Karlskrona"
+                        });
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.Residence", b =>

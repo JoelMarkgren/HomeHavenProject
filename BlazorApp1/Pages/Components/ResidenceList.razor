@@ -1,21 +1,21 @@
-﻿@inject IResidenceService ResidenceService
+﻿@* Author: Jakob *@
+@inject IResidenceService ResidenceService
 @foreach (var Resi in Residences)
 {
 	<ul>
 		<li>
-			<h2>@Resi.MainPicture @Resi.Address @Resi.ResidenceCategory.CategoryName</h2>
+			@Resi.MainPicture @Resi.Address @Resi.ResidenceRegion.County @Resi.ResidenceRegion.Township @Resi.ResidenceCategory.CategoryName @Resi.StartingPrice
+			<button>Visa</button>
 		</li>
 	</ul>
 }
 
 
-
-
 @code {
 	[Parameter]
-	public List<ResidenceDto> DisplayResidences { get; set; }
+	public List<ResidenceDto> DisplayResidences { get; set; } = new List<ResidenceDto>();
 
-	public IEnumerable<ResidenceDto> Residences { get; set; }
+	public IEnumerable<ResidenceDto> Residences { get; set; } = new List<ResidenceDto>(); /* TestData tills filtercomponenten är klar , byt namn på listan i foreach loopen*/
 
 	protected override async Task OnInitializedAsync()
 	{
