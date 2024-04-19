@@ -1,17 +1,34 @@
 ﻿using HomeHavenBlazorProject.Models;
+using Microsoft.VisualBasic;
+using System.Net.Http.Json;
 
 namespace HomeHavenBlazorProject.Services
 {
     public class CategoryService : ICategoryService
     {
-        public Task<IEnumerable<Category>> GetAllAsync()
+        private readonly HttpClient httpClient;
+
+        public CategoryService(HttpClient httpClient)
         {
-            throw new NotImplementedException();
+            this.httpClient = httpClient;
+        }
+        public async Task<IEnumerable<Category>> GetAllAsync()
+        {
+            try
+            {
+                var categories = await httpClient.GetFromJsonAsync<IEnumerable<Category>>("api/Category");
+                return categories;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
-        public Task<Category> GetAsync(int id)
+        public async Task<Category> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            var category = await httpClient.GetFromJsonAsync<Category>($"api/Category/{id}");
+            return category;
         }
     }
 }

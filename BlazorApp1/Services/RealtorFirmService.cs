@@ -28,7 +28,8 @@ namespace HomeHavenBlazorProject.Services
 
 		public Task<RealtorFirm> GetAsync(int id)
 		{
-			throw new NotImplementedException();
+			var brokerageFirm = await _httpClient.GetFromJsonAsync<BrokerageFirm>($"api/BrokerageFirm/{id}");
+			return brokerageFirm;
 		}
 	}
 }
