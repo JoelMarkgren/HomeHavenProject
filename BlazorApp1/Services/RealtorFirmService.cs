@@ -26,10 +26,10 @@ namespace HomeHavenBlazorProject.Services
 
 		}
 
-		public Task<RealtorFirm> GetAsync(int id)
+		public async Task<RealtorFirm> GetAsync(int id)
 		{
-			var brokerageFirm = await _httpClient.GetFromJsonAsync<BrokerageFirm>($"api/BrokerageFirm/{id}");
-			return brokerageFirm;
+			var realtorFirm = await _httpClient.GetFromJsonAsync<RealtorFirm>($"api/BrokerageFirm/{id}");
+			return realtorFirm;
 		}
 	}
 }
