@@ -38,17 +38,21 @@ namespace HomeHavenAPI.Data.Repos
 
         public async Task<IEnumerable<Residence>> GetAllAsync()
         {
-            //var residence = await applicationDbContext.Residences
-                //.Include(r => r.ResidenceRegion)
                 
             return await applicationDbContext.Residences
                 .Include(r =>r.ResidenceCategory)
-                .ToListAsync();
+				.Include(r => r.ResidenceRegion)
+				.Include(r => r.ResidenceRealtor)
+				.ToListAsync();
         }
 
         public async Task<Residence> GetAsync(int id)
         {
-            return await applicationDbContext.Residences.FindAsync(id);
+            return await applicationDbContext.Residences
+                .Include(r => r.ResidenceCategory)
+				.Include(r => r.ResidenceRegion)
+				.Include(r => r.ResidenceRealtor)
+                .FirstOrDefaultAsync(r => r.ResidenceId == id);
         }
     }
 }

@@ -4,6 +4,7 @@ using HomeHavenAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240419103147_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,58 +103,6 @@ namespace HomeHavenAPI.Migrations
                     b.HasKey("RealtorId");
 
                     b.ToTable("Realtors");
-
-                    b.HasData(
-                        new
-                        {
-                            RealtorId = 1,
-                            Email = "sofia.andersson@example.com",
-                            FirstName = "Sofia",
-                            LastName = "Andersson",
-                            PhoneNumber = "070-1234567",
-                            ProfilePictureURL = "URL",
-                            RealtorFirmId = 1
-                        },
-                        new
-                        {
-                            RealtorId = 2,
-                            Email = "erik.svensson@example.com",
-                            FirstName = "Erik",
-                            LastName = "Svensson",
-                            PhoneNumber = "073-9876543",
-                            ProfilePictureURL = "URL",
-                            RealtorFirmId = 3
-                        },
-                        new
-                        {
-                            RealtorId = 3,
-                            Email = "emma.johansson@example.com",
-                            FirstName = "Emma",
-                            LastName = "Johansson",
-                            PhoneNumber = "076-1112233",
-                            ProfilePictureURL = "URL",
-                            RealtorFirmId = 2
-                        },
-                        new
-                        {
-                            RealtorId = 4,
-                            Email = "anders.karlsson@example.com",
-                            FirstName = "Anders",
-                            LastName = "Karlsson",
-                            PhoneNumber = "072-5554441",
-                            ProfilePictureURL = "URL",
-                            RealtorFirmId = 2
-                        },
-                        new
-                        {
-                            RealtorId = 5,
-                            Email = "linnea.lindgren@example.com",
-                            FirstName = "Linnea",
-                            LastName = "Lindgren",
-                            PhoneNumber = "074-8889990",
-                            ProfilePictureURL = "URL",
-                            RealtorFirmId = 5
-                        });
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.RealtorFirm", b =>
@@ -177,43 +128,6 @@ namespace HomeHavenAPI.Migrations
                     b.HasKey("RealtorFirmId");
 
                     b.ToTable("Firms");
-
-                    b.HasData(
-                        new
-                        {
-                            RealtorFirmId = 1,
-                            Descrpition = "En mäklarfirm med fokus på att göra drömmar till verklighet för kunder genom att matcha dem med sitt perfekta hem.",
-                            FirmName = "Dream Home Realty",
-                            LogoURL = "URL"
-                        },
-                        new
-                        {
-                            RealtorFirmId = 2,
-                            Descrpition = "Specialiserade på lyxiga och exklusiva fastigheter, erbjuder Elite Properties en förstklassig service för kunder som söker det bästa av det bästa.",
-                            FirmName = "Elite Properties",
-                            LogoURL = "URL"
-                        },
-                        new
-                        {
-                            RealtorFirmId = 3,
-                            Descrpition = "Med starka förbindelser och expertis inom fastighetsmarknaden, strävar Prime Real Estate Solutions efter att hjälpa kunder att hitta de mest lönsamma fastighetsaffärerna.",
-                            FirmName = "Prime Real Estate Solutions",
-                            LogoURL = "URL"
-                        },
-                        new
-                        {
-                            RealtorFirmId = 4,
-                            Descrpition = "Fokuserar på att skapa en \"näste\" åt sina kunder där de kan känna sig hemma och bekväma i den stadsmiljö de älskar.",
-                            FirmName = "Urban Nest Realty",
-                            LogoURL = "URL"
-                        },
-                        new
-                        {
-                            RealtorFirmId = 5,
-                            Descrpition = "Tar sina kunder till nya horisonter genom att guida dem genom köp- och säljprocessen med en personlig och professionell approach.",
-                            FirmName = "Horizon Homes Real Estate",
-                            LogoURL = "URL"
-                        });
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.Region", b =>
@@ -331,98 +245,6 @@ namespace HomeHavenAPI.Migrations
                     b.HasIndex("RegionId");
 
                     b.ToTable("Residences");
-
-                    b.HasData(
-                        new
-                        {
-                            ResidenceId = 1,
-                            Address = "Sveavägen 42",
-                            BiArea = 20,
-                            CategoryId = 1,
-                            ConstructionYear = 2004,
-                            LandArea = 500,
-                            LivingArea = 120,
-                            MonthlyFee = 4000m,
-                            OperatingCost = 50000m,
-                            PictureListURL = "[\"url\"]",
-                            RealtorId = 5,
-                            RegionId = 1,
-                            ResidenceDescription = "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan.",
-                            RoomCount = 5m,
-                            StartingPrice = 2000000
-                        },
-                        new
-                        {
-                            ResidenceId = 2,
-                            Address = "Storgatan 12",
-                            BiArea = 30,
-                            CategoryId = 2,
-                            ConstructionYear = 2000,
-                            LandArea = 0,
-                            LivingArea = 100,
-                            MonthlyFee = 6500m,
-                            OperatingCost = 24500m,
-                            PictureListURL = "[\"url\"]",
-                            RealtorId = 4,
-                            RegionId = 2,
-                            ResidenceDescription = "Charmigt radhus med trädgård och garage i lugnt bostadsområde nära naturen.",
-                            RoomCount = 3m,
-                            StartingPrice = 1250000
-                        },
-                        new
-                        {
-                            ResidenceId = 3,
-                            Address = "Strandvägen 7",
-                            BiArea = 0,
-                            CategoryId = 3,
-                            ConstructionYear = 2018,
-                            LandArea = 1000,
-                            LivingArea = 250,
-                            MonthlyFee = 4250m,
-                            OperatingCost = 32400m,
-                            PictureListURL = "[\"url\"]",
-                            RealtorId = 3,
-                            RegionId = 3,
-                            ResidenceDescription = "Funkisvilla med pool och havsutsikt på exklusiv adress vid kusten.",
-                            RoomCount = 6m,
-                            StartingPrice = 3000000
-                        },
-                        new
-                        {
-                            ResidenceId = 4,
-                            Address = "Norra Vallgatan 14",
-                            BiArea = 15,
-                            CategoryId = 4,
-                            ConstructionYear = 2009,
-                            LandArea = 625,
-                            LivingArea = 130,
-                            MonthlyFee = 7000m,
-                            OperatingCost = 31500m,
-                            PictureListURL = "[\"url\"]",
-                            RealtorId = 3,
-                            RegionId = 2,
-                            ResidenceDescription = "Gammal gård renoverad till lyxigt boende med generösa sällskapsytor och stor trädgård.",
-                            RoomCount = 4m,
-                            StartingPrice = 2230000
-                        },
-                        new
-                        {
-                            ResidenceId = 5,
-                            Address = "Östra Hamngatan 3",
-                            BiArea = 50,
-                            CategoryId = 5,
-                            ConstructionYear = 1972,
-                            LandArea = 200,
-                            LivingArea = 120,
-                            MonthlyFee = 3750m,
-                            OperatingCost = 20500m,
-                            PictureListURL = "[\"url\"]",
-                            RealtorId = 1,
-                            RegionId = 5,
-                            ResidenceDescription = "Lägenhet i nybyggd bostadsrättsförening med gemensam takterrass och närhet till shopping och kommunikationer.",
-                            RoomCount = 5m,
-                            StartingPrice = 1400000
-                        });
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.Residence", b =>

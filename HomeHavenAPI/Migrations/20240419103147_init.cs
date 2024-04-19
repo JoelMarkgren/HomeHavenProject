@@ -2,10 +2,12 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace HomeHavenAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class inital : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -112,6 +114,30 @@ namespace HomeHavenAPI.Migrations
                         principalTable: "Regions",
                         principalColumn: "RegionId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "CategoryId", "CategoryName" },
+                values: new object[,]
+                {
+                    { 1, "Villa" },
+                    { 2, "Lägenhet" },
+                    { 3, "RadHus" },
+                    { 4, "FritidsBoende" },
+                    { 5, "Tomt" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Regions",
+                columns: new[] { "RegionId", "County", "Township" },
+                values: new object[,]
+                {
+                    { 1, "Stockholm", "Sollentuna" },
+                    { 2, "Uppsala", "Östhammar" },
+                    { 3, "Jönköpings", "Gislaved" },
+                    { 4, "Kalmar", "Torsås" },
+                    { 5, "Blekinge", "Karlskrona" }
                 });
 
             migrationBuilder.CreateIndex(
