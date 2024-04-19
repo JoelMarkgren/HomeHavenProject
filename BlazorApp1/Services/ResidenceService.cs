@@ -1,5 +1,5 @@
-﻿using HomeHavenAPI.Models;
-using HomeHavenBlazorProject.Models;
+﻿
+using HomeHavenBlazorProject.DTOs;
 using HomeHavenBlazorProject.Models;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -20,9 +20,10 @@ namespace HomeHavenBlazorProject.Services
             return residences;
         }
 
-        public Task<Residence> GetAsync(int id)
+        public async Task<Residence> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            var residence = await httpClient.GetFromJsonAsync<Residence>($"api/Residence/{id}");
+            return residence;
         }
     }
 }
