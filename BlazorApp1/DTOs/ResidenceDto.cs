@@ -1,6 +1,4 @@
-﻿using HomeHavenBlazorProject.Models;
-
-namespace HomeHavenAPI.Models
+﻿namespace HomeHavenBlazorProject.DTOs
 {
     public class ResidenceDto
     {

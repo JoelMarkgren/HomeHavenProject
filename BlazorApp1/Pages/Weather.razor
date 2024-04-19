@@ -17,7 +17,7 @@ else
         <h2>@firm.FirmName</h2>
     }
 }
-<div>
+<div class="Category-List">
     @if (CategoryList == null)
     {
         <h2>loading...</h2>
@@ -30,20 +30,29 @@ else
         }
     }
 </div>
-<div>
-    <input type="range" id="vol" name="vol" min="0" max="20000000" value="500000" oninput="this.nextElementSibling.value = this.value"/>
-    <output>500000</output>
-   
+<div class="wrapper">
+    <div class="MinValContainer">
+        <label class="MinValLabel">Minimum pris:</label>
+        <input type="range" class="" min="300000" max="20000000" value="0" oninput="this.nextElementSibling.value = this.value" />
+        <output value="this.value"></output>
+    </div>
+    <div class="MaxValContainer">
+        <label class="MaxValLabel">Maximum pris:</label>
+        <input type="range" class="" min="300000" max="20000000" value="0" oninput="this.nextElementSibling.value = this.value" />
+        <output value="this.value"></output>
+    </div>
+
+
 
 </div>
 
 
 
 
-   
+
 @code {
     public IEnumerable<BrokerageFirm> Firms { get; set; }
-    public IEnumerable<Category> CategoryList { get; set; } 
+    public IEnumerable<Category> CategoryList { get; set; }
     public List<Category> SelectedCategoryList { get; set; }
     public int SelectedPrice { get; set; }
 
@@ -55,15 +64,15 @@ else
 
     private void HandleCheckBox(int id)
     {
-        var category = CategoryList.FirstOrDefault(c => c.CategoryId ==id);
+        var category = CategoryList.FirstOrDefault(c => c.CategoryId == id);
 
         if (!SelectedCategoryList.Contains(category))
         {
-             SelectedCategoryList.Add(category);
+            SelectedCategoryList.Add(category);
         }
         else
         {
-            SelectedCategoryList.Remove(category);         
+            SelectedCategoryList.Remove(category);
         }
     }
 

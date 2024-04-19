@@ -1,4 +1,5 @@
-﻿using HomeHavenAPI.Models;
+﻿
+using HomeHavenBlazorProject.DTOs;
 using HomeHavenBlazorProject.Models;
 
 namespace HomeHavenBlazorProject.Services
