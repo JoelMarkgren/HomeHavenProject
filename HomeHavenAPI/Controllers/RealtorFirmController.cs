@@ -8,19 +8,19 @@ namespace HomeHavenAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BrokerageFirmController : ControllerBase
+    public class RealtorFirmController : ControllerBase
     {
-        private readonly IBrokerageFirm brokerageFirmRepo;
+        private readonly IRealtorFirm RealtorFirmRepo;
 
-        public BrokerageFirmController(IBrokerageFirm brokerageFirmRepo)
+        public RealtorFirmController(IRealtorFirm RealtorFirmRepo)
         {
-            this.brokerageFirmRepo = brokerageFirmRepo;
+            this.RealtorFirmRepo = RealtorFirmRepo;
         }
-        // GET: api/<BrokerageFirmController>
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<BrokerageFirm>>> GetAll()
+		// GET: api/<RealtorFirmController>
+		[HttpGet]
+        public async Task<ActionResult<IEnumerable<RealtorFirm>>> GetAll()
         {
-            var firms = await brokerageFirmRepo.GetAllAsync();
+            var firms = await RealtorFirmRepo.GetAllAsync();
             if (firms == null)
             {
                 return NotFound();
@@ -32,11 +32,11 @@ namespace HomeHavenAPI.Controllers
             
         }
 
-        // GET api/<BrokerageFirmController>/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<BrokerageFirm>> Get(int id)
+		// GET api/<RealtorFirmController>/5
+		[HttpGet("{id}")]
+        public async Task<ActionResult<RealtorFirm>> Get(int id)
         {
-            var firm = await brokerageFirmRepo.GetAsync(id);
+            var firm = await RealtorFirmRepo.GetAsync(id);
             if (firm == null)
             {
                 return NotFound();

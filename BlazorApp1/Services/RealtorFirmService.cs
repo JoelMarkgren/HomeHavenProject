@@ -4,19 +4,19 @@ using System.Net.Http.Json;
 
 namespace HomeHavenBlazorProject.Services
 {
-	public class BrokerageFirmService : IBrokerageFirmService
+	public class RealtorFirmService : IRealtorFirmService
 	{
 		private readonly HttpClient _httpClient;
 
-		public BrokerageFirmService(HttpClient httpClient)
+		public RealtorFirmService(HttpClient httpClient)
 		{
 			_httpClient = httpClient;
 		}
-		public async Task<IEnumerable<BrokerageFirm>> GetAllAsync()
+		public async Task<IEnumerable<RealtorFirm>> GetAllAsync()
 		{
 			try
 			{
-				var firms = await _httpClient.GetFromJsonAsync<IEnumerable<BrokerageFirm>>("api/BrokerageFirm");
+				var firms = await _httpClient.GetFromJsonAsync<IEnumerable<RealtorFirm>>("api/RealtorFirm");
 				return firms;
 			}
 			catch (Exception)
@@ -24,13 +24,9 @@ namespace HomeHavenBlazorProject.Services
 				throw;
 			}
 
-
-
-
-
 		}
 
-		public async Task<BrokerageFirm> GetAsync(int id)
+		public Task<RealtorFirm> GetAsync(int id)
 		{
 			var brokerageFirm = await _httpClient.GetFromJsonAsync<BrokerageFirm>($"api/BrokerageFirm/{id}");
 			return brokerageFirm;

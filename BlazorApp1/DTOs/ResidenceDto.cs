@@ -10,5 +10,8 @@
         public int LivingArea { get; set; }
         public decimal RoomCount { get; set; }
         public string MainPicture { get; set; }
-    }
+		public Category ResidenceCategory { get; set; }
+		public Region ResidenceRegion { get; set; }
+		public Realtor ResidenceRealtor { get; set; }
+	}
 }

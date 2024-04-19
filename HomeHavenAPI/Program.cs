@@ -14,8 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContextPool<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<IBroker, BrokerRepository>();
-builder.Services.AddScoped<IBrokerageFirm, BrokerageFirmRepository>();
+builder.Services.AddScoped<IRealtor, RealtorRepository>();
+builder.Services.AddScoped<IRealtorFirm, RealtorFirmRepository>();
 builder.Services.AddScoped<ICategory, CategoryRepository>();
 builder.Services.AddScoped<IRegion, RegionRepository>();
 builder.Services.AddScoped<IResidence, ResidenceRepository>();
