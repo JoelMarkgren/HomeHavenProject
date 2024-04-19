@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240416090900_init")]
-    partial class init
+    [Migration("20240419084043_inital")]
+    partial class inital
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,16 +25,30 @@ namespace HomeHavenAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("HomeHavenAPI.Models.Broker", b =>
+            modelBuilder.Entity("HomeHavenAPI.Models.Category", b =>
                 {
-                    b.Property<int>("BrokerId")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BrokerId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
 
-                    b.Property<int>("BrokerageFirmId")
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("HomeHavenAPI.Models.Realtor", b =>
+                {
+                    b.Property<int>("RealtorId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RealtorId"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -56,18 +70,21 @@ namespace HomeHavenAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BrokerId");
+                    b.Property<int>("RealtorFirmId")
+                        .HasColumnType("int");
 
-                    b.ToTable("Brokers");
+                    b.HasKey("RealtorId");
+
+                    b.ToTable("Realtors");
                 });
 
-            modelBuilder.Entity("HomeHavenAPI.Models.BrokerageFirm", b =>
+            modelBuilder.Entity("HomeHavenAPI.Models.RealtorFirm", b =>
                 {
-                    b.Property<int>("BrokerageFirmId")
+                    b.Property<int>("RealtorFirmId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BrokerageFirmId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RealtorFirmId"));
 
                     b.Property<string>("Descrpition")
                         .IsRequired()
@@ -81,26 +98,9 @@ namespace HomeHavenAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BrokerageFirmId");
+                    b.HasKey("RealtorFirmId");
 
                     b.ToTable("Firms");
-                });
-
-            modelBuilder.Entity("HomeHavenAPI.Models.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
-
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.Region", b =>
@@ -139,9 +139,6 @@ namespace HomeHavenAPI.Migrations
                     b.Property<int>("BiArea")
                         .HasColumnType("int");
 
-                    b.Property<int>("BrokerId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -164,6 +161,9 @@ namespace HomeHavenAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RealtorId")
+                        .HasColumnType("int");
+
                     b.Property<int>("RegionId")
                         .HasColumnType("int");
 
@@ -179,7 +179,40 @@ namespace HomeHavenAPI.Migrations
 
                     b.HasKey("ResidenceId");
 
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("RealtorId");
+
+                    b.HasIndex("RegionId");
+
                     b.ToTable("Residences");
+                });
+
+            modelBuilder.Entity("HomeHavenAPI.Models.Residence", b =>
+                {
+                    b.HasOne("HomeHavenAPI.Models.Category", "ResidenceCategory")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HomeHavenAPI.Models.Realtor", "ResidenceRealtor")
+                        .WithMany()
+                        .HasForeignKey("RealtorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HomeHavenAPI.Models.Region", "ResidenceRegion")
+                        .WithMany()
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ResidenceCategory");
+
+                    b.Navigation("ResidenceRealtor");
+
+                    b.Navigation("ResidenceRegion");
                 });
 #pragma warning restore 612, 618
         }

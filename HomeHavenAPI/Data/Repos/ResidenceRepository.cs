@@ -38,7 +38,12 @@ namespace HomeHavenAPI.Data.Repos
 
         public async Task<IEnumerable<Residence>> GetAllAsync()
         {
-            return await applicationDbContext.Residences.ToListAsync();
+            //var residence = await applicationDbContext.Residences
+                //.Include(r => r.ResidenceRegion)
+                
+            return await applicationDbContext.Residences
+                .Include(r =>r.ResidenceCategory)
+                .ToListAsync();
         }
 
         public async Task<Residence> GetAsync(int id)

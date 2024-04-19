@@ -2,9 +2,9 @@
 @using HomeHavenBlazorProject.Models
 @using HomeHavenBlazorProject.Services
 @inject HttpClient Http
-@inject IBrokerageFirmService BrokerageFirmService
+@inject IRealtorFirmService RealtorFirmService
 
-<h1>BrokerageFirms</h1>
+<h1>RealtorFirms</h1>
 
 @if(Firms == null){
 <h2>loading...</h2>
@@ -21,10 +21,10 @@ else{
 
 
 @code {
-	public IEnumerable<BrokerageFirm> Firms { get; set; }
+	public IEnumerable<RealtorFirm> Firms { get; set; }
 	protected override async Task OnInitializedAsync()
 	{
-		Firms = await BrokerageFirmService.GetAllAsync();
+		Firms = await RealtorFirmService.GetAllAsync();
 	}
 
 
