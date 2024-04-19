@@ -1,4 +1,6 @@
-﻿namespace HomeHavenBlazorProject.DTOs
+﻿using HomeHavenBlazorProject.Models;
+
+namespace HomeHavenBlazorProject.DTOs
 {
     public class ResidenceDto
     {

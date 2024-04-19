@@ -1,7 +1,7 @@
 ﻿@page "/"
 
 
-@inject IBrokerageFirmService BrokerageFirmService
+@inject IRealtorFirmService RealtorFirmService
 @inject ICategoryService categoryService
 
 <h1>RealtorFirms</h1>
@@ -51,14 +51,14 @@ else
 
 
 @code {
-    public IEnumerable<BrokerageFirm> Firms { get; set; }
+    public IEnumerable<RealtorFirm> Firms { get; set; }
     public IEnumerable<Category> CategoryList { get; set; }
     public List<Category> SelectedCategoryList { get; set; }
     public int SelectedPrice { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        Firms = await BrokerageFirmService.GetAllAsync();
+        Firms = await RealtorFirmService.GetAllAsync();
         CategoryList = await categoryService.GetAllAsync();
     }
 
