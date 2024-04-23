@@ -1,13 +1,11 @@
 ﻿@inherits ComponentBase
-<h3>Checkboxes</h3>
 
-<div>
+@* --Author Joel Markgren-- *@
+
+<div >
     <input type="checkbox" id="@Id" checked="@IsChecked" @onchange="CheckBoxChanged" />
     <label for="@Id">@Name</label>
 </div>
-
-
-
 
 @code {
 
@@ -20,16 +18,10 @@
     [Parameter]
     public bool IsChecked { get; set; }
 
-
-    // protected override async Task OnInitializedAsync()
-    // {
-    //     var category = await categoryService.GetAsync(Id);
-    // }
     protected async Task CheckBoxChanged(ChangeEventArgs e)
     {
         IsChecked = (bool)e.Value;
-
         await OnCategorySelection.InvokeAsync(Id);
     }
 }
-}
+

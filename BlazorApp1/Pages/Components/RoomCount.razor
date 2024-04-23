@@ -1,0 +1,43 @@
+﻿@inject IResidenceService ResidenceService
+<h3>RoomCount</h3>
+<div style="display: flex;">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Min
+        </button>
+        <ul class="dropdown-menu">
+            <li>class="dropdown-item">@RoomCountList[0]</li>
+            <li>class="dropdown-item">@RoomCountList[1]</li>
+            <li>class="dropdown-item">@RoomCountList[2]</li>
+            <li>class="dropdown-item">@RoomCountList[3]</li>
+            <li>class="dropdown-item">@RoomCountList[4]</li>
+            <li>class="dropdown-item">@RoomCountList[5]</li>
+        </ul>
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Max
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">@RoomCountList[0]</a></li>
+            <li><a class="dropdown-item" href="#">@RoomCountList[1]</a></li>
+            <li><a class="dropdown-item" href="#">@RoomCountList[2]</a></li>
+            <li><a class="dropdown-item" href="#">@RoomCountList[3]</a></li>
+            <li><a class="dropdown-item" href="#">@RoomCountList[4]</a></li>
+            <li><a class="dropdown-item" href="#">@RoomCountList[5]</a></li>
+        </ul>
+    </div>
+</div>
+
+
+@code {
+
+    public List<int> RoomCountList = new List<int> { 1, 2, 3, 4, 5, 6 };
+
+    [Parameter]
+    public int MinCount { get; set; }
+    [Parameter]
+    public int MaxCount { get; set; }
+
+
+}

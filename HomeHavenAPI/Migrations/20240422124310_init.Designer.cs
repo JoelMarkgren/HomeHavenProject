@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240419104200_addedmore seed data")]
-    partial class addedmoreseeddata
+    [Migration("20240422124310_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -334,6 +334,98 @@ namespace HomeHavenAPI.Migrations
                     b.HasIndex("RegionId");
 
                     b.ToTable("Residences");
+
+                    b.HasData(
+                        new
+                        {
+                            ResidenceId = 1,
+                            Address = "Sveavägen 42",
+                            BiArea = 20,
+                            CategoryId = 1,
+                            ConstructionYear = 2004,
+                            LandArea = 500,
+                            LivingArea = 120,
+                            MonthlyFee = 4000m,
+                            OperatingCost = 50000m,
+                            PictureListURL = "[\"url\"]",
+                            RealtorId = 5,
+                            RegionId = 1,
+                            ResidenceDescription = "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan.",
+                            RoomCount = 5m,
+                            StartingPrice = 2000000
+                        },
+                        new
+                        {
+                            ResidenceId = 2,
+                            Address = "Storgatan 12",
+                            BiArea = 30,
+                            CategoryId = 2,
+                            ConstructionYear = 2000,
+                            LandArea = 0,
+                            LivingArea = 100,
+                            MonthlyFee = 6500m,
+                            OperatingCost = 24500m,
+                            PictureListURL = "[\"url\"]",
+                            RealtorId = 4,
+                            RegionId = 2,
+                            ResidenceDescription = "Charmigt radhus med trädgård och garage i lugnt bostadsområde nära naturen.",
+                            RoomCount = 3m,
+                            StartingPrice = 1250000
+                        },
+                        new
+                        {
+                            ResidenceId = 3,
+                            Address = "Strandvägen 7",
+                            BiArea = 0,
+                            CategoryId = 3,
+                            ConstructionYear = 2018,
+                            LandArea = 1000,
+                            LivingArea = 250,
+                            MonthlyFee = 4250m,
+                            OperatingCost = 32400m,
+                            PictureListURL = "[\"url\"]",
+                            RealtorId = 3,
+                            RegionId = 3,
+                            ResidenceDescription = "Funkisvilla med pool och havsutsikt på exklusiv adress vid kusten.",
+                            RoomCount = 6m,
+                            StartingPrice = 3000000
+                        },
+                        new
+                        {
+                            ResidenceId = 4,
+                            Address = "Norra Vallgatan 14",
+                            BiArea = 15,
+                            CategoryId = 4,
+                            ConstructionYear = 2009,
+                            LandArea = 625,
+                            LivingArea = 130,
+                            MonthlyFee = 7000m,
+                            OperatingCost = 31500m,
+                            PictureListURL = "[\"url\"]",
+                            RealtorId = 3,
+                            RegionId = 2,
+                            ResidenceDescription = "Gammal gård renoverad till lyxigt boende med generösa sällskapsytor och stor trädgård.",
+                            RoomCount = 4m,
+                            StartingPrice = 2230000
+                        },
+                        new
+                        {
+                            ResidenceId = 5,
+                            Address = "Östra Hamngatan 3",
+                            BiArea = 50,
+                            CategoryId = 5,
+                            ConstructionYear = 1972,
+                            LandArea = 200,
+                            LivingArea = 120,
+                            MonthlyFee = 3750m,
+                            OperatingCost = 20500m,
+                            PictureListURL = "[\"url\"]",
+                            RealtorId = 1,
+                            RegionId = 5,
+                            ResidenceDescription = "Lägenhet i nybyggd bostadsrättsförening med gemensam takterrass och närhet till shopping och kommunikationer.",
+                            RoomCount = 5m,
+                            StartingPrice = 1400000
+                        });
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.Residence", b =>

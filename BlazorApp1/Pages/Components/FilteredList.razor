@@ -1,0 +1,58 @@
+﻿@inject IResidenceService residenceService
+
+<h3>FilteredList</h3>
+<ResidenceList DisplayResidences="DisplayResidences" />
+
+@if (Categories != null)
+{
+    foreach (var category in Categories)
+    {
+        <p>@category.CategoryName</p>
+    }
+}
+
+
+
+<button @onclick="PassesFilters">Sök</button>
+@code {
+    [Parameter]
+    public List<Category> Categories { get; set; } = new List<Category>();
+    [Parameter]
+    public int MinPrice { get; set; }
+    [Parameter]
+    public int MaxPrice { get; set; }
+    public IEnumerable<ResidenceDto> AllResidences { get; set; } = new List<ResidenceDto>();
+
+    public List<ResidenceDto> DisplayResidences { get; set; } = new List<ResidenceDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        AllResidences = await residenceService.GetAllAsync();
+    }
+
+    private async Task PassesFilters()
+    {
+        DisplayResidences.Clear();
+        foreach (var resi in AllResidences)
+        {
+            if (resi.StartingPrice >= MinPrice && resi.StartingPrice <= MaxPrice)
+            {
+                if (Categories.Any() == true)
+                {
+                    foreach (var cat in Categories)
+                    {
+                        if (cat.CategoryId == resi.CategoryId)
+                        {
+                            DisplayResidences.Add(resi);
+                        }
+                    }
+                }
+                else
+                {
+                    DisplayResidences.Add(resi);
+                }
+            }
+        }
+
+    }
+}
