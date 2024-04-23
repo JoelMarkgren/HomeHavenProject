@@ -12,7 +12,7 @@ namespace HomeHavenAPI.Models
 		public int BiArea { get; set; }
 		public int LandArea { get; set; }
 		public string ResidenceDescription { get; set; }
-		public decimal RoomCount { get; set; }
+		public int RoomCount { get; set; }
 		public decimal? MonthlyFee { get; set; }
 		public decimal OperatingCost { get; set; }
 		public int ConstructionYear { get; set; }

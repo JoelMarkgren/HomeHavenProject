@@ -11,7 +11,7 @@ namespace HomeHavenAPI.Models
         public int RegionId { get; set; }
 		public int StartingPrice { get; set; }
         public int LivingArea { get; set; }
-        public decimal RoomCount { get; set; }
+        public int RoomCount { get; set; }
         public string MainPicture { get; set; }
 		public Category ResidenceCategory { get; set; }
 		public Region ResidenceRegion { get; set; }

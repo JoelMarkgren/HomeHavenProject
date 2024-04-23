@@ -316,8 +316,8 @@ namespace HomeHavenAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("RoomCount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("RoomCount")
+                        .HasColumnType("int");
 
                     b.Property<int>("StartingPrice")
                         .HasColumnType("int");
@@ -344,11 +344,11 @@ namespace HomeHavenAPI.Migrations
                             LivingArea = 120,
                             MonthlyFee = 4000m,
                             OperatingCost = 50000m,
-                            PictureListURL = "[\"url\"]",
+                            PictureListURL = "[\"https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg\"]",
                             RealtorId = 5,
                             RegionId = 1,
                             ResidenceDescription = "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan.",
-                            RoomCount = 5m,
+                            RoomCount = 5,
                             StartingPrice = 2000000
                         },
                         new
@@ -362,11 +362,11 @@ namespace HomeHavenAPI.Migrations
                             LivingArea = 100,
                             MonthlyFee = 6500m,
                             OperatingCost = 24500m,
-                            PictureListURL = "[\"url\"]",
+                            PictureListURL = "[\"https://www.brahus.se/upload/house/1031629571.jpg\"]",
                             RealtorId = 4,
                             RegionId = 2,
                             ResidenceDescription = "Charmigt radhus med trädgård och garage i lugnt bostadsområde nära naturen.",
-                            RoomCount = 3m,
+                            RoomCount = 3,
                             StartingPrice = 1250000
                         },
                         new
@@ -380,11 +380,11 @@ namespace HomeHavenAPI.Migrations
                             LivingArea = 250,
                             MonthlyFee = 4250m,
                             OperatingCost = 32400m,
-                            PictureListURL = "[\"url\"]",
+                            PictureListURL = "[\"https://hjaltevadshus.se/app/uploads/2022/10/nyckelfardiga-vitsippan.jpg\"]",
                             RealtorId = 3,
                             RegionId = 3,
                             ResidenceDescription = "Funkisvilla med pool och havsutsikt på exklusiv adress vid kusten.",
-                            RoomCount = 6m,
+                            RoomCount = 6,
                             StartingPrice = 3000000
                         },
                         new
@@ -398,11 +398,11 @@ namespace HomeHavenAPI.Migrations
                             LivingArea = 130,
                             MonthlyFee = 7000m,
                             OperatingCost = 31500m,
-                            PictureListURL = "[\"url\"]",
+                            PictureListURL = "[\"https://www.osloguiden.se/wp-content/uploads/2015/04/Pilestredet.jpg\"]",
                             RealtorId = 3,
                             RegionId = 2,
                             ResidenceDescription = "Gammal gård renoverad till lyxigt boende med generösa sällskapsytor och stor trädgård.",
-                            RoomCount = 4m,
+                            RoomCount = 4,
                             StartingPrice = 2230000
                         },
                         new
@@ -416,11 +416,11 @@ namespace HomeHavenAPI.Migrations
                             LivingArea = 120,
                             MonthlyFee = 3750m,
                             OperatingCost = 20500m,
-                            PictureListURL = "[\"url\"]",
+                            PictureListURL = "[\"https://www.ekonomifokus.se/wp-content/uploads/2019/01/Vad-ingar-vid-kop-och-salj-av-fastighet-och-hus-e1547480095379.jpg\"]",
                             RealtorId = 1,
                             RegionId = 5,
                             ResidenceDescription = "Lägenhet i nybyggd bostadsrättsförening med gemensam takterrass och närhet till shopping och kommunikationer.",
-                            RoomCount = 5m,
+                            RoomCount = 5,
                             StartingPrice = 1400000
                         });
                 });

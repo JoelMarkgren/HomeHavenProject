@@ -4,19 +4,6 @@
 @inject IRealtorFirmService RealtorFirmService
 @inject ICategoryService categoryService
 
-<h1>RealtorFirms</h1>
-
-@if (Firms == null)
-{
-    <h2>loading...</h2>
-}
-else
-{
-    @foreach (var firm in Firms)
-    {
-        <h2>@firm.FirmName</h2>
-    }
-}
 
 <div class="Category-List">
     @if (CategoryList == null)
@@ -47,15 +34,15 @@ else
         <output>@MaxPriceValue</output>
     </div>
 </div>
+<div>
+	<RoomCount MinCount="MinCount" MaxCount="MaxCount" />
 
+</div>
 <div>
     <FilteredList MinPrice="MinPriceValue" MaxPrice="MaxPriceValue" Categories="SelectedCategoryList" />
 </div>
 
-<div>
-    <RoomCount MinCount="MinCount" MaxCount="MaxCount"/> 
-    
-</div>
+
 
 @code {
     public IEnumerable<RealtorFirm> Firms { get; set; } = new List<RealtorFirm>();
