@@ -1,7 +1,7 @@
 ﻿@* Author: Jakob *@
 @inject IResidenceService ResidenceService
 <div class="row row-cols-1 row-cols-md-4 g-4">
-@foreach (var Resi in Residences)
+@foreach (var Resi in DisplayResidences)
 {
 
 	
@@ -28,7 +28,6 @@
 	[Parameter]
 	public IEnumerable<ResidenceDto> DisplayResidences { get; set; } = new List<ResidenceDto>();
 
-	public IEnumerable<ResidenceDto> Residences { get; set; } = new List<ResidenceDto>(); /* TestData tills filtercomponenten är klar , byt namn på listan i foreach loopen*/
 
 	protected override async Task OnInitializedAsync()
 	{
