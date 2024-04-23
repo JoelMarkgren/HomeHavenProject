@@ -1,6 +1,6 @@
 ﻿@page "/"
 
-
+@inject IResidenceService ResidenceService
 @inject IRealtorFirmService RealtorFirmService
 @inject ICategoryService categoryService
 
@@ -17,6 +17,7 @@ else
         <h2>@firm.FirmName</h2>
     }
 }
+
 <div class="Category-List">
     @if (CategoryList == null)
     {
@@ -26,40 +27,53 @@ else
     {
         @foreach (var category in CategoryList)
         {
-            <ResidenceCheckbox Name="@category.CategoryName" OnCategorySelection="HandleCheckBox" />
+            <ResidenceCheckbox Name="@category.CategoryName"  Id="category.CategoryId" OnCategorySelection="HandleCheckBox" />
         }
     }
 </div>
-<div class="wrapper">
+
+
+@* --Min och Maxpris-Sliders-- *@
+
+ <div class="slider-wrapper">
     <div class="MinValContainer">
         <label class="MinValLabel">Minimum pris:</label>
-        <input type="range" class="" min="300000" max="20000000" value="0" oninput="this.nextElementSibling.value = this.value" />
-        <output value="this.value"></output>
+        <input type="range" min="300000" max="20000000" @bind="MinPriceValue" />
+        <output>@MinPriceValue</output>
     </div>
     <div class="MaxValContainer">
         <label class="MaxValLabel">Maximum pris:</label>
-        <input type="range" class="" min="300000" max="20000000" value="0" oninput="this.nextElementSibling.value = this.value" />
-        <output value="this.value"></output>
+        <input type="range" min="300000" max="20000000" @bind="MaxPriceValue" />
+        <output>@MaxPriceValue</output>
     </div>
-
-
-
 </div>
 
+<div>
+    <FilteredList MinPrice="MinPriceValue" MaxPrice="MaxPriceValue" Categories="SelectedCategoryList" />
+</div>
 
-
-
+<div>
+    <RoomCount MinCount="MinCount" MaxCount="MaxCount"/> 
+    
+</div>
 
 @code {
-    public IEnumerable<RealtorFirm> Firms { get; set; }
-    public IEnumerable<Category> CategoryList { get; set; }
-    public List<Category> SelectedCategoryList { get; set; }
-    public int SelectedPrice { get; set; }
+    public IEnumerable<RealtorFirm> Firms { get; set; } = new List<RealtorFirm>();
+    public IEnumerable<Category> CategoryList { get; set; } = new List<Category>();
+    public List<Category> SelectedCategoryList { get; set; } = new List<Category>();
+    private List<ResidenceDto> Residences { get; set; } = new List<ResidenceDto>();
+    public IEnumerable<ResidenceDto> FilteredResidences { get; set; } = new List<ResidenceDto>();
+    public int MinCount { get; set; }
+    public int MaxCount { get; set; }
+ 
+    int MinPriceValue { get; set; } = 300000;
+    int MaxPriceValue { get; set; } = 20000000;
 
     protected override async Task OnInitializedAsync()
     {
         Firms = await RealtorFirmService.GetAllAsync();
         CategoryList = await categoryService.GetAllAsync();
+        FilteredResidences = await ResidenceService.GetAllAsync();
     }
 
     private void HandleCheckBox(int id)
@@ -75,5 +89,4 @@ else
             SelectedCategoryList.Remove(category);
         }
     }
-
 }

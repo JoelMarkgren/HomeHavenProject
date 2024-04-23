@@ -1,25 +1,29 @@
 ﻿<h3>MinMaxPrice</h3>
 
-<input type="range" id="vol" name="vol" value="@SelectedPrice">
-
 
 @code {
-    [Parameter]
-    public EventCallback<int> OnSelectedPrice { get; set; }
-    [Parameter]
-    public int MinPrice { get; set; }
-    [Parameter]
-    public int MaxPrice { get; set; }
 
-    public long PriceRange { get; set; } = 20000000;
     [Parameter]
-    public int SelectedPrice { get; set; }
+    public EventCallback<int> OnSelectedMinPrice { get; set; }
 
-    protected async Task FilterPrice(ChangeEventArgs price)
+    [Parameter]
+    public EventCallback<int> OnSelectedMaxPrice { get; set; }
+
+    [Parameter]
+    public int SelectedMinPrice { get; set; }
+
+    [Parameter]
+    public int SelectedMaxPrice { get; set; }
+
+    protected async Task FilterMinPrice(ChangeEventArgs e)
     {
-        SelectedPrice = (int)price.Value;
-        await OnSelectedPrice.InvokeAsync(SelectedPrice);
+        SelectedMinPrice = Convert.ToInt32(e.Value);
+        await OnSelectedMinPrice.InvokeAsync(SelectedMinPrice);
     }
 
-
+    protected async Task FilterMaxPrice(ChangeEventArgs e)
+    {
+        SelectedMaxPrice = Convert.ToInt32(e.Value);
+        await OnSelectedMaxPrice.InvokeAsync(SelectedMaxPrice);
+    }
 }

@@ -129,6 +129,30 @@ namespace HomeHavenAPI.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Firms",
+                columns: new[] { "RealtorFirmId", "Descrpition", "FirmName", "LogoURL" },
+                values: new object[,]
+                {
+                    { 1, "En mäklarfirm med fokus på att göra drömmar till verklighet för kunder genom att matcha dem med sitt perfekta hem.", "Dream Home Realty", "URL" },
+                    { 2, "Specialiserade på lyxiga och exklusiva fastigheter, erbjuder Elite Properties en förstklassig service för kunder som söker det bästa av det bästa.", "Elite Properties", "URL" },
+                    { 3, "Med starka förbindelser och expertis inom fastighetsmarknaden, strävar Prime Real Estate Solutions efter att hjälpa kunder att hitta de mest lönsamma fastighetsaffärerna.", "Prime Real Estate Solutions", "URL" },
+                    { 4, "Fokuserar på att skapa en \"näste\" åt sina kunder där de kan känna sig hemma och bekväma i den stadsmiljö de älskar.", "Urban Nest Realty", "URL" },
+                    { 5, "Tar sina kunder till nya horisonter genom att guida dem genom köp- och säljprocessen med en personlig och professionell approach.", "Horizon Homes Real Estate", "URL" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Realtors",
+                columns: new[] { "RealtorId", "Email", "FirstName", "LastName", "PhoneNumber", "ProfilePictureURL", "RealtorFirmId" },
+                values: new object[,]
+                {
+                    { 1, "sofia.andersson@example.com", "Sofia", "Andersson", "070-1234567", "URL", 1 },
+                    { 2, "erik.svensson@example.com", "Erik", "Svensson", "073-9876543", "URL", 3 },
+                    { 3, "emma.johansson@example.com", "Emma", "Johansson", "076-1112233", "URL", 2 },
+                    { 4, "anders.karlsson@example.com", "Anders", "Karlsson", "072-5554441", "URL", 2 },
+                    { 5, "linnea.lindgren@example.com", "Linnea", "Lindgren", "074-8889990", "URL", 5 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Regions",
                 columns: new[] { "RegionId", "County", "Township" },
                 values: new object[,]
@@ -138,6 +162,18 @@ namespace HomeHavenAPI.Migrations
                     { 3, "Jönköpings", "Gislaved" },
                     { 4, "Kalmar", "Torsås" },
                     { 5, "Blekinge", "Karlskrona" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Residences",
+                columns: new[] { "ResidenceId", "Address", "BiArea", "CategoryId", "ConstructionYear", "LandArea", "LivingArea", "MonthlyFee", "OperatingCost", "PictureListURL", "RealtorId", "RegionId", "ResidenceDescription", "RoomCount", "StartingPrice" },
+                values: new object[,]
+                {
+                    { 1, "Sveavägen 42", 20, 1, 2004, 500, 120, 4000m, 50000m, "[\"url\"]", 5, 1, "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan.", 5m, 2000000 },
+                    { 2, "Storgatan 12", 30, 2, 2000, 0, 100, 6500m, 24500m, "[\"url\"]", 4, 2, "Charmigt radhus med trädgård och garage i lugnt bostadsområde nära naturen.", 3m, 1250000 },
+                    { 3, "Strandvägen 7", 0, 3, 2018, 1000, 250, 4250m, 32400m, "[\"url\"]", 3, 3, "Funkisvilla med pool och havsutsikt på exklusiv adress vid kusten.", 6m, 3000000 },
+                    { 4, "Norra Vallgatan 14", 15, 4, 2009, 625, 130, 7000m, 31500m, "[\"url\"]", 3, 2, "Gammal gård renoverad till lyxigt boende med generösa sällskapsytor och stor trädgård.", 4m, 2230000 },
+                    { 5, "Östra Hamngatan 3", 50, 5, 1972, 200, 120, 3750m, 20500m, "[\"url\"]", 1, 5, "Lägenhet i nybyggd bostadsrättsförening med gemensam takterrass och närhet till shopping och kommunikationer.", 5m, 1400000 }
                 });
 
             migrationBuilder.CreateIndex(
