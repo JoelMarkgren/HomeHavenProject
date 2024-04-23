@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240423104043_init")]
-    partial class init
+    [Migration("20240423104703_newest")]
+    partial class newest
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

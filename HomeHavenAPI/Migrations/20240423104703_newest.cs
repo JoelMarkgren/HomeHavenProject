@@ -7,7 +7,7 @@
 namespace HomeHavenAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class newest : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
