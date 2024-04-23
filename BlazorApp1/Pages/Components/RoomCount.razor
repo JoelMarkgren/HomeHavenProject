@@ -1,43 +1,80 @@
 ﻿@inject IResidenceService ResidenceService
 <h3>RoomCount</h3>
-<div style="display: flex;">
+@* <div style="display: flex;">
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Min
         </button>
-        <ul class="dropdown-menu">
-            <li>class="dropdown-item">@RoomCountList[0]</li>
-            <li>class="dropdown-item">@RoomCountList[1]</li>
-            <li>class="dropdown-item">@RoomCountList[2]</li>
-            <li>class="dropdown-item">@RoomCountList[3]</li>
-            <li>class="dropdown-item">@RoomCountList[4]</li>
-            <li>class="dropdown-item">@RoomCountList[5]</li>
-        </ul>
+        <select class="dropdown-menu" @bind="MinCount">
+            @foreach (var room in RoomCountList)
+            {
+                <option value="room" class="dropdown-item">@room</option>
+            }
+        </select>
     </div>
     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        @* <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Max
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">@RoomCountList[0]</a></li>
-            <li><a class="dropdown-item" href="#">@RoomCountList[1]</a></li>
-            <li><a class="dropdown-item" href="#">@RoomCountList[2]</a></li>
-            <li><a class="dropdown-item" href="#">@RoomCountList[3]</a></li>
-            <li><a class="dropdown-item" href="#">@RoomCountList[4]</a></li>
-            <li><a class="dropdown-item" href="#">@RoomCountList[5]</a></li>
-        </ul>
+        </button> *@
+        @* <label>Max</label>
+        <select class="dropdown-menu" @bind="MaxCount">
+            @foreach (var room in RoomCountList)
+            {
+                <option value="room" class="dropdown-item">@room</option>          
+            }
+        </select>
+    </div>
+</div> *@
+<div style="display: flex;">
+    <div class="flex-row">
+        <label>Min:</label>
+        <select @onchange="MinCountChanged">
+            @foreach (var item in RoomCountList)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+    </div>
+    <div class="flex-row">
+        <label>Max</label>
+        <select @onchange="MaxCountChanged">
+            @foreach (var item in RoomCountList)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
     </div>
 </div>
 
 
+
 @code {
 
-    public List<int> RoomCountList = new List<int> { 1, 2, 3, 4, 5, 6 };
+    public List<int> RoomCountList = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
     [Parameter]
-    public int MinCount { get; set; }
+    public EventCallback<int> MinCount { get; set; }
     [Parameter]
-    public int MaxCount { get; set; }
+    public EventCallback<int> MaxCount { get; set; }
+    [Parameter]
+    public bool IsSelected { get; set; } = false;
+    [Parameter]
+    public int MinValue { get; set; }
+    [Parameter]
+    public int MaxValue { get; set; }
 
+
+    protected async Task MinCountChanged(ChangeEventArgs e)
+    {
+        var newValue = Convert.ToInt32(e.Value);
+        MinValue = newValue;
+        await MinCount.InvokeAsync(newValue);
+    }
+    protected async Task MaxCountChanged(ChangeEventArgs e)
+    {
+        var newValue = Convert.ToInt32(e.Value);
+        MaxValue = newValue;
+        await MaxCount.InvokeAsync(newValue);
+    }
 
 }

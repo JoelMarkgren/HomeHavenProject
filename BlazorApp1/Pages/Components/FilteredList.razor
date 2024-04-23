@@ -1,25 +1,17 @@
 ﻿@inject IResidenceService residenceService
 <button @onclick="PassesFilters">Sök</button>
 <ResidenceList DisplayResidences="DisplayResidences" />
-
-@if (Categories != null)
-{
-    foreach (var category in Categories)
-    {
-        <p>@category.CategoryName</p>
-    }
-}
-
-
-
-
 @code {
     [Parameter]
     public List<Category> Categories { get; set; } = new List<Category>();
     [Parameter]
-    public int MinPrice { get; set; }
+    public int MinPrice { get; set; } 
     [Parameter]
     public int MaxPrice { get; set; }
+    [Parameter]
+    public int MinRoomCount { get; set; }
+    [Parameter]
+    public int MaxRoomCount { get; set; }
     public IEnumerable<ResidenceDto> AllResidences { get; set; } = new List<ResidenceDto>();
 
     public List<ResidenceDto> DisplayResidences { get; set; } = new List<ResidenceDto>();
@@ -28,21 +20,20 @@
     {
         AllResidences = await residenceService.GetAllAsync();
     }
-
     private async Task PassesFilters()
     {
         DisplayResidences.Clear();
         foreach (var resi in AllResidences)
         {
-            if (resi.StartingPrice >= MinPrice && resi.StartingPrice <= MaxPrice)
+            if (resi.StartingPrice >= MinPrice && resi.StartingPrice <= MaxPrice && MinRoomCount <= resi.RoomCount && MaxRoomCount >= resi.RoomCount)
             {
                 if (Categories.Any() == true)
                 {
                     foreach (var cat in Categories)
                     {
                         if (cat.CategoryId == resi.CategoryId)
-                        {
-                            DisplayResidences.Add(resi);
+                        {  
+                                DisplayResidences.Add(resi);
                         }
                     }
                 }
@@ -52,6 +43,5 @@
                 }
             }
         }
-
     }
 }

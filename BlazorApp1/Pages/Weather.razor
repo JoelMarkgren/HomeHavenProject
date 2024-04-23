@@ -35,8 +35,8 @@
     </div>
 </div>
 <div>
-	<RoomCount MinCount="MinCount" MaxCount="MaxCount" />
-
+    <RoomCount MinCount="GetRoomCount" />
+  
 </div>
 <div>
     <FilteredList MinPrice="MinPriceValue" MaxPrice="MaxPriceValue" Categories="SelectedCategoryList" />
@@ -52,7 +52,7 @@
     public IEnumerable<ResidenceDto> FilteredResidences { get; set; } = new List<ResidenceDto>();
     public int MinCount { get; set; }
     public int MaxCount { get; set; }
- 
+
     int MinPriceValue { get; set; } = 300000;
     int MaxPriceValue { get; set; } = 20000000;
 
@@ -61,6 +61,12 @@
         Firms = await RealtorFirmService.GetAllAsync();
         CategoryList = await categoryService.GetAllAsync();
         FilteredResidences = await ResidenceService.GetAllAsync();
+    }
+
+    private void GetRoomCount(int min)
+    {
+        MinCount = min;
+
     }
 
     private void HandleCheckBox(int id)
