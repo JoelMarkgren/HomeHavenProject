@@ -35,11 +35,11 @@
     </div>
 </div>
 <div>
-    <RoomCount MinCount="GetRoomCount" />
+    <RoomCount MinCount="GetMinRoomCount" MaxCount="GetMaxRoomCount" />
   
 </div>
 <div>
-    <FilteredList MinPrice="MinPriceValue" MaxPrice="MaxPriceValue" Categories="SelectedCategoryList" />
+    <FilteredList MaxRoomCount="MaxCount" MinRoomCount= "MinCount" MinPrice="MinPriceValue" MaxPrice="MaxPriceValue" Categories="SelectedCategoryList" />
 </div>
 
 
@@ -63,9 +63,14 @@
         FilteredResidences = await ResidenceService.GetAllAsync();
     }
 
-    private void GetRoomCount(int min)
+    private void GetMinRoomCount(int min)
     {
         MinCount = min;
+
+    }
+    private void GetMaxRoomCount(int max)
+    {
+        MaxCount = max;
 
     }
 
