@@ -1,8 +1,6 @@
 ﻿@inject IResidenceService residenceService
 <button @onclick="PassesFilters">Sök</button>
 <ResidenceList DisplayResidences="DisplayResidences" />
-<br />
-<p>@MinRoomCount @MaxRoomCount</p>
 @code {
 	[Parameter]
 	public List<Category> Categories { get; set; } = new List<Category>();
