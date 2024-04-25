@@ -3,8 +3,23 @@
 @inject IResidenceService ResidenceService
 @inject IRealtorFirmService RealtorFirmService
 @inject ICategoryService categoryService
+@inject IRegionService RegionService
 
+<div>
+    @if (RegionList == null)
+    {
+        <h2>loading...</h2>
+    }
+    
+    
+    else
+        {
 
+        <RegionDropDownList AllRegions="RegionList.OrderBy(r => r.Township).ToList()" />
+        }
+    
+    
+</div>
 <div class="Category-List">
     @if (CategoryList == null)
     {
@@ -14,7 +29,7 @@
     {
         @foreach (var category in CategoryList)
         {
-            <ResidenceCheckbox Name="@category.CategoryName"  Id="category.CategoryId" OnCategorySelection="HandleCheckBox" />
+            <ResidenceCheckbox Name="@category.CategoryName" Id="category.CategoryId" OnCategorySelection="HandleCheckBox" />
         }
     }
 </div>
@@ -22,7 +37,7 @@
 
 @* --Min och Maxpris-Sliders-- *@
 
- <div class="slider-wrapper">
+<div class="slider-wrapper">
     <div class="MinValContainer">
         <label class="MinValLabel">Minimum pris:</label>
         <input type="range" min="300000" max="20000000" @bind="MinPriceValue" />
@@ -36,10 +51,10 @@
 </div>
 <div>
     <RoomCount MinCount="GetMinRoomCount" MaxCount="GetMaxRoomCount" />
-  
+
 </div>
 <div>
-    <FilteredList MaxRoomCount="MaxCount" MinRoomCount= "MinCount" MinPrice="MinPriceValue" MaxPrice="MaxPriceValue" Categories="SelectedCategoryList" />
+    <FilteredList MaxRoomCount="MaxCount" MinRoomCount="MinCount" MinPrice="MinPriceValue" MaxPrice="MaxPriceValue" Categories="SelectedCategoryList" SelectedRegion="SelectedRegion" />
 </div>
 
 
@@ -50,6 +65,9 @@
     public List<Category> SelectedCategoryList { get; set; } = new List<Category>();
     private List<ResidenceDto> Residences { get; set; } = new List<ResidenceDto>();
     public IEnumerable<ResidenceDto> FilteredResidences { get; set; } = new List<ResidenceDto>();
+    public IEnumerable<Region> RegionList { get; set; } = new List<Region>(); 
+    public Region SelectedRegion { get; set; }
+
     public int MinCount { get; set; }
     public int MaxCount { get; set; }
 
@@ -61,6 +79,7 @@
         Firms = await RealtorFirmService.GetAllAsync();
         CategoryList = await categoryService.GetAllAsync();
         FilteredResidences = await ResidenceService.GetAllAsync();
+        RegionList = await RegionService.GetAllAsync();
     }
 
     private void GetMinRoomCount(int min)
@@ -87,4 +106,6 @@
             SelectedCategoryList.Remove(category);
         }
     }
+    
+
 }

@@ -16,7 +16,8 @@ namespace BlazorApp1
 			builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7277/") });
 			builder.Services.AddScoped<IRealtorFirmService, RealtorFirmService>();
             builder.Services.AddScoped<IResidenceService, ResidenceService>();
-            builder.Services.AddScoped<ICategoryService, CategoryService>();
+			builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<IRegionService, RegionService>();
 
             await builder.Build().RunAsync();
 		}

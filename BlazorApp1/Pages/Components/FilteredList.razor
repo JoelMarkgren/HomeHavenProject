@@ -1,8 +1,9 @@
 ﻿@inject IResidenceService residenceService
+@inject IRegionService RegionService
 <button @onclick="PassesFilters">Sök</button>
 <ResidenceList DisplayResidences="DisplayResidences" />
 <br />
-<p>@MinRoomCount @MaxRoomCount</p>
+
 @code {
 	[Parameter]
 	public List<Category> Categories { get; set; } = new List<Category>();
@@ -17,10 +18,12 @@
 	public IEnumerable<ResidenceDto> AllResidences { get; set; } = new List<ResidenceDto>();
 
 	public List<ResidenceDto> DisplayResidences { get; set; } = new List<ResidenceDto>();
+	[Parameter]
+	public Region SelectedRegion { get; set; }
 
 	protected override async Task OnInitializedAsync()
 	{
-		AllResidences = await residenceService.GetAllAsync();
+		AllResidences = await residenceService.GetAllAsync(); // Kommer inte Residences förrän man klickat på sök	
 	}
 	private void PassesFilters()
 	{
