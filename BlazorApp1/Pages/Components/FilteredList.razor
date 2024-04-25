@@ -1,5 +1,6 @@
 ﻿@inject IResidenceService residenceService
 @inject IRegionService RegionService
+
 <button @onclick="PassesFilters">Sök</button>
 <ResidenceList DisplayResidences="DisplayResidences" />
 
@@ -24,34 +25,36 @@
 
 	protected override async Task OnInitializedAsync()
 	{
-		AllResidences = await residenceService.GetAllAsync(); // Kommer inte Residences förrän man klickat på sök	
+		AllResidences = await residenceService.GetAllAsync();
 	}
 	private void PassesFilters()
 	{
 		DisplayResidences.Clear();
 		foreach (var resi in AllResidences)
 		{
-			if (MinRoomCount <= resi.RoomCount && MaxRoomCount >= resi.RoomCount || MinRoomCount == 0 && MaxRoomCount == 0)
+			if (SelectedRegion == null || resi.ResidenceRegion.Township == SelectedRegion.Township)
 			{
-				if (resi.StartingPrice >= MinPrice && resi.StartingPrice <= MaxPrice)
+				if (MinRoomCount <= resi.RoomCount && MaxRoomCount >= resi.RoomCount || MinRoomCount == 0 && MaxRoomCount == 0)
 				{
-					if (Categories.Any() == true)
+					if (resi.StartingPrice >= MinPrice && resi.StartingPrice <= MaxPrice)
 					{
-						foreach (var cat in Categories)
+						if (Categories.Any() == true)
 						{
-							if (cat.CategoryId == resi.CategoryId)
+							foreach (var cat in Categories)
 							{
-								DisplayResidences.Add(resi);
+								if (cat.CategoryId == resi.CategoryId)
+								{
+									DisplayResidences.Add(resi);
+								}
 							}
 						}
-					}
-					else
-					{
-						DisplayResidences.Add(resi);
+						else
+						{
+							DisplayResidences.Add(resi);
+						}
 					}
 				}
 			}
 		}
-
 	}
 }
