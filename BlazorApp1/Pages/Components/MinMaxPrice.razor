@@ -1,6 +1,19 @@
 ﻿
-@code {
+<div class="slider-wrapper">
+    <div class="MinValContainer">
+        <label class="MinValLabel">Minimum pris:</label>
+        <input type="range"  min="300000" max="20000000" @onchange="FilterMinPrice" />
+        <output>@SelectedMinPrice</output>
+    </div>
+    <div class="MaxValContainer">
+        <label class="MaxValLabel">Maximum pris:</label>
+        <input type="range" value="@SelectedMaxPrice"  min="300000" max="20000000" @onchange="FilterMaxPrice" />
+        <output>@SelectedMaxPrice</output>
+    </div>
+</div> 
 
+
+@code {
     [Parameter]
     public EventCallback<int> OnSelectedMinPrice { get; set; }
 
@@ -8,10 +21,10 @@
     public EventCallback<int> OnSelectedMaxPrice { get; set; }
 
     [Parameter]
-    public int SelectedMinPrice { get; set; }
+    public int SelectedMinPrice { get; set; } = 300000;
 
     [Parameter]
-    public int SelectedMaxPrice { get; set; }
+    public int SelectedMaxPrice { get; set; } = 20000000;
 
     protected async Task FilterMinPrice(ChangeEventArgs e)
     {
