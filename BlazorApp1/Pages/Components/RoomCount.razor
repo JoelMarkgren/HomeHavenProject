@@ -1,34 +1,8 @@
 ﻿@inject IResidenceService ResidenceService
-<h3>RoomCount</h3>
-@* <div style="display: flex;">
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Min
-        </button>
-        <select class="dropdown-menu" @bind="MinCount">
-            @foreach (var room in RoomCountList)
-            {
-                <option value="room" class="dropdown-item">@room</option>
-            }
-        </select>
-    </div>
-    <div class="dropdown">
-        @* <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Max
-        </button> *@
-        @* <label>Max</label>
-        <select class="dropdown-menu" @bind="MaxCount">
-            @foreach (var room in RoomCountList)
-            {
-                <option value="room" class="dropdown-item">@room</option>          
-            }
-        </select>
-    </div>
-</div> *@
 <div style="display: flex;">
     <div class="flex-row">
-        <label>Min:</label>
-        <select value=1 @onchange="MinCountChanged">
+        <label>Min rum:</label>
+        <select value ="1" @onchange="MinCountChanged">
             @foreach (var item in RoomCountList)
             {
                 <option value="@item">@item</option>
@@ -36,8 +10,8 @@
         </select>
     </div>
     <div class="flex-row">
-        <label>Max</label>
-        <select value =9 @onchange="MaxCountChanged">
+        <label>Max rum:</label>
+        <select value = "9" @onchange="MaxCountChanged">
             @foreach (var item in RoomCountList)
             {
                 <option value="@item">@item</option>
