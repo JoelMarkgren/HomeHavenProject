@@ -10,9 +10,6 @@ namespace HomeHavenAPI
             CreateMap<Residence, ResidenceDto>()
                 .ForMember(s => s.MainPicture, o => o.MapFrom(r => r.PictureListURL[0]))
                 .ReverseMap();
-
-                
-
         }
     }
 }
