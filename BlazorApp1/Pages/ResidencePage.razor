@@ -1,50 +1,9 @@
 ﻿@page "/residence/{id:int}"
 @inject NavigationManager NavigationManager
 @inject IResidenceService ResidenceService
+@inject IRealtorFirmService RealtorFirmService
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-<style type="text/css">
-	.c-wrapper {
-		width: 60%;
-		margin: auto;
-		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-		border-radius: 10px;
-	}
-
-	.carousel-inner > .item > img,
-	.carousel-inner > .item > a > img {
-		width: 50%;
-		margin: auto;
-	}
-
-	.c-image {
-		border: solid 1px black;
-		border-radius: 10px;
-		min-height: 750px;
-		max-height: 750px;
-	}
-
-	.infobox {
-		width: 60%;
-		margin: auto;
-		margin-top: 10px;
-		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-		border-radius: 10px;
-		border: solid 1px gray;
-		;
-		height: 500px;
-		margin-bottom: 30px;
-	}
-
-	.resi-title {
-		font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-		margin-top: 5px;
-		margin-left: 4%;
-		font-size: 60px;
-		text-decoration: underline;
-	}
-</style>
 
 @if (Residence != null)
 {
@@ -77,15 +36,37 @@
 		<div class="resi-title">
 			<p>@Residence.Address, @Residence.ResidenceRegion.Township</p>
 		</div>
-		<div>
-			<div>
-				<p>test</p>
-				<p>test</p>
+
+		<div class="row">
+			<div class="col-sm-8 bg-light p-3 border descbox">
+				<h4>Beskrivning:</h4>
+				<p>@Residence.ResidenceDescription</p>
 			</div>
-		
-				
-			
+			<div class="col-sm-3 bg-light p-3 border detailsbox">
+				<h4>Pris: @Residence.StartingPrice kr</h4>
+				<p>Boarea: @Residence.LivingArea m²</p>
+				<p>Biarea: @Residence.BiArea m²</p>
+				<p>Tomtarea: @Residence.LandArea m²</p>
+				<p>Antal rum: @Residence.RoomCount st</p>
+				<p>Månadskostnad: @Residence.MonthlyFee kr</p>
+				<p>Driftkostnad: @Residence.OperatingCost kr/år</p>
+				<p>Byggnadsår: @Residence.ConstructionYear</p>
+				<br />
+				<br />
+				<a href="#" style="text-align: center">Visa på Karta</a>
+
+			</div>
 		</div>
+		<div class="col-sm-8 bg-light p-3 border realtorbox">
+			<h1 style="text-decoration: underline">@Residence.ResidenceRealtor.FirstName @Residence.ResidenceRealtor.LastName</h1>
+			<h4>@RealtorFirm.FirmName</h4>
+			<p>@Residence.ResidenceRealtor.PhoneNumber</p>
+			<p>@Residence.ResidenceRealtor.Email</p>
+
+		</div>
+		
+
+
 	</div>
 
 }
@@ -100,11 +81,13 @@
 	public int Id { get; set; }
 
 	public Residence Residence { get; set; }
-	// public List<string> UrlList { get; set; } = new List<string>();
+	public RealtorFirm RealtorFirm { get; set; }
+
 
 	protected override async Task OnInitializedAsync()
 	{
 		Residence = await ResidenceService.GetAsync(Id);
-		// UrlList = Residence.PictureListURL;
+		RealtorFirm = await RealtorFirmService.GetAsync(Residence.ResidenceRealtor.RealtorFirmId);
+
 	}
 }
