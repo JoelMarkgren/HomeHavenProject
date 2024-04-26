@@ -6,8 +6,8 @@
 		@foreach (var Resi in DisplayResidences)
 		{
 			<div class="col">
-				<div class="card h-100">
-					<img src="@Resi.MainPicture" class="card-img-top" alt="...">
+				<div class="card h-100 shadow-lg">
+					<img src="@Resi.MainPicture" class="card-img-top list-img" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">@Resi.Address</h5>
 						<p class="card-text">@Resi.ResidenceRegion.Township, @Resi.ResidenceRegion.County</p>
@@ -15,7 +15,8 @@
 						<p class="card-text">Antal rum: @Resi.RoomCount</p>
 						<p class="card-text">@Resi.LivingArea m²</p>
 						<p class="card-text">@Resi.ResidenceCategory.CategoryName</p>
-						<a href="#" class="btn btn-primary">Visa</a>
+						<a href="/residence/@Resi.ResidenceId" class="btn btn-primary">Visa</a>
+						
 					</div>
 				</div>
 			</div>
