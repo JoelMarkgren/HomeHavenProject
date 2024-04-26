@@ -10,15 +10,15 @@
     {
         <h2>loading...</h2>
     }
-    
-    
-    else
-        {
 
-        <RegionDropDownList AllRegions="RegionList.OrderBy(r => r.Township).ToList()" />
-        }
-    
-    
+
+    else
+    {
+
+        <RegionDropDownList AllRegions="RegionList.OrderBy(r => r.Township).ToList()" Region="GetRegion" />
+    }
+
+
 </div>
 <div class="Category-List">
     @if (CategoryList == null)
@@ -34,10 +34,15 @@
     }
 </div>
 
+<MinMaxPrice OnSelectedMinPrice="GetMinPrice" OnSelectedMaxPrice="GetMaxPrice" />
 
-@* --Min och Maxpris-Sliders-- *@
 
-<div class="slider-wrapper">
+
+
+
+
+             @* --Min och Maxpris-Sliders-- *@
+             @* <div class="slider-wrapper">
     <div class="MinValContainer">
         <label class="MinValLabel">Minimum pris:</label>
         <input type="range" min="300000" max="20000000" @bind="MinPriceValue" />
@@ -48,7 +53,9 @@
         <input type="range" min="300000" max="20000000" @bind="MaxPriceValue" />
         <output>@MaxPriceValue</output>
     </div>
-</div>
+</div> *@
+
+
 <div>
     <RoomCount MinCount="GetMinRoomCount" MaxCount="GetMaxRoomCount" />
 
@@ -59,42 +66,42 @@
 
 
 
-@code {
-    public IEnumerable<RealtorFirm> Firms { get; set; } = new List<RealtorFirm>();
-    public IEnumerable<Category> CategoryList { get; set; } = new List<Category>();
-    public List<Category> SelectedCategoryList { get; set; } = new List<Category>();
-    private List<ResidenceDto> Residences { get; set; } = new List<ResidenceDto>();
-    public IEnumerable<ResidenceDto> FilteredResidences { get; set; } = new List<ResidenceDto>();
-    public IEnumerable<Region> RegionList { get; set; } = new List<Region>(); 
-    public Region SelectedRegion { get; set; }
+    @code {
+        public IEnumerable<RealtorFirm> Firms { get; set; } = new List<RealtorFirm>();
+        public IEnumerable<Category> CategoryList { get; set; } = new List<Category>();
+        public List<Category> SelectedCategoryList { get; set; } = new List<Category>();
+        private List<ResidenceDto> Residences { get; set; } = new List<ResidenceDto>();
+        public IEnumerable<ResidenceDto> FilteredResidences { get; set; } = new List<ResidenceDto>();
+        public IEnumerable<Region> RegionList { get; set; } = new List<Region>();
+        public Region SelectedRegion { get; set; }
 
-    public int MinCount { get; set; }
-    public int MaxCount { get; set; }
+        public int MinCount { get; set; }
+        public int MaxCount { get; set; }
 
-    int MinPriceValue { get; set; } = 300000;
-    int MaxPriceValue { get; set; } = 20000000;
+        int MinPriceValue { get; set; } = 300000;
+        int MaxPriceValue { get; set; } = 20000000;
 
-    protected override async Task OnInitializedAsync()
-    {
+        protected override async Task OnInitializedAsync()
+        {
         Firms = await RealtorFirmService.GetAllAsync();
         CategoryList = await categoryService.GetAllAsync();
         FilteredResidences = await ResidenceService.GetAllAsync();
         RegionList = await RegionService.GetAllAsync();
-    }
+        }
 
-    private void GetMinRoomCount(int min)
-    {
+        private void GetMinRoomCount(int min)
+        {
         MinCount = min;
 
-    }
-    private void GetMaxRoomCount(int max)
-    {
+        }
+        private void GetMaxRoomCount(int max)
+        {
         MaxCount = max;
 
-    }
+        }
 
-    private void HandleCheckBox(int id)
-    {
+        private void HandleCheckBox(int id)
+        {
         var category = CategoryList.FirstOrDefault(c => c.CategoryId == id);
 
         if (!SelectedCategoryList.Contains(category))
@@ -105,7 +112,18 @@
         {
             SelectedCategoryList.Remove(category);
         }
-    }
-    
+        }
+        private void GetRegion(Region region)
+        {
+        SelectedRegion = region;
+        }
+        private void GetMinPrice(int min)
+        {
+        MinPriceValue = min;
+        }
+        private void GetMaxPrice(int max)
+        {
+        MaxPriceValue = max;
+        }
 
 }

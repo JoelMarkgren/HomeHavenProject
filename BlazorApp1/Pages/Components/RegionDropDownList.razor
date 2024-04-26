@@ -1,11 +1,12 @@
-﻿<h3>RegionDropDownList</h3>
+﻿
 @inject IRegionService RegionService
 
 @if (AllRegions != null)
 {
     <div class="flex-row">
-        <label>Välj län:</label>
-        <select @onchange="ChosenRegion">
+        <select  @onchange="ChosenRegion">
+            <option disabled selected>Välj kommun</option>
+            <option value=null>Alla kommuner</option>
             @foreach (var region in AllRegions)
             {
                 <option value="@region.Township">@region.Township</option>
@@ -13,7 +14,6 @@
         </select>
     </div>
 }
-
 @code {
 
     [Parameter]
@@ -24,10 +24,9 @@
     public int Id { get; set; }
 
     public async void ChosenRegion(ChangeEventArgs e)
-    {
-        
-        var county = e.Value.ToString();
-        var selectedRegion = AllRegions.FirstOrDefault(r => r.County == county);
+    {  
+        var township = e.Value.ToString();
+        var selectedRegion = AllRegions.FirstOrDefault(r => r.Township == township);
         await Region.InvokeAsync(selectedRegion);
     }
 }
