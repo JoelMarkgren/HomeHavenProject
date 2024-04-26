@@ -1,4 +1,5 @@
 ﻿using HomeHavenAPI.Data.Interfaces;
+using HomeHavenAPI.Data.Repos;
 using HomeHavenAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,8 +12,9 @@ namespace HomeHavenAPI.Controllers
     public class RealtorController : ControllerBase
     {
         private readonly IRealtor realtorRepo;
+        private readonly IResidence residenceRepo;
 
-        public RealtorController(IRealtor realtorRepo)
+        public RealtorController(IRealtor realtorRepo, IResidence residenceRepo)
         {
             this.realtorRepo = realtorRepo;
         }
@@ -29,7 +31,6 @@ namespace HomeHavenAPI.Controllers
             {
                 return Ok(realtorList);
             }
-
         }
 
         // GET api/<RealtorController>/5

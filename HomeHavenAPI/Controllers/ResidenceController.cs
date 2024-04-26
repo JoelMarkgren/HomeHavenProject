@@ -36,6 +36,21 @@ namespace HomeHavenAPI.Controllers
 
         }
 
+        // GET api/<RealtorController>/GetResidences/3
+        [HttpGet("GetResidences/{realtorId}")]
+        public async Task<ActionResult<Realtor>> GetResidences(int realtorId)
+        {
+            var realtorsResidences = await residenceRepo.GetRealtorsResidencesAsync(realtorId);
+            if (realtorsResidences == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(realtorsResidences);
+            }
+        }
+
         // POST api/<ResidenceController>
         [HttpPost]
         public async Task Post([FromBody] Residence residence)
