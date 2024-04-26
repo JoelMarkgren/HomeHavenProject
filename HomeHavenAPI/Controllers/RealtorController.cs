@@ -1,4 +1,5 @@
 ﻿using HomeHavenAPI.Data.Interfaces;
+using HomeHavenAPI.Data.Repos;
 using HomeHavenAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +12,12 @@ namespace HomeHavenAPI.Controllers
     public class RealtorController : ControllerBase
     {
         private readonly IRealtor realtorRepo;
+        private readonly IResidence residenceRepo;
 
-        public RealtorController(IRealtor realtorRepo)
+        public RealtorController(IRealtor realtorRepo, IResidence residenceRepo)
         {
             this.realtorRepo = realtorRepo;
+            this.residenceRepo = residenceRepo;
         }
         // GET: api/<RealtorController>
         [HttpGet]
@@ -29,7 +32,6 @@ namespace HomeHavenAPI.Controllers
             {
                 return Ok(realtorList);
             }
-
         }
 
         // GET api/<RealtorController>/5
@@ -46,7 +48,20 @@ namespace HomeHavenAPI.Controllers
                 return Ok(realtor);
             }
         }
-
+        // GET api/<RealtorController>/GetResidences/3
+        [HttpGet("GetResidences/{realtorId}")]
+        public async Task<ActionResult<Realtor>> GetResidences(int realtorId)
+        {
+            var realtorsResidences = await residenceRepo.GetRealtorsResidencesAsync(realtorId);
+            if (realtorsResidences == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(realtorsResidences);
+            }
+        }
         // POST api/<RealtorController>
         [HttpPost]
         public async Task Post([FromBody] Realtor realtor)

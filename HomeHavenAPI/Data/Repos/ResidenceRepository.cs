@@ -54,5 +54,14 @@ namespace HomeHavenAPI.Data.Repos
 				.Include(r => r.ResidenceRealtor)
                 .FirstOrDefaultAsync(r => r.ResidenceId == id);
         }
+        public async Task<List<Residence>> GetRealtorsResidencesAsync(int realtorId)
+        {
+            return await applicationDbContext.Residences
+               .Include(r => r.ResidenceCategory)
+               .Include(r => r.ResidenceRegion)
+               .Include(r => r.ResidenceRealtor)
+               .Where(p => p.RealtorId == realtorId)
+               .ToListAsync();
+        }
     }
 }
