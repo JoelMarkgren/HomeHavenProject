@@ -1,14 +1,15 @@
 ﻿
 <div class="slider-wrapper">
-    <div class="MinValContainer">
-        <label class="MinValLabel">Minimum pris:</label>
-        <input type="range"  min="300000" max="20000000" @onchange="FilterMinPrice" />
-        <output>@SelectedMinPrice</output>
+    <div class="MinValContainer  pricelabel">
+        <label class="MinValLabel">Min</label><br />
+        <input class="w-100" type="range" step="250000" min="250000" max="20000000" @oninput="FilterMinPrice" /><br />
+        <output>@SelectedMinPrice kr</output>
     </div>
-    <div class="MaxValContainer">
-        <label class="MaxValLabel">Maximum pris:</label>
-        <input type="range" value="@SelectedMaxPrice"  min="300000" max="20000000" @onchange="FilterMaxPrice" />
-        <output>@SelectedMaxPrice</output>
+    <hr />
+    <div class="MaxValContainer pricelabel">
+        <label class="MaxValLabel">Max</label>
+        <input class="w-100" type="range" value="@SelectedMaxPrice" step="250000" min="300000" max="20000000" @oninput="FilterMaxPrice" />
+        <output>@SelectedMaxPrice kr</output>
     </div>
 </div> 
 
@@ -21,7 +22,7 @@
     public EventCallback<int> OnSelectedMaxPrice { get; set; }
 
     [Parameter]
-    public int SelectedMinPrice { get; set; } = 300000;
+    public int SelectedMinPrice { get; set; } = 250000;
 
     [Parameter]
     public int SelectedMaxPrice { get; set; } = 20000000;

@@ -7,6 +7,6 @@ namespace HomeHavenBlazorProject.Services
     public interface IResidenceService
     {
         Task<IEnumerable<ResidenceDto>> GetAllAsync();
-        Task<Residence> GetAsync(int id);
+        Task<ResidenceDto> GetAsync(int id);
     }
 }

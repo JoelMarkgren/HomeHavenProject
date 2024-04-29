@@ -1,8 +1,8 @@
 ﻿@inject IResidenceService ResidenceService
 <div style="display: flex;">
     <div class="flex-row">
-        <label>Min rum:</label>
-        <select value ="1" @onchange="MinCountChanged">
+        <label>Min:</label>
+        <select value="" @onchange="MinCountChanged">
             @foreach (var item in RoomCountList)
             {
                 <option value="@item">@item</option>
@@ -10,8 +10,8 @@
         </select>
     </div>
     <div class="flex-row">
-        <label>Max rum:</label>
-        <select value = "9" @onchange="MaxCountChanged">
+        <label class="maxlabel">Max:</label>
+        <select value = "" @onchange="MaxCountChanged">
             @foreach (var item in RoomCountList)
             {
                 <option value="@item">@item</option>

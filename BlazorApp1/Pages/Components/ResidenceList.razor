@@ -7,7 +7,7 @@
 		{
 			<div class="col">
 				<div class="card h-100 shadow-lg">
-					<img src="@Resi.MainPicture" class="card-img-top list-img" alt="...">
+					<img src="@Resi.PictureListURL[0]" class="card-img-top list-img" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">@Resi.Address</h5>
 						<p class="card-text">@Resi.ResidenceRegion.Township, @Resi.ResidenceRegion.County</p>
@@ -27,5 +27,6 @@
 
 @code {
 	[Parameter]
-	public IEnumerable<ResidenceDto> DisplayResidences { get; set; } = new List<ResidenceDto>();
+	public IEnumerable<ResidenceDto> DisplayResidences { get; set; } 
+
 }

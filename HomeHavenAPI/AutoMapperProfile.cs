@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HomeHavenAPI.Dtos;
 using HomeHavenAPI.Models;
 
 namespace HomeHavenAPI
@@ -8,8 +9,11 @@ namespace HomeHavenAPI
         public AutoMapperProfile()
         {
             CreateMap<Residence, ResidenceDto>()
-                .ForMember(s => s.MainPicture, o => o.MapFrom(r => r.PictureListURL[0]))
                 .ReverseMap();
-        }
+
+            CreateMap<Task<Residence>, ResidenceDto>()
+                .ReverseMap();
+
+		}
     }
 }

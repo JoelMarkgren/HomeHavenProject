@@ -1,7 +1,12 @@
 ﻿@inject IResidenceService residenceService
 @inject IRegionService RegionService
 
-<button @onclick="PassesFilters">Sök</button>
+<div class="btndiv">
+	<button type="button" class="btn btn-secondary btn-lg searchbtn" @onclick="PassesFilters">Sök</button>
+</div>
+
+
+
 <ResidenceList DisplayResidences="DisplayResidences" />
 <br />
 
@@ -41,7 +46,7 @@
 						{
 							foreach (var cat in Categories)
 							{
-								if (cat.CategoryId == resi.CategoryId)
+								if (cat.CategoryId == resi.ResidenceCategory.CategoryId)
 								{
 									DisplayResidences.Add(resi);
 								}

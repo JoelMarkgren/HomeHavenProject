@@ -59,7 +59,7 @@
 		</div>
 		<div class="col-sm-8 bg-light p-3 border realtorbox">
 			<h1 style="text-decoration: underline">@Residence.ResidenceRealtor.FirstName @Residence.ResidenceRealtor.LastName</h1>
-			<h4>@RealtorFirm.FirmName</h4>
+@* 			<h4>@RealtorFirm.FirmName</h4> *@
 			<p>@Residence.ResidenceRealtor.PhoneNumber</p>
 			<p>@Residence.ResidenceRealtor.Email</p>
 
@@ -80,14 +80,14 @@
 	[Parameter]
 	public int Id { get; set; }
 
-	public Residence Residence { get; set; }
-	public RealtorFirm RealtorFirm { get; set; }
+	public ResidenceDto Residence { get; set; }
+	public RealtorFirm RealtorFirm { get; set; } = new RealtorFirm();
 
 
 	protected override async Task OnInitializedAsync()
 	{
 		Residence = await ResidenceService.GetAsync(Id);
-		RealtorFirm = await RealtorFirmService.GetAsync(Residence.ResidenceRealtor.RealtorFirmId);
+		// RealtorFirm = await RealtorFirmService.GetAsync(Residence.ResidenceRealtor.RealtorFirmId);
 
 	}
 }
