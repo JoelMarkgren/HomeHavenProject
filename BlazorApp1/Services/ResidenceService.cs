@@ -20,9 +20,9 @@ namespace HomeHavenBlazorProject.Services
             return residences;
         }
 
-        public async Task<Residence> GetAsync(int id)
+        public async Task<ResidenceDto> GetAsync(int id)
         {
-            var residence = await httpClient.GetFromJsonAsync<Residence>($"api/Residence/{id}");
+            var residence = await httpClient.GetFromJsonAsync<ResidenceDto>($"api/Residence/{id}");
             return residence;
         }
     }

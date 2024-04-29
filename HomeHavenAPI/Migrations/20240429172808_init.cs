@@ -7,7 +7,7 @@
 namespace HomeHavenAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class newest : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -41,24 +41,6 @@ namespace HomeHavenAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Realtors",
-                columns: table => new
-                {
-                    RealtorId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RealtorFirmId = table.Column<int>(type: "int", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProfilePictureURL = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Realtors", x => x.RealtorId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Regions",
                 columns: table => new
                 {
@@ -70,6 +52,30 @@ namespace HomeHavenAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Regions", x => x.RegionId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Realtors",
+                columns: table => new
+                {
+                    RealtorId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RealtorFirmId = table.Column<int>(type: "int", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProfilePictureURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RealtorFirm = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Realtors", x => x.RealtorId);
+                    table.ForeignKey(
+                        name: "FK_Realtors_Firms_RealtorFirm",
+                        column: x => x.RealtorFirm,
+                        principalTable: "Firms",
+                        principalColumn: "RealtorFirmId");
                 });
 
             migrationBuilder.CreateTable(
@@ -142,14 +148,14 @@ namespace HomeHavenAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Realtors",
-                columns: new[] { "RealtorId", "Email", "FirstName", "LastName", "PhoneNumber", "ProfilePictureURL", "RealtorFirmId" },
+                columns: new[] { "RealtorId", "Email", "FirstName", "LastName", "PhoneNumber", "ProfilePictureURL", "RealtorFirm", "RealtorFirmId" },
                 values: new object[,]
                 {
-                    { 1, "sofia.andersson@example.com", "Sofia", "Andersson", "070-1234567", "URL", 1 },
-                    { 2, "erik.svensson@example.com", "Erik", "Svensson", "073-9876543", "URL", 3 },
-                    { 3, "emma.johansson@example.com", "Emma", "Johansson", "076-1112233", "URL", 2 },
-                    { 4, "anders.karlsson@example.com", "Anders", "Karlsson", "072-5554441", "URL", 2 },
-                    { 5, "linnea.lindgren@example.com", "Linnea", "Lindgren", "074-8889990", "URL", 5 }
+                    { 1, "sofia.andersson@example.com", "Sofia", "Andersson", "070-1234567", "URL", null, 1 },
+                    { 2, "erik.svensson@example.com", "Erik", "Svensson", "073-9876543", "URL", null, 3 },
+                    { 3, "emma.johansson@example.com", "Emma", "Johansson", "076-1112233", "URL", null, 2 },
+                    { 4, "anders.karlsson@example.com", "Anders", "Karlsson", "072-5554441", "URL", null, 2 },
+                    { 5, "linnea.lindgren@example.com", "Linnea", "Lindgren", "074-8889990", "URL", null, 5 }
                 });
 
             migrationBuilder.InsertData(
@@ -161,7 +167,80 @@ namespace HomeHavenAPI.Migrations
                     { 2, "Uppsala", "Östhammar" },
                     { 3, "Jönköpings", "Gislaved" },
                     { 4, "Kalmar", "Torsås" },
-                    { 5, "Blekinge", "Karlskrona" }
+                    { 5, "Blekinge", "Karlskrona" },
+                    { 6, "Västerbotten", "Umeå" },
+                    { 7, "Stockholm", "Ekerö" },
+                    { 8, "Jämtland", "Östersund" },
+                    { 9, "Skåne", "Malmö" },
+                    { 10, "Skåne", "Hörby" },
+                    { 12, "Stockholm", "Järfälla" },
+                    { 14, "Stockholm", "Botkyrka" },
+                    { 15, "Stockholm", "Solna" },
+                    { 16, "Stockholm", "Lidingö" },
+                    { 17, "Uppsala", "Håbå" },
+                    { 19, "Uppsala", "Knivsta" },
+                    { 20, "Uppsala", "Enköping" },
+                    { 21, "Uppsala", "Älvkarleby" },
+                    { 22, "Uppsala", "Tierp" },
+                    { 23, "Södermanland", "Vingåker" },
+                    { 24, "Södermanland", "Gnesta" },
+                    { 25, "Södermanland", "Nyköping" },
+                    { 26, "Södermanland", "Oxelösund" },
+                    { 27, "Södermanland", "Flen" },
+                    { 28, "Södermanland", "Katrineholm" },
+                    { 29, "Södermanland", "Eskilstuna" },
+                    { 30, "Södermanland", "Strängnäs" },
+                    { 31, "Södermanland", "Trosa" },
+                    { 32, "Östergötland", "Ödeshög" },
+                    { 33, "Östergötland", "Ydre" },
+                    { 34, "Östergötland", "Kinda" },
+                    { 35, "Östergötland", "Boxholm" },
+                    { 36, "Östergötland", "Åtvidaberg" },
+                    { 37, "Östergötland", "Finspång" },
+                    { 38, "Östergötland", "Valdemarsvik" },
+                    { 39, "Östergötland", "Linköping" },
+                    { 41, "Östergötland", "Norrköping" },
+                    { 42, "Östergötland", "Söderköping" },
+                    { 43, "Östergötland", "Motala" },
+                    { 44, "Östergötland", "Vadstena" },
+                    { 45, "Östergötland", "Mjölby" },
+                    { 46, "Jönköping", "Aneby" },
+                    { 47, "Jönköping", "Gnosjö" },
+                    { 48, "Jönköping", "Mullsjö" },
+                    { 49, "Jönköping", "Habo" },
+                    { 51, "Jönköping", "Vaggeryd" },
+                    { 52, "Jönköping", "Jönköping" },
+                    { 53, "Jönköping", "Nässjö" },
+                    { 55, "Jönköping", "Sävsjö" },
+                    { 56, "Jönköping", "Vetlanda" },
+                    { 57, "Jönköping", "Eksjö" },
+                    { 58, "Jönköping", "Tranås" },
+                    { 59, "Kronoberg", "Uppvidinge" },
+                    { 60, "Kronoberg", "Lessebo" },
+                    { 61, "Kronoberg", "Tingsryd" },
+                    { 62, "Kronoberg", "Alvesta" },
+                    { 63, "Kronoberg", "Älmhult" },
+                    { 64, "Kronoberg", "Markaryd" },
+                    { 65, "Kronoberg", "Växsjö" },
+                    { 66, "Kronoberg", "Ljungby" },
+                    { 67, "Kalmar", "Högsby" },
+                    { 68, "Uppsala", "Heby" },
+                    { 69, "Uppsala", "Uppsala" },
+                    { 70, "Kalmar", "Mörbylånga" },
+                    { 71, "Kalmar", "Hultsfred" },
+                    { 72, "Kalmar", "Mönsterås" },
+                    { 73, "Kalmar", "Emmaboda" },
+                    { 74, "Kalmar", "Kalmar" },
+                    { 75, "Kalmar", "Nybro" },
+                    { 76, "Kalmar", "Oskarshamn" },
+                    { 77, "Kalmar", "Västervik" },
+                    { 78, "Kalmar", "Vimmerby" },
+                    { 79, "Kalmar", "Borgholm" },
+                    { 80, "Gotland", "Gotland" },
+                    { 81, "Blekinge", "Olofström" },
+                    { 82, "Blekinge", "Ronneby" },
+                    { 83, "Blekinge", "Karlshamn" },
+                    { 84, "Blekinge", "Sölvesborg" }
                 });
 
             migrationBuilder.InsertData(
@@ -175,6 +254,11 @@ namespace HomeHavenAPI.Migrations
                     { 4, "Norra Vallgatan 14", 15, 4, 2009, 625, 130, 7000m, 31500m, "[\"https://www.osloguiden.se/wp-content/uploads/2015/04/Pilestredet.jpg\"]", 3, 2, "Gammal gård renoverad till lyxigt boende med generösa sällskapsytor och stor trädgård.", 4, 2230000 },
                     { 5, "Östra Hamngatan 3", 50, 5, 1972, 200, 120, 3750m, 20500m, "[\"https://www.ekonomifokus.se/wp-content/uploads/2019/01/Vad-ingar-vid-kop-och-salj-av-fastighet-och-hus-e1547480095379.jpg\"]", 1, 5, "Lägenhet i nybyggd bostadsrättsförening med gemensam takterrass och närhet till shopping och kommunikationer.", 5, 1400000 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Realtors_RealtorFirm",
+                table: "Realtors",
+                column: "RealtorFirm");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Residences_CategoryId",
@@ -196,9 +280,6 @@ namespace HomeHavenAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Firms");
-
-            migrationBuilder.DropTable(
                 name: "Residences");
 
             migrationBuilder.DropTable(
@@ -209,6 +290,9 @@ namespace HomeHavenAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Regions");
+
+            migrationBuilder.DropTable(
+                name: "Firms");
         }
     }
 }

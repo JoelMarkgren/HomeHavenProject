@@ -71,5 +71,70 @@
     min-height: 320px;
     max-height: 320px;
 }
+.pricelabel {
+    text-align:center;
+    margin: auto;
+}
 
+.filter-box {
+    border: solid 1px gray;
+    border-radius: 10px;
+    width: 600px;
+    margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.box {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.regiondrop {
+}
+
+.cate-box {
+    border: solid 1px gray;
+    width: 170px;
+}
+
+.room-box {
+    border: solid 1px gray;
+    width: 185px;
+}
+
+.price-box {
+    border: solid 1px gray;
+}
+
+.stitle {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.boxtitle {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+.maxlabel {
+    margin-left: 10px;
+}
+
+.toprowfilter {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btndiv {   
+    text-align: center;
+}
+
+.searchbtn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 110px;
+}
 

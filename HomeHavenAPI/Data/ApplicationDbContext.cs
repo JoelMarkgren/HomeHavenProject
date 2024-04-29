@@ -19,6 +19,9 @@ namespace HomeHavenAPI.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
+
+
             modelBuilder.Entity<Category>().HasData(
                 new Category() { CategoryId = 1, CategoryName = "Villa" },
                 new Category() { CategoryId = 2, CategoryName = "Lägenhet" },
@@ -73,7 +76,6 @@ namespace HomeHavenAPI.Data
                 new Region() { RegionId = 47, County = "Jönköping", Township = "Gnosjö" },
                 new Region() { RegionId = 48, County = "Jönköping", Township = "Mullsjö" },
                 new Region() { RegionId = 49, County = "Jönköping", Township = "Habo" },
-                new Region() { RegionId = 50, County = "Jönköping", Township = "Gislaved" },
                 new Region() { RegionId = 51, County = "Jönköping", Township = "Vaggeryd" },
                 new Region() { RegionId = 52, County = "Jönköping", Township = "Jönköping" },
                 new Region() { RegionId = 53, County = "Jönköping", Township = "Nässjö" },
@@ -130,7 +132,7 @@ namespace HomeHavenAPI.Data
                 );
 
             modelBuilder.Entity<Residence>().HasData(
-                new Residence() { ResidenceId = 1, Address = "Sveavägen 42", BiArea = 20, LandArea = 500, LivingArea = 120, ConstructionYear = 2004, StartingPrice = 2000000, MonthlyFee = 4000, OperatingCost = 50000, PictureListURL = ["https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg"], RoomCount = 5, CategoryId = 1, RealtorId = 5, RegionId = 1, ResidenceDescription = "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan." },
+                new Residence() { ResidenceId = 1, Address = "Sveavägen 42", BiArea = 20, LandArea = 500, LivingArea = 120, ConstructionYear = 2004, StartingPrice = 2000000, MonthlyFee = 4000, OperatingCost = 50000, PictureListURL = ["https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg", "https://cdn.decoist.com/wp-content/uploads/2014/08/Indoor-blossoms-in-a-modern-living-room.jpg", "https://i.ytimg.com/vi/w3zIjcnyaJs/maxresdefault.jpg"], RoomCount = 5, CategoryId = 1, RealtorId = 5, RegionId = 1, ResidenceDescription = "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan." },
                 new Residence() { ResidenceId = 2, Address = "Storgatan 12", BiArea = 30, LandArea = 0, LivingArea = 100, ConstructionYear = 2000, StartingPrice = 1250000, MonthlyFee = 6500, OperatingCost = 24500, PictureListURL = ["https://www.brahus.se/upload/house/1031629571.jpg"], RoomCount = 3, CategoryId = 2, RealtorId = 4, RegionId = 2, ResidenceDescription = "Charmigt radhus med trädgård och garage i lugnt bostadsområde nära naturen." },
                 new Residence() { ResidenceId = 3, Address = "Strandvägen 7", BiArea = 0, LandArea = 1000, LivingArea = 250, ConstructionYear = 2018, StartingPrice = 3000000, MonthlyFee = 4250, OperatingCost = 32400, PictureListURL = ["https://hjaltevadshus.se/app/uploads/2022/10/nyckelfardiga-vitsippan.jpg"], RoomCount = 6, CategoryId = 3, RealtorId = 3, RegionId = 3, ResidenceDescription = "Funkisvilla med pool och havsutsikt på exklusiv adress vid kusten." },
                 new Residence() { ResidenceId = 4, Address = "Norra Vallgatan 14", BiArea = 15, LandArea = 625, LivingArea = 130, ConstructionYear = 2009, StartingPrice = 2230000, MonthlyFee = 7000, OperatingCost = 31500, PictureListURL = ["https://www.osloguiden.se/wp-content/uploads/2015/04/Pilestredet.jpg"], RoomCount = 4, CategoryId = 4, RealtorId = 3, RegionId = 2, ResidenceDescription = "Gammal gård renoverad till lyxigt boende med generösa sällskapsytor och stor trädgård." },

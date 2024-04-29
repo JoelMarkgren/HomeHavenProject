@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace HomeHavenAPI.Models
 {
@@ -11,5 +12,7 @@ namespace HomeHavenAPI.Models
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string ProfilePictureURL { get; set; }
+		[ForeignKey("RealtorFirm")]
+		public RealtorFirm? MyRealtorFirm { get; set; }
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240423104703_newest")]
-    partial class newest
+    [Migration("20240429173501_added some seed data")]
+    partial class addedsomeseeddata
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -97,10 +97,15 @@ namespace HomeHavenAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("RealtorFirm")
+                        .HasColumnType("int");
+
                     b.Property<int>("RealtorFirmId")
                         .HasColumnType("int");
 
                     b.HasKey("RealtorId");
+
+                    b.HasIndex("RealtorFirm");
 
                     b.ToTable("Realtors");
 
@@ -269,6 +274,444 @@ namespace HomeHavenAPI.Migrations
                             RegionId = 5,
                             County = "Blekinge",
                             Township = "Karlskrona"
+                        },
+                        new
+                        {
+                            RegionId = 6,
+                            County = "Västerbotten",
+                            Township = "Umeå"
+                        },
+                        new
+                        {
+                            RegionId = 7,
+                            County = "Stockholm",
+                            Township = "Ekerö"
+                        },
+                        new
+                        {
+                            RegionId = 8,
+                            County = "Jämtland",
+                            Township = "Östersund"
+                        },
+                        new
+                        {
+                            RegionId = 9,
+                            County = "Skåne",
+                            Township = "Malmö"
+                        },
+                        new
+                        {
+                            RegionId = 10,
+                            County = "Skåne",
+                            Township = "Hörby"
+                        },
+                        new
+                        {
+                            RegionId = 12,
+                            County = "Stockholm",
+                            Township = "Järfälla"
+                        },
+                        new
+                        {
+                            RegionId = 14,
+                            County = "Stockholm",
+                            Township = "Botkyrka"
+                        },
+                        new
+                        {
+                            RegionId = 15,
+                            County = "Stockholm",
+                            Township = "Solna"
+                        },
+                        new
+                        {
+                            RegionId = 16,
+                            County = "Stockholm",
+                            Township = "Lidingö"
+                        },
+                        new
+                        {
+                            RegionId = 17,
+                            County = "Uppsala",
+                            Township = "Håbå"
+                        },
+                        new
+                        {
+                            RegionId = 19,
+                            County = "Uppsala",
+                            Township = "Knivsta"
+                        },
+                        new
+                        {
+                            RegionId = 20,
+                            County = "Uppsala",
+                            Township = "Enköping"
+                        },
+                        new
+                        {
+                            RegionId = 21,
+                            County = "Uppsala",
+                            Township = "Älvkarleby"
+                        },
+                        new
+                        {
+                            RegionId = 22,
+                            County = "Uppsala",
+                            Township = "Tierp"
+                        },
+                        new
+                        {
+                            RegionId = 23,
+                            County = "Södermanland",
+                            Township = "Vingåker"
+                        },
+                        new
+                        {
+                            RegionId = 24,
+                            County = "Södermanland",
+                            Township = "Gnesta"
+                        },
+                        new
+                        {
+                            RegionId = 25,
+                            County = "Södermanland",
+                            Township = "Nyköping"
+                        },
+                        new
+                        {
+                            RegionId = 26,
+                            County = "Södermanland",
+                            Township = "Oxelösund"
+                        },
+                        new
+                        {
+                            RegionId = 27,
+                            County = "Södermanland",
+                            Township = "Flen"
+                        },
+                        new
+                        {
+                            RegionId = 28,
+                            County = "Södermanland",
+                            Township = "Katrineholm"
+                        },
+                        new
+                        {
+                            RegionId = 29,
+                            County = "Södermanland",
+                            Township = "Eskilstuna"
+                        },
+                        new
+                        {
+                            RegionId = 30,
+                            County = "Södermanland",
+                            Township = "Strängnäs"
+                        },
+                        new
+                        {
+                            RegionId = 31,
+                            County = "Södermanland",
+                            Township = "Trosa"
+                        },
+                        new
+                        {
+                            RegionId = 32,
+                            County = "Östergötland",
+                            Township = "Ödeshög"
+                        },
+                        new
+                        {
+                            RegionId = 33,
+                            County = "Östergötland",
+                            Township = "Ydre"
+                        },
+                        new
+                        {
+                            RegionId = 34,
+                            County = "Östergötland",
+                            Township = "Kinda"
+                        },
+                        new
+                        {
+                            RegionId = 35,
+                            County = "Östergötland",
+                            Township = "Boxholm"
+                        },
+                        new
+                        {
+                            RegionId = 36,
+                            County = "Östergötland",
+                            Township = "Åtvidaberg"
+                        },
+                        new
+                        {
+                            RegionId = 37,
+                            County = "Östergötland",
+                            Township = "Finspång"
+                        },
+                        new
+                        {
+                            RegionId = 38,
+                            County = "Östergötland",
+                            Township = "Valdemarsvik"
+                        },
+                        new
+                        {
+                            RegionId = 39,
+                            County = "Östergötland",
+                            Township = "Linköping"
+                        },
+                        new
+                        {
+                            RegionId = 41,
+                            County = "Östergötland",
+                            Township = "Norrköping"
+                        },
+                        new
+                        {
+                            RegionId = 42,
+                            County = "Östergötland",
+                            Township = "Söderköping"
+                        },
+                        new
+                        {
+                            RegionId = 43,
+                            County = "Östergötland",
+                            Township = "Motala"
+                        },
+                        new
+                        {
+                            RegionId = 44,
+                            County = "Östergötland",
+                            Township = "Vadstena"
+                        },
+                        new
+                        {
+                            RegionId = 45,
+                            County = "Östergötland",
+                            Township = "Mjölby"
+                        },
+                        new
+                        {
+                            RegionId = 46,
+                            County = "Jönköping",
+                            Township = "Aneby"
+                        },
+                        new
+                        {
+                            RegionId = 47,
+                            County = "Jönköping",
+                            Township = "Gnosjö"
+                        },
+                        new
+                        {
+                            RegionId = 48,
+                            County = "Jönköping",
+                            Township = "Mullsjö"
+                        },
+                        new
+                        {
+                            RegionId = 49,
+                            County = "Jönköping",
+                            Township = "Habo"
+                        },
+                        new
+                        {
+                            RegionId = 51,
+                            County = "Jönköping",
+                            Township = "Vaggeryd"
+                        },
+                        new
+                        {
+                            RegionId = 52,
+                            County = "Jönköping",
+                            Township = "Jönköping"
+                        },
+                        new
+                        {
+                            RegionId = 53,
+                            County = "Jönköping",
+                            Township = "Nässjö"
+                        },
+                        new
+                        {
+                            RegionId = 55,
+                            County = "Jönköping",
+                            Township = "Sävsjö"
+                        },
+                        new
+                        {
+                            RegionId = 56,
+                            County = "Jönköping",
+                            Township = "Vetlanda"
+                        },
+                        new
+                        {
+                            RegionId = 57,
+                            County = "Jönköping",
+                            Township = "Eksjö"
+                        },
+                        new
+                        {
+                            RegionId = 58,
+                            County = "Jönköping",
+                            Township = "Tranås"
+                        },
+                        new
+                        {
+                            RegionId = 59,
+                            County = "Kronoberg",
+                            Township = "Uppvidinge"
+                        },
+                        new
+                        {
+                            RegionId = 60,
+                            County = "Kronoberg",
+                            Township = "Lessebo"
+                        },
+                        new
+                        {
+                            RegionId = 61,
+                            County = "Kronoberg",
+                            Township = "Tingsryd"
+                        },
+                        new
+                        {
+                            RegionId = 62,
+                            County = "Kronoberg",
+                            Township = "Alvesta"
+                        },
+                        new
+                        {
+                            RegionId = 63,
+                            County = "Kronoberg",
+                            Township = "Älmhult"
+                        },
+                        new
+                        {
+                            RegionId = 64,
+                            County = "Kronoberg",
+                            Township = "Markaryd"
+                        },
+                        new
+                        {
+                            RegionId = 65,
+                            County = "Kronoberg",
+                            Township = "Växsjö"
+                        },
+                        new
+                        {
+                            RegionId = 66,
+                            County = "Kronoberg",
+                            Township = "Ljungby"
+                        },
+                        new
+                        {
+                            RegionId = 67,
+                            County = "Kalmar",
+                            Township = "Högsby"
+                        },
+                        new
+                        {
+                            RegionId = 68,
+                            County = "Uppsala",
+                            Township = "Heby"
+                        },
+                        new
+                        {
+                            RegionId = 69,
+                            County = "Uppsala",
+                            Township = "Uppsala"
+                        },
+                        new
+                        {
+                            RegionId = 70,
+                            County = "Kalmar",
+                            Township = "Mörbylånga"
+                        },
+                        new
+                        {
+                            RegionId = 71,
+                            County = "Kalmar",
+                            Township = "Hultsfred"
+                        },
+                        new
+                        {
+                            RegionId = 72,
+                            County = "Kalmar",
+                            Township = "Mönsterås"
+                        },
+                        new
+                        {
+                            RegionId = 73,
+                            County = "Kalmar",
+                            Township = "Emmaboda"
+                        },
+                        new
+                        {
+                            RegionId = 74,
+                            County = "Kalmar",
+                            Township = "Kalmar"
+                        },
+                        new
+                        {
+                            RegionId = 75,
+                            County = "Kalmar",
+                            Township = "Nybro"
+                        },
+                        new
+                        {
+                            RegionId = 76,
+                            County = "Kalmar",
+                            Township = "Oskarshamn"
+                        },
+                        new
+                        {
+                            RegionId = 77,
+                            County = "Kalmar",
+                            Township = "Västervik"
+                        },
+                        new
+                        {
+                            RegionId = 78,
+                            County = "Kalmar",
+                            Township = "Vimmerby"
+                        },
+                        new
+                        {
+                            RegionId = 79,
+                            County = "Kalmar",
+                            Township = "Borgholm"
+                        },
+                        new
+                        {
+                            RegionId = 80,
+                            County = "Gotland",
+                            Township = "Gotland"
+                        },
+                        new
+                        {
+                            RegionId = 81,
+                            County = "Blekinge",
+                            Township = "Olofström"
+                        },
+                        new
+                        {
+                            RegionId = 82,
+                            County = "Blekinge",
+                            Township = "Ronneby"
+                        },
+                        new
+                        {
+                            RegionId = 83,
+                            County = "Blekinge",
+                            Township = "Karlshamn"
+                        },
+                        new
+                        {
+                            RegionId = 84,
+                            County = "Blekinge",
+                            Township = "Sölvesborg"
                         });
                 });
 
@@ -347,7 +790,7 @@ namespace HomeHavenAPI.Migrations
                             LivingArea = 120,
                             MonthlyFee = 4000m,
                             OperatingCost = 50000m,
-                            PictureListURL = "[\"https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg\"]",
+                            PictureListURL = "[\"https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg\",\"https://cdn.decoist.com/wp-content/uploads/2014/08/Indoor-blossoms-in-a-modern-living-room.jpg\",\"https://i.ytimg.com/vi/w3zIjcnyaJs/maxresdefault.jpg\"]",
                             RealtorId = 5,
                             RegionId = 1,
                             ResidenceDescription = "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan.",
@@ -426,6 +869,15 @@ namespace HomeHavenAPI.Migrations
                             RoomCount = 5,
                             StartingPrice = 1400000
                         });
+                });
+
+            modelBuilder.Entity("HomeHavenAPI.Models.Realtor", b =>
+                {
+                    b.HasOne("HomeHavenAPI.Models.RealtorFirm", "MyRealtorFirm")
+                        .WithMany()
+                        .HasForeignKey("RealtorFirm");
+
+                    b.Navigation("MyRealtorFirm");
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.Residence", b =>

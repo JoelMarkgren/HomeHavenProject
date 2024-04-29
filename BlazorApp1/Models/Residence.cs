@@ -20,11 +20,9 @@ namespace HomeHavenBlazorProject.Models
 		public int RegionId { get; set; }
 		public int RealtorId { get; set; }
 
-		[ForeignKey("CategoryId")]
+
 		public Category ResidenceCategory { get; set; }
-		[ForeignKey("RegionId")]
 		public Region ResidenceRegion { get; set; }
-		[ForeignKey("RealtorId")]
 		public Realtor ResidenceRealtor { get; set; }
 	}
 }

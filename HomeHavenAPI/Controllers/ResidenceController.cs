@@ -1,69 +1,93 @@
 ﻿using AutoMapper;
 using HomeHavenAPI.Data.Interfaces;
+using HomeHavenAPI.Dtos;
 using HomeHavenAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HomeHavenAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ResidenceController : ControllerBase
-    {
-        private readonly IResidence residenceRepo;
-        private readonly IMapper mapper;
+	[Route("api/[controller]")]
+	[ApiController]
+	public class ResidenceController : ControllerBase
+	{
+		private readonly IResidence residenceRepo;
+		private readonly IMapper mapper;
+		private readonly IRealtor realtorRepo;
+		private readonly ICategory catRepo;
+		private readonly IRegion regionRepo;
 
-        public ResidenceController(IResidence residenceRepo, IMapper mapper)
-        {
-            this.residenceRepo = residenceRepo;
-            this.mapper = mapper;
-        }
-      
-        // GET api/<ResidenceController>/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Residence>> Get(int id)
-        {
-            var residence = await residenceRepo.GetAsync(id);
-            if (residence == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return Ok(residence);
-            }
+		public ResidenceController(IResidence residenceRepo, IMapper mapper, IRealtor realtorRepo, ICategory catRepo, IRegion regionRepo)
+		{
+			this.residenceRepo = residenceRepo;
+			this.mapper = mapper;
+			this.realtorRepo = realtorRepo;
+			this.catRepo = catRepo;
+			this.regionRepo = regionRepo;
+		}
 
-        }
+		// GET api/<ResidenceController>/5
+		[HttpGet("{id}")]
+		public async Task<ActionResult<Residence>> Get(int id)
+		{
+			try
+			{
+				var resi = await residenceRepo.GetAsync(id);
 
-        // POST api/<ResidenceController>
-        [HttpPost]
-        public async Task Post([FromBody] Residence residence)
-        {
-            await residenceRepo.CreateAsync(residence);  
-        }
+				if (resi == null)
+				{
+					return BadRequest();
+				}
+				else
+				{
 
-        // PUT api/<ResidenceController>/5
-        [HttpPut("{id}")]
-        public async Task Put(int id, [FromBody] Residence residence)
-        {
-            residence.ResidenceId = id;
-            await residenceRepo.EditAsync(residence);
-        }
+					ResidenceDto residenceDto = mapper.Map<ResidenceDto>(resi);
 
-        // DELETE api/<ResidenceController>/5
-        [HttpDelete("{id}")]
-        public async Task Delete(int id)
-        {
-            await residenceRepo.DeleteAsync(id);
-        }
+					return Ok(residenceDto);
+				}
 
-        //GET: api/<ResidenceController>
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Residence>>> Get()
-        {
-            var residences = await residenceRepo.GetAllAsync();
-            return Ok(residences.Select(resi => mapper.Map<ResidenceDto>(resi)));
-        }
-    }
+			}
+
+			catch (Exception)
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError,
+								"Error retrieving data from the database");
+
+			}
+
+		}
+
+		// POST api/<ResidenceController>
+		[HttpPost]
+		public async Task Post([FromBody] Residence residence)
+		{
+			var residenceMap = mapper.Map<Residence>(residence);
+			await residenceRepo.CreateAsync(residenceMap);
+		}
+
+		// PUT api/<ResidenceController>/5
+		[HttpPut("{id}")]
+		public async Task Put(int id, [FromBody] Residence residence)
+		{
+			residence.ResidenceId = id;
+			await residenceRepo.EditAsync(residence);
+		}
+
+		// DELETE api/<ResidenceController>/5
+		[HttpDelete("{id}")]
+		public async Task Delete(int id)
+		{
+			await residenceRepo.DeleteAsync(id);
+		}
+
+		//GET: api/<ResidenceController>
+		[HttpGet]
+		public async Task<ActionResult<IEnumerable<Residence>>> Get()
+		{
+			var residences = await residenceRepo.GetAllAsync();
+			return Ok(residences.Select(resi => mapper.Map<ResidenceDto>(resi)));
+		}
+	}
 }
