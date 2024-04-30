@@ -19,14 +19,12 @@ namespace HomeHavenAPI.Controllers
 		private readonly ICategory catRepo;
 		private readonly IRegion regionRepo;
 
-		public ResidenceController(IResidence residenceRepo, IMapper mapper, IRealtor realtorRepo, ICategory catRepo, IRegion regionRepo)
+		public ResidenceController(IResidence residenceRepo, IMapper mapper)
 		{
 			this.residenceRepo = residenceRepo;
 			this.mapper = mapper;
-			this.realtorRepo = realtorRepo;
-			this.catRepo = catRepo;
-			this.regionRepo = regionRepo;
 		}
+
 
 		// GET api/<ResidenceController>/5
 		[HttpGet("{id}")]

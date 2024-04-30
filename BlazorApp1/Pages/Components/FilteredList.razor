@@ -21,9 +21,9 @@
 	public int MinRoomCount { get; set; }
 	[Parameter]
 	public int MaxRoomCount { get; set; }
-	public IEnumerable<ResidenceDto> AllResidences { get; set; } = new List<ResidenceDto>();
+	public IEnumerable<Residence> AllResidences { get; set; } = new List<Residence>();
 
-	public List<ResidenceDto> DisplayResidences { get; set; } = new List<ResidenceDto>();
+	public List<Residence> DisplayResidences { get; set; } = new List<Residence>();
 	[Parameter]
 	public Region SelectedRegion { get; set; }
 
