@@ -14,7 +14,6 @@
         public decimal OperatingCost { get; set; }
         public int ConstructionYear { get; set; }
         public List<string> PictureListURL { get; set; }
-
         public Category ResidenceCategory { get; set; }
         public Region ResidenceRegion { get; set; }
         public Realtor ResidenceRealtor { get; set; }

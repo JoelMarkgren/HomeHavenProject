@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240429173501_added some seed data")]
-    partial class addedsomeseeddata
+    [Migration("20240430092234_hello")]
+    partial class hello
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -742,11 +742,11 @@ namespace HomeHavenAPI.Migrations
                     b.Property<int>("LivingArea")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("MonthlyFee")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int?>("MonthlyFee")
+                        .HasColumnType("int");
 
-                    b.Property<decimal>("OperatingCost")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("OperatingCost")
+                        .HasColumnType("int");
 
                     b.Property<string>("PictureListURL")
                         .IsRequired()
@@ -788,8 +788,8 @@ namespace HomeHavenAPI.Migrations
                             ConstructionYear = 2004,
                             LandArea = 500,
                             LivingArea = 120,
-                            MonthlyFee = 4000m,
-                            OperatingCost = 50000m,
+                            MonthlyFee = 4000,
+                            OperatingCost = 50000,
                             PictureListURL = "[\"https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg\",\"https://cdn.decoist.com/wp-content/uploads/2014/08/Indoor-blossoms-in-a-modern-living-room.jpg\",\"https://i.ytimg.com/vi/w3zIjcnyaJs/maxresdefault.jpg\"]",
                             RealtorId = 5,
                             RegionId = 1,
@@ -806,8 +806,8 @@ namespace HomeHavenAPI.Migrations
                             ConstructionYear = 2000,
                             LandArea = 0,
                             LivingArea = 100,
-                            MonthlyFee = 6500m,
-                            OperatingCost = 24500m,
+                            MonthlyFee = 6500,
+                            OperatingCost = 24500,
                             PictureListURL = "[\"https://www.brahus.se/upload/house/1031629571.jpg\"]",
                             RealtorId = 4,
                             RegionId = 2,
@@ -824,8 +824,8 @@ namespace HomeHavenAPI.Migrations
                             ConstructionYear = 2018,
                             LandArea = 1000,
                             LivingArea = 250,
-                            MonthlyFee = 4250m,
-                            OperatingCost = 32400m,
+                            MonthlyFee = 4250,
+                            OperatingCost = 32400,
                             PictureListURL = "[\"https://hjaltevadshus.se/app/uploads/2022/10/nyckelfardiga-vitsippan.jpg\"]",
                             RealtorId = 3,
                             RegionId = 3,
@@ -842,8 +842,8 @@ namespace HomeHavenAPI.Migrations
                             ConstructionYear = 2009,
                             LandArea = 625,
                             LivingArea = 130,
-                            MonthlyFee = 7000m,
-                            OperatingCost = 31500m,
+                            MonthlyFee = 7000,
+                            OperatingCost = 31500,
                             PictureListURL = "[\"https://www.osloguiden.se/wp-content/uploads/2015/04/Pilestredet.jpg\"]",
                             RealtorId = 3,
                             RegionId = 2,
@@ -860,8 +860,8 @@ namespace HomeHavenAPI.Migrations
                             ConstructionYear = 1972,
                             LandArea = 200,
                             LivingArea = 120,
-                            MonthlyFee = 3750m,
-                            OperatingCost = 20500m,
+                            MonthlyFee = 3750,
+                            OperatingCost = 20500,
                             PictureListURL = "[\"https://www.ekonomifokus.se/wp-content/uploads/2019/01/Vad-ingar-vid-kop-och-salj-av-fastighet-och-hus-e1547480095379.jpg\"]",
                             RealtorId = 1,
                             RegionId = 5,
