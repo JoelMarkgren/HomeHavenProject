@@ -1,5 +1,6 @@
 ﻿using HomeHavenAPI.Data.Interfaces;
 using HomeHavenAPI.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomeHavenAPI.Data.Repos
@@ -12,16 +13,17 @@ namespace HomeHavenAPI.Data.Repos
         {
             this.applicationDbContext = applicationDbContext;
         }
-        public async Task CreateAsync(Residence residence)
+        public async Task<Residence> CreateAsync(Residence residence)
         {
             await applicationDbContext.Residences.AddAsync(residence);
             await applicationDbContext.SaveChangesAsync();
+            return residence;
         }
 
         public async Task DeleteAsync(int id)
         {
             var residence = await applicationDbContext.Residences.FindAsync(id);
-            if(residence != null)
+            if (residence != null)
             {
                 applicationDbContext.Residences.Remove(residence);
                 await applicationDbContext.SaveChangesAsync();
@@ -38,7 +40,6 @@ namespace HomeHavenAPI.Data.Repos
 
         public async Task<IEnumerable<Residence>> GetAllAsync()
         {
-                
             return await applicationDbContext.Residences
                 .Include(r => r.ResidenceCategory)
                 .Include(r => r.ResidenceRegion)
@@ -52,7 +53,9 @@ namespace HomeHavenAPI.Data.Repos
                 .Include(r => r.ResidenceCategory)
                 .Include(r => r.ResidenceRegion)
                 .Include(r => r.ResidenceRealtor)
+
                 .FirstOrDefaultAsync(r => r.ResidenceId == id);
+
         }
     }
 }

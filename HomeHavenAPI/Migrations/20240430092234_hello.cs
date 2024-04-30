@@ -7,7 +7,7 @@
 namespace HomeHavenAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class hello : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -91,8 +91,8 @@ namespace HomeHavenAPI.Migrations
                     LandArea = table.Column<int>(type: "int", nullable: false),
                     ResidenceDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoomCount = table.Column<int>(type: "int", nullable: false),
-                    MonthlyFee = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    OperatingCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    MonthlyFee = table.Column<int>(type: "int", nullable: true),
+                    OperatingCost = table.Column<int>(type: "int", nullable: false),
                     ConstructionYear = table.Column<int>(type: "int", nullable: false),
                     PictureListURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
@@ -248,11 +248,11 @@ namespace HomeHavenAPI.Migrations
                 columns: new[] { "ResidenceId", "Address", "BiArea", "CategoryId", "ConstructionYear", "LandArea", "LivingArea", "MonthlyFee", "OperatingCost", "PictureListURL", "RealtorId", "RegionId", "ResidenceDescription", "RoomCount", "StartingPrice" },
                 values: new object[,]
                 {
-                    { 1, "Sveavägen 42", 20, 1, 2004, 500, 120, 4000m, 50000m, "[\"https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg\"]", 5, 1, "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan.", 5, 2000000 },
-                    { 2, "Storgatan 12", 30, 2, 2000, 0, 100, 6500m, 24500m, "[\"https://www.brahus.se/upload/house/1031629571.jpg\"]", 4, 2, "Charmigt radhus med trädgård och garage i lugnt bostadsområde nära naturen.", 3, 1250000 },
-                    { 3, "Strandvägen 7", 0, 3, 2018, 1000, 250, 4250m, 32400m, "[\"https://hjaltevadshus.se/app/uploads/2022/10/nyckelfardiga-vitsippan.jpg\"]", 3, 3, "Funkisvilla med pool och havsutsikt på exklusiv adress vid kusten.", 6, 3000000 },
-                    { 4, "Norra Vallgatan 14", 15, 4, 2009, 625, 130, 7000m, 31500m, "[\"https://www.osloguiden.se/wp-content/uploads/2015/04/Pilestredet.jpg\"]", 3, 2, "Gammal gård renoverad till lyxigt boende med generösa sällskapsytor och stor trädgård.", 4, 2230000 },
-                    { 5, "Östra Hamngatan 3", 50, 5, 1972, 200, 120, 3750m, 20500m, "[\"https://www.ekonomifokus.se/wp-content/uploads/2019/01/Vad-ingar-vid-kop-och-salj-av-fastighet-och-hus-e1547480095379.jpg\"]", 1, 5, "Lägenhet i nybyggd bostadsrättsförening med gemensam takterrass och närhet till shopping och kommunikationer.", 5, 1400000 }
+                    { 1, "Sveavägen 42", 20, 1, 2004, 500, 120, 4000, 50000, "[\"https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg\",\"https://cdn.decoist.com/wp-content/uploads/2014/08/Indoor-blossoms-in-a-modern-living-room.jpg\",\"https://i.ytimg.com/vi/w3zIjcnyaJs/maxresdefault.jpg\"]", 5, 1, "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan.", 5, 2000000 },
+                    { 2, "Storgatan 12", 30, 2, 2000, 0, 100, 6500, 24500, "[\"https://www.brahus.se/upload/house/1031629571.jpg\"]", 4, 2, "Charmigt radhus med trädgård och garage i lugnt bostadsområde nära naturen.", 3, 1250000 },
+                    { 3, "Strandvägen 7", 0, 3, 2018, 1000, 250, 4250, 32400, "[\"https://hjaltevadshus.se/app/uploads/2022/10/nyckelfardiga-vitsippan.jpg\"]", 3, 3, "Funkisvilla med pool och havsutsikt på exklusiv adress vid kusten.", 6, 3000000 },
+                    { 4, "Norra Vallgatan 14", 15, 4, 2009, 625, 130, 7000, 31500, "[\"https://www.osloguiden.se/wp-content/uploads/2015/04/Pilestredet.jpg\"]", 3, 2, "Gammal gård renoverad till lyxigt boende med generösa sällskapsytor och stor trädgård.", 4, 2230000 },
+                    { 5, "Östra Hamngatan 3", 50, 5, 1972, 200, 120, 3750, 20500, "[\"https://www.ekonomifokus.se/wp-content/uploads/2019/01/Vad-ingar-vid-kop-och-salj-av-fastighet-och-hus-e1547480095379.jpg\"]", 1, 5, "Lägenhet i nybyggd bostadsrättsförening med gemensam takterrass och närhet till shopping och kommunikationer.", 5, 1400000 }
                 });
 
             migrationBuilder.CreateIndex(

@@ -12,6 +12,22 @@ namespace HomeHavenBlazorProject.Services
         {
             this.httpClient = httpClient;
         }
+
+        public async Task<Residence> CreateAsync(Residence residence)
+        {
+            var response = await httpClient.PostAsJsonAsync("api/Residence", residence);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<Residence>();
+            
+        }
+
+        public async Task DeleteAsync(Residence residence)
+        {
+            var response = await httpClient.DeleteAsync($"api/Residence/{residence.ResidenceId}");
+            response.EnsureSuccessStatusCode();
+
+        }
+
         public async Task<IEnumerable<Residence>> GetAllAsync()
         {
             var residences = await httpClient.GetFromJsonAsync<IEnumerable<Residence>>("api/Residence");
@@ -22,6 +38,12 @@ namespace HomeHavenBlazorProject.Services
         {
             var residence = await httpClient.GetFromJsonAsync<Residence>($"api/Residence/{id}");
             return residence;
+        }
+
+        public async Task UpdateAsync(Residence residence)
+        {
+            var response = await httpClient.PutAsJsonAsync($"api/Residence/{residence.ResidenceId}", residence);
+            response.EnsureSuccessStatusCode();
         }
     }
 }

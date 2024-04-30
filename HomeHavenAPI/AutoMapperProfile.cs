@@ -10,7 +10,6 @@ namespace HomeHavenAPI
         {
             CreateMap<Residence, ResidenceDto>()              
                 .ReverseMap();
-
 		}
     }
 }

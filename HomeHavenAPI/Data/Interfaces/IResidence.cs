@@ -8,6 +8,6 @@ namespace HomeHavenAPI.Data.Interfaces
         Task<IEnumerable<Residence>> GetAllAsync();
         Task<Residence> EditAsync(Residence residence);
         Task DeleteAsync(int id);
-        Task CreateAsync(Residence residence);
+        Task<Residence> CreateAsync(Residence residence);
     }
 }
