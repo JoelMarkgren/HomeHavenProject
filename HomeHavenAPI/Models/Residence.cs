@@ -14,8 +14,8 @@ namespace HomeHavenAPI.Models
         public int LandArea { get; set; }
         public string ResidenceDescription { get; set; }
         public int RoomCount { get; set; }
-        public decimal? MonthlyFee { get; set; }
-        public decimal OperatingCost { get; set; }
+        public int? MonthlyFee { get; set; }
+        public int OperatingCost { get; set; }
         public int ConstructionYear { get; set; }
         public List<string> PictureListURL { get; set; }
         [ForeignKey("Category")]
