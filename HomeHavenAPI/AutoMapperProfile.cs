@@ -11,9 +11,6 @@ namespace HomeHavenAPI
             CreateMap<Residence, ResidenceDto>()
                 .ReverseMap();
 
-            CreateMap<Task<Residence>, ResidenceDto>()
-                .ReverseMap();
-
 		}
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace HomeHavenBlazorProject.Models
+﻿namespace HomeHavenBlazorProject.Models
 {
     public class Residence
     {
@@ -16,13 +14,9 @@ namespace HomeHavenBlazorProject.Models
         public decimal OperatingCost { get; set; }
         public int ConstructionYear { get; set; }
         public List<string> PictureListURL { get; set; }
-		public int CategoryId { get; set; }
-		public int RegionId { get; set; }
-		public int RealtorId { get; set; }
 
-
-		public Category ResidenceCategory { get; set; }
-		public Region ResidenceRegion { get; set; }
-		public Realtor ResidenceRealtor { get; set; }
-	}
+        public Category ResidenceCategory { get; set; }
+        public Region ResidenceRegion { get; set; }
+        public Realtor ResidenceRealtor { get; set; }
+    }
 }

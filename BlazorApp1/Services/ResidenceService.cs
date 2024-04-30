@@ -1,6 +1,4 @@
-﻿
-using HomeHavenBlazorProject.DTOs;
-using HomeHavenBlazorProject.Models;
+﻿using HomeHavenBlazorProject.Models;
 using System.Net.Http;
 using System.Net.Http.Json;
 
@@ -14,15 +12,15 @@ namespace HomeHavenBlazorProject.Services
         {
             this.httpClient = httpClient;
         }
-        public async Task<IEnumerable<ResidenceDto>> GetAllAsync()
+        public async Task<IEnumerable<Residence>> GetAllAsync()
         {
-            var residences = await httpClient.GetFromJsonAsync<IEnumerable<ResidenceDto>>("api/Residence");
+            var residences = await httpClient.GetFromJsonAsync<IEnumerable<Residence>>("api/Residence");
             return residences;
         }
 
-        public async Task<ResidenceDto> GetAsync(int id)
+        public async Task<Residence> GetAsync(int id)
         {
-            var residence = await httpClient.GetFromJsonAsync<ResidenceDto>($"api/Residence/{id}");
+            var residence = await httpClient.GetFromJsonAsync<Residence>($"api/Residence/{id}");
             return residence;
         }
     }
