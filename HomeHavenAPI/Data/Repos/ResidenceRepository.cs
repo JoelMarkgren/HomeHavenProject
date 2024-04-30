@@ -44,7 +44,7 @@ namespace HomeHavenAPI.Data.Repos
                 .Include(r => r.ResidenceCategory)
                 .Include(r=>r.ResidenceRealtor)
                 .Include(r=>r.ResidenceRegion).ToListAsync();
-48
+
 
         }
 
