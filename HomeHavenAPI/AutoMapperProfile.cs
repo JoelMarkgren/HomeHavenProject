@@ -8,7 +8,7 @@ namespace HomeHavenAPI
     {
         public AutoMapperProfile()
         {
-            CreateMap<Residence, ResidenceDto>()
+            CreateMap<Residence, ResidenceDto>()              
                 .ReverseMap();
 
 		}

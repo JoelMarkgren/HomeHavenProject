@@ -25,12 +25,12 @@ namespace HomeHavenAPI.Models
         [ForeignKey("Realtor")]
         public int RealtorId { get; set; }
 
-
-        public Category ResidenceCategory { get; set; }
-
-        public Region ResidenceRegion { get; set; }
-
-        public Realtor ResidenceRealtor { get; set; }
+        [JsonIgnore]
+        public Category? ResidenceCategory { get; set; }
+        [JsonIgnore]
+        public Region? ResidenceRegion { get; set; }
+        [JsonIgnore]
+        public Realtor? ResidenceRealtor { get; set; }
 
     }
 }
