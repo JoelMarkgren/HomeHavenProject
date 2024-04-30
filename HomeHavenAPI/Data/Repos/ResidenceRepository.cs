@@ -40,18 +40,18 @@ namespace HomeHavenAPI.Data.Repos
         {
                 
             return await applicationDbContext.Residences
-                .Include(r =>r.ResidenceCategory)
-				.Include(r => r.ResidenceRegion)
-				.Include(r => r.ResidenceRealtor)
-				.ToListAsync();
+                .Include(r => r.ResidenceCategory)
+                .Include(r => r.ResidenceRegion)
+                .Include(r => r.ResidenceRealtor)
+                .ToListAsync();
         }
 
         public async Task<Residence> GetAsync(int id)
         {
             return await applicationDbContext.Residences
                 .Include(r => r.ResidenceCategory)
-				.Include(r => r.ResidenceRegion)
-				.Include(r => r.ResidenceRealtor)
+                .Include(r => r.ResidenceRegion)
+                .Include(r => r.ResidenceRealtor)
                 .FirstOrDefaultAsync(r => r.ResidenceId == id);
         }
     }
