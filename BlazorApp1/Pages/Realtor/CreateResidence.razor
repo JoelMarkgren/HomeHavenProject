@@ -72,101 +72,37 @@
     </div>
 
     <div class="form-floating mb-3">
-        <InputNumber @bind-Value="newResidence.ResidenceCategory.CategoryId" class="form-control" id="categoryId" />
+        <InputNumber @bind-Value="newResidence.CategoryId" class="form-control" id="categoryId" />
         <label for="categoryId">Kategorinummer</label>
-        <ValidationMessage For="@(() => newResidence.ResidenceCategory.CategoryId)" />
+        <ValidationMessage For="@(() => newResidence.CategoryId)" />
     </div>
-
+   
     <div class="form-floating mb-3">
-        <InputNumber @bind-Value="newResidence.ResidenceRegion.RegionId" class="form-control" id="regionId" />
+        <InputNumber @bind-Value="newResidence.RegionId" class="form-control" id="regionId" />
         <label for="regionId">Regionnummer</label>
-        <ValidationMessage For="@(() => newResidence.ResidenceRegion.RegionId)" />
+        <ValidationMessage For="@(() => newResidence.RegionId)" />
     </div>
 
     <div class="form-floating mb-3">
-        <InputNumber @bind-Value="newResidence.ResidenceRealtor.RealtorFirmId" class="form-control" id="realtorId" />
+        <InputNumber @bind-Value="newResidence.RealtorId" class="form-control" id="realtorId" />
         <label for="realtorId">Mäklarnummer</label>
-        <ValidationMessage For="@(() => newResidence.ResidenceRealtor.RealtorFirmId)" />
+        <ValidationMessage For="@(() => newResidence.RealtorId)" />
     </div>
     
-
     <button type="submit" class="btn btn-primary">Lägg till bilder</button>
 </EditForm>
 
 
 @code {
+    private List<Category> categories = new List<Category>();
     private List<string> PictureListURL = new List<string>();
-   
-    public Residence newResidence { get; set; }
 
-    private async Task AddResidence()
+    public Residence newResidence { get; set; } = new Residence();
+
+    private void AddResidence()
     {
-        var residence = await residenceService.CreateAsync(newResidence);
-
-        NavManager.NavigateTo($"/residence/posturls/{residence.ResidenceId}");
+         residenceService.CreateAsync(newResidence);
+        NavManager.NavigateTo("/");
+        //NavManager.NavigateTo($"/residence/posturls/{residence.ResidenceId}");
     }
-
-
 }
-
-
-
-            @* <EditForm Model="Residence" OnValidSubmit="AddResidence">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    @* <div class="form-floating mb-3">
-        <input type="Address" class="form-control" id="floatingInput" placeholder="Adress">
-        <label for="floatingInput">Address:</label>
-    </div>
-    <div class="form-floating">
-        <input type="StartingPrice" class="form-control" id="floatingPassword" placeholder="Pris">
-        <label for="floatingPassword">Pris:</label>
-    </div>
-    <div class="form-floating mb-3">
-        <input type="LivingArea" class="form-control" id="floatingInput" placeholder="Kvm">
-        <label for="floatingInput">Kvm:</label>
-    </div>
-    <div class="form-floating">
-        <input type="BiArea" class="form-control" id="floatingPassword" placeholder="Bi area">
-        <label for="floatingPassword">Bi area:</label>
-    </div>
-    <div class="form-floating mb-3">
-        <input type="LandArea" class="form-control" id="floatingInput" placeholder="Tomt">
-        <label for="floatingInput">Tomt:</label>
-    </div>
-    <div class="form-floating">
-        <input type="ResidenceDescription" class="form-control" id="floatingPassword" placeholder="Beskrivning">
-        <label for="floatingPassword">Beskrivning:</label>
-    </div>
-    <div class="form-floating mb-3">
-        <input type="RoomCount" class="form-control" id="floatingInput" placeholder="Antal rum">
-        <label for="floatingInput">Antal rum:</label>
-    </div>
-    <div class="form-floating">
-        <input type="MonthlyFee" class="form-control" id="floatingPassword" placeholder="Månadskostnad">
-        <label for="floatingPassword">Månadskostnad:</label>
-    </div>
-    <div class="form-floating mb-3">
-        <input type="OperatingCost" class="form-control" id="floatingInput" placeholder="Driftkostnad">
-        <label for="floatingInput">Driftkostnad:</label>
-    </div>
-    <div class="form-floating">
-        <input type="ConstructionYear" class="form-control" id="floatingPassword" placeholder="Byggnadsår">
-        <label for="floatingPassword">Byggnadsår:</label>
-    </div>
-    <div class="form-floating mb-3">
-        <input type="PictureListURL" class="form-control" id="floatingInput" placeholder="Bilder">
-        <label for="floatingInput">Bilder:</label>
-    </div>
-    <div class="form-floating">
-        <input type="CategoryId" class="form-control" id="floatingPassword" placeholder="CategoryId">
-        <label for="floatingPassword">CategoryId:</label>
-    </div>
-    <div class="form-floating mb-3">
-        <input type="RegionId" class="form-control" id="floatingInput" placeholder="RegionId">
-        <label for="floatingInput">RegionId:</label>
-    </div>
-    <div class="form-floating">
-        <input type="RealtorId" class="form-control" id="floatingPassword" placeholder="RealtorId">
-        <label for="floatingPassword">RealtorId:</label>
-    </div> *@

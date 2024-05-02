@@ -18,7 +18,6 @@ namespace HomeHavenBlazorProject.Services
             var response = await httpClient.PostAsJsonAsync("api/Residence", residence);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<Residence>();
-            
         }
 
         public async Task DeleteAsync(Residence residence)
