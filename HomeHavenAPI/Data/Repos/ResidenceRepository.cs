@@ -53,7 +53,6 @@ namespace HomeHavenAPI.Data.Repos
                 .Include(r => r.ResidenceCategory)
                 .Include(r => r.ResidenceRegion)
                 .Include(r => r.ResidenceRealtor)
-
                 .FirstOrDefaultAsync(r => r.ResidenceId == id);
 
         }
