@@ -1,5 +1,5 @@
 ﻿@page "/realtor/createresidence"
-<h3>CreateResidence</h3>
+
 @inject NavigationManager NavManager
 @inject HttpClient HttpClient
 @inject IRegionService regionService
@@ -7,90 +7,111 @@
 @inject ICategoryService categoryService
 @inject IRealtorService realtorService
 
-<EditForm Model="@newResidence" OnValidSubmit="@AddResidence">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+<div class="container">
+	<h3>Skapa Bostad</h3>
 
-    <div class="form-floating mb-3">
-        <InputText @bind-Value="newResidence.Address" class="form-control" id="address" />
-        <label for="address">Adress</label>
-        <ValidationMessage For="@(() => newResidence.Address)" />
-    </div>
+	<EditForm Model="@newResidence" OnValidSubmit="@AddResidence">
+		<DataAnnotationsValidator />
+		<ValidationSummary />
 
-    <div class="form-floating mb-3">
-        <InputNumber @bind-Value="newResidence.StartingPrice" class="form-control" id="startingPrice" />
-        <label for="startingPrice">Startpris</label>
-        <ValidationMessage For="@(() => newResidence.StartingPrice)" />
-    </div>
+		<div class="form-floating mb-3">
+			<InputText @bind-Value="newResidence.Address" class="form-control" id="address" />
+			<label for="address">Adress</label>
+			<ValidationMessage For="@(() => newResidence.Address)" />
+		</div>
 
-    <div class="form-floating mb-3">
-        <InputNumber @bind-Value="newResidence.LivingArea" class="form-control" id="livingArea" />
-        <label for="livingArea">Boarea</label>
-        <ValidationMessage For="@(() => newResidence.LivingArea)" />
-    </div>
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="newResidence.StartingPrice" class="form-control" id="startingPrice" />
+			<label for="startingPrice">Startpris</label>
+			<ValidationMessage For="@(() => newResidence.StartingPrice)" />
+		</div>
 
-    <div class="form-floating mb-3">
-        <InputNumber @bind-Value="newResidence.BiArea" class="form-control" id="biArea" />
-        <label for="biArea">Biarea</label>
-        <ValidationMessage For="@(() => newResidence.BiArea)" />
-    </div>
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="newResidence.LivingArea" class="form-control" id="livingArea" />
+			<label for="livingArea">Boarea</label>
+			<ValidationMessage For="@(() => newResidence.LivingArea)" />
+		</div>
 
-    <div class="form-floating mb-3">
-        <InputNumber @bind-Value="newResidence.LandArea" class="form-control" id="landArea" />
-        <label for="landArea">Tomtarea</label>
-        <ValidationMessage For="@(() => newResidence.LandArea)" />
-    </div>
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="newResidence.BiArea" class="form-control" id="biArea" />
+			<label for="biArea">Biarea</label>
+			<ValidationMessage For="@(() => newResidence.BiArea)" />
+		</div>
 
-    <div class="form-floating mb-3">
-        <InputTextArea @bind-Value="newResidence.ResidenceDescription" class="form-control" id="residenceDescription" />
-        <label for="residenceDescription">Beskrivning</label>
-        <ValidationMessage For="@(() => newResidence.ResidenceDescription)" />
-    </div>
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="newResidence.LandArea" class="form-control" id="landArea" />
+			<label for="landArea">Tomtarea</label>
+			<ValidationMessage For="@(() => newResidence.LandArea)" />
+		</div>
 
-    <div class="form-floating mb-3">
-        <InputNumber @bind-Value="newResidence.RoomCount" class="form-control" id="roomCount" />
-        <label for="roomCount">Rumsantal</label>
-        <ValidationMessage For="@(() => newResidence.RoomCount)" />
-    </div>
+		<div class="form-floating mb-3">
+			<InputTextArea @bind-Value="newResidence.ResidenceDescription" class="form-control" id="residenceDescription" />
+			<label for="residenceDescription">Beskrivning</label>
+			<ValidationMessage For="@(() => newResidence.ResidenceDescription)" />
+		</div>
 
-    <div class="form-floating mb-3">
-        <InputNumber @bind-Value="newResidence.MonthlyFee" class="form-control" id="monthlyFee" />
-        <label for="monthlyFee">Månadsavgift</label>
-        <ValidationMessage For="@(() => newResidence.MonthlyFee)" />
-    </div>
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="newResidence.RoomCount" class="form-control" id="roomCount" />
+			<label for="roomCount">Rumsantal</label>
+			<ValidationMessage For="@(() => newResidence.RoomCount)" />
+		</div>
 
-    <div class="form-floating mb-3">
-        <InputNumber @bind-Value="newResidence.OperatingCost" class="form-control" id="operatingCost" />
-        <label for="operatingCost">Driftkostnad</label>
-        <ValidationMessage For="@(() => newResidence.OperatingCost)" />
-    </div>
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="newResidence.MonthlyFee" class="form-control" id="monthlyFee" />
+			<label for="monthlyFee">Månadsavgift</label>
+			<ValidationMessage For="@(() => newResidence.MonthlyFee)" />
+		</div>
 
-    <div class="form-floating mb-3">
-        <InputNumber @bind-Value="newResidence.ConstructionYear" class="form-control" id="constructionYear" />
-        <label for="constructionYear">Byggnadsår</label>
-        <ValidationMessage For="@(() => newResidence.ConstructionYear)" />
-    </div>
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="newResidence.OperatingCost" class="form-control" id="operatingCost" />
+			<label for="operatingCost">Driftkostnad</label>
+			<ValidationMessage For="@(() => newResidence.OperatingCost)" />
+		</div>
 
-    <div class="form-floating mb-3">
-        <InputNumber @bind-Value="newResidence.CategoryId" class="form-control" id="categoryId" />
-        <label for="categoryId">Kategorinummer</label>
-        <ValidationMessage For="@(() => newResidence.CategoryId)" />
-    </div>
-   
-    <div class="form-floating mb-3">
-        <InputNumber @bind-Value="newResidence.RegionId" class="form-control" id="regionId" />
-        <label for="regionId">Regionnummer</label>
-        <ValidationMessage For="@(() => newResidence.RegionId)" />
-    </div>
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="newResidence.ConstructionYear" class="form-control" id="constructionYear" />
+			<label for="constructionYear">Byggnadsår</label>
+			<ValidationMessage For="@(() => newResidence.ConstructionYear)" />
+		</div>
 
-    <div class="form-floating mb-3">
-        <InputNumber @bind-Value="newResidence.RealtorId" class="form-control" id="realtorId" />
-        <label for="realtorId">Mäklarnummer</label>
-        <ValidationMessage For="@(() => newResidence.RealtorId)" />
-    </div>
-    
-    <button type="submit" class="btn btn-primary">Lägg till bilder</button>
-</EditForm>
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="newResidence.CategoryId" class="form-control" id="categoryId" />
+			<label for="categoryId">Kategorinummer</label>
+			<ValidationMessage For="@(() => newResidence.CategoryId)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="newResidence.RegionId" class="form-control" id="regionId" />
+			<label for="regionId">Regionnummer</label>
+			<ValidationMessage For="@(() => newResidence.RegionId)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="newResidence.RealtorId" class="form-control" id="realtorId" />
+			<label for="realtorId">Mäklarnummer</label>
+			<ValidationMessage For="@(() => newResidence.RealtorId)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputText @bind-Value="image" class="form-control" />
+			<label for="PictureList">Bild</label>
+		</div>
+
+		<button type="button" onclick="@AddImage">Lägg till bild</button>
+		@if(PictureListURL.Count != 0)
+		{
+			<h4>Tillagda Bilder:</h4>
+		}
+		@foreach (var item in PictureListURL)
+		{
+			<p class="text-black-50">@item</p>
+		}
+		<br /><br />
+
+		<button type="submit" class="btn btn-primary">Spara</button>
+	</EditForm>
+</div>
+
 
 
 @code {
@@ -98,11 +119,19 @@
     private List<string> PictureListURL = new List<string>();
 
     public Residence newResidence { get; set; } = new Residence();
+    public int Count { get; set; } = 1;
+    public string? image { get; set; }
 
     private void AddResidence()
     {
-         residenceService.CreateAsync(newResidence);
+        newResidence.PictureListURL = PictureListURL;
+        residenceService.CreateAsync(newResidence);
         NavManager.NavigateTo("/");
-        //NavManager.NavigateTo($"/residence/posturls/{residence.ResidenceId}");
+    }
+
+    private void AddImage()
+    {
+        PictureListURL.Add(image);
+        image = null;
     }
 }
