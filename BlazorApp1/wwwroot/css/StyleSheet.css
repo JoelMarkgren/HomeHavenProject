@@ -1,5 +1,5 @@
 ﻿body {
-    
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 
@@ -36,26 +36,28 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
     border: solid 1px gray;
-    height: 550px;
+    height: 600px;
     margin-bottom: 30px;
 }
 
 .resi-title {
-    font-family: 'Brush Script MT', cursive;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     margin-top: 5px;
     margin-left: 4%;
-    font-size: 60px;
+    font-size: 3vw;
 }
 
 .descbox {
-    margin-left: 3%;
+    margin-left: 40px;
     max-height: 200px;
+    max-width: 65%;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .detailsbox {
-    margin-left: 2%;
+    margin-left: 20px;
+    margin-right: 20px;
     min-height: 410px;
     max-height: 410px;
     border-radius: 5px;
@@ -63,14 +65,22 @@
 }
 
 .realtorbox {
-    position: absolute;
-    left: 21.9%;
-    top: 1177px;
-    max-width: 39.8%;
+    position: relative;
+    left: 25px;
+    bottom: 187px;
+    max-width: 100%;
     min-height: 185px;
     max-height: 185px;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.realtorProfilePic{
+    position: relative;
+    height: 150px;
+    bottom: 160px;
+    left: 80%;
+
 }
 
 .list-img {
@@ -123,6 +133,7 @@
     text-align: center;
     text-decoration: underline;
     font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .maxlabel {
@@ -142,5 +153,11 @@
     margin-top: 10px;
     margin-bottom: 10px;
     width: 110px;
+}
+
+.sub-titles {
+    text-decoration: underline;
+    font-size: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 

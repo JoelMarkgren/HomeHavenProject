@@ -19,11 +19,9 @@ namespace HomeHavenBlazorProject.Models
         public int? CategoryId { get; set; }
         public int? RegionId { get; set; }
         public int? RealtorId { get; set; }
-        [JsonIgnore]
+
         public Category? ResidenceCategory { get; set; }
-        [JsonIgnore]
         public Region? ResidenceRegion { get; set; }
-        [JsonIgnore]
         public Realtor? ResidenceRealtor { get; set; }
     }
 }

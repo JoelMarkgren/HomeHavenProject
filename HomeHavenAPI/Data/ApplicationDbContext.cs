@@ -1,10 +1,11 @@
 ﻿using HomeHavenAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Net;
 
 namespace HomeHavenAPI.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<Realtor>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -19,10 +20,10 @@ namespace HomeHavenAPI.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
 
+			base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Category>().HasData(
+			modelBuilder.Entity<Category>().HasData(
                 new Category() { CategoryId = 1, CategoryName = "Villa" },
                 new Category() { CategoryId = 2, CategoryName = "Lägenhet" },
                 new Category() { CategoryId = 3, CategoryName = "RadHus" },
@@ -123,13 +124,13 @@ namespace HomeHavenAPI.Data
                 new RealtorFirm() { RealtorFirmId = 5, Descrpition = "Tar sina kunder till nya horisonter genom att guida dem genom köp- och säljprocessen med en personlig och professionell approach.", FirmName = "Horizon Homes Real Estate", LogoURL = "URL" }
                 );
 
-            modelBuilder.Entity<Realtor>().HasData(
-                new Realtor() { RealtorId = 1, FirstName = "Sofia", LastName = "Andersson", Email = "sofia.andersson@example.com", PhoneNumber = "070-1234567", ProfilePictureURL = "URL", RealtorFirmId = 1 },
-                new Realtor() { RealtorId = 2, FirstName = "Erik", LastName = "Svensson", Email = "erik.svensson@example.com", PhoneNumber = "073-9876543", ProfilePictureURL = "URL", RealtorFirmId = 3 },
-                new Realtor() { RealtorId = 3, FirstName = "Emma", LastName = "Johansson", Email = "emma.johansson@example.com", PhoneNumber = "076-1112233", ProfilePictureURL = "URL", RealtorFirmId = 2 },
-                new Realtor() { RealtorId = 4, FirstName = "Anders", LastName = "Karlsson", Email = "anders.karlsson@example.com", PhoneNumber = "072-5554441", ProfilePictureURL = "URL", RealtorFirmId = 2 },
-                new Realtor() { RealtorId = 5, FirstName = "Linnea", LastName = "Lindgren", Email = "linnea.lindgren@example.com", PhoneNumber = "074-8889990", ProfilePictureURL = "URL", RealtorFirmId = 5 }
-                );
+            //modelBuilder.Entity<Realtor>().HasData(
+            //    new Realtor() { RealtorId = 1, FirstName = "Sofia", LastName = "Andersson", Email = "sofia.andersson@example.com", PhoneNumber = "070-1234567", ProfilePictureURL = "URL", RealtorFirmId = 1 },
+            //    new Realtor() { RealtorId = 2, FirstName = "Erik", LastName = "Svensson", Email = "erik.svensson@example.com", PhoneNumber = "073-9876543", ProfilePictureURL = "URL", RealtorFirmId = 3 },
+            //    new Realtor() { RealtorId = 3, FirstName = "Emma", LastName = "Johansson", Email = "emma.johansson@example.com", PhoneNumber = "076-1112233", ProfilePictureURL = "URL", RealtorFirmId = 2 },
+            //    new Realtor() { RealtorId = 4, FirstName = "Anders", LastName = "Karlsson", Email = "anders.karlsson@example.com", PhoneNumber = "072-5554441", ProfilePictureURL = "URL", RealtorFirmId = 2 },
+            //    new Realtor() { RealtorId = 5, FirstName = "Linnea", LastName = "Lindgren", Email = "linnea.lindgren@example.com", PhoneNumber = "074-8889990", ProfilePictureURL = "URL", RealtorFirmId = 5 }
+            //    );
 
             modelBuilder.Entity<Residence>().HasData(
                 new Residence() { ResidenceId = 1, Address = "Sveavägen 42", BiArea = 20, LandArea = 500, LivingArea = 120, ConstructionYear = 2004, StartingPrice = 2000000, MonthlyFee = 4000, OperatingCost = 50000, PictureListURL = ["https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg", "https://cdn.decoist.com/wp-content/uploads/2014/08/Indoor-blossoms-in-a-modern-living-room.jpg", "https://homejab.com/wp-content/uploads/2021/11/https-__realtor.homejab.com_wp-content_uploads_2021_10_1906_Santa_Clara_Ave__Alameda__CA_94501__USA-20210131235707.jpg"], RoomCount = 5, CategoryId = 1, RealtorId = 5, RegionId = 1, ResidenceDescription = "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan." },
