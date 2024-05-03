@@ -38,7 +38,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-8 bg-light p-3 border descbox">
+			<div class="col-sm-8 bg-light p-3 border descbox overflow-auto">
 				<h4>Beskrivning:</h4>
 				<p>@Residence.ResidenceDescription</p>
 			</div>
@@ -58,13 +58,21 @@
 			</div>
 		</div>
 		<div class="col-sm-8 bg-light p-3 border realtorbox">
-			<h1 style="text-decoration: underline">@Residence.ResidenceRealtor.FirstName @Residence.ResidenceRealtor.LastName</h1>
-@* 			<h4>@RealtorFirm.FirmName</h4> *@
-			<p>@Residence.ResidenceRealtor.PhoneNumber</p>
+			<h1 class="sub-titles">@Residence.ResidenceRealtor.FirstName @Residence.ResidenceRealtor.LastName</h1>
+			<h4>@RealtorFirm.FirmName</h4>
+			<p style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ">@Residence.ResidenceRealtor.PhoneNumber</p>
 			<p>@Residence.ResidenceRealtor.Email</p>
+			@if (string.IsNullOrEmpty(Residence.ResidenceRealtor.ProfilePictureURL))
+			{
+				<img src="https://st3.depositphotos.com/6672868/13701/v/380/depositphotos_137014128-stock-illustration-user-profile-icon.jpg" class="img-thumbnail realtorProfilePic">
+			}
+			else
+			{
+				<img src="@Residence.ResidenceRealtor.ProfilePictureURL" class="img-thumbnail realtorProfilePic">
+			}
 
 		</div>
-		
+
 
 
 	</div>
@@ -87,7 +95,7 @@
 	protected override async Task OnInitializedAsync()
 	{
 		Residence = await ResidenceService.GetAsync(Id);
-		// RealtorFirm = await RealtorFirmService.GetAsync(Residence.ResidenceRealtor.RealtorFirmId);
+		RealtorFirm = await RealtorFirmService.GetAsync(Residence.ResidenceRealtor.RealtorFirmId);
 
 	}
 }
