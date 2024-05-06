@@ -1,12 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Identity;
 
 namespace HomeHavenAPI.Models
 {
 	public class Realtor : IdentityUser
 	{
-		//public int? RealtorId { get; set; }
+		public int? RealtorId { get; set; }
 		[ForeignKey("RealtorFirm")]
 		public int? RealtorFirmId { get; set; }
 		public string? FirstName { get; set; }

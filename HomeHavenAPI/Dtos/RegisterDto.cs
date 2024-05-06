@@ -2,6 +2,7 @@
 
 namespace HomeHavenAPI.Dtos
 {
+
     public class RegisterDto
     {
         [Required]
@@ -12,4 +13,5 @@ namespace HomeHavenAPI.Dtos
         [Required]
         public string? Password { get; set; }
     }
+
 }

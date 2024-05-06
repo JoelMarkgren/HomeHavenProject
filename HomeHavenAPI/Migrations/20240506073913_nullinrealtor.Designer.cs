@@ -4,6 +4,7 @@ using HomeHavenAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240506073913_nullinrealtor")]
+    partial class nullinrealtor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -885,7 +888,7 @@ namespace HomeHavenAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "57059a7e-22f6-4d89-9442-d75890254abf",
+                            Id = "84c1c44f-2a3f-4955-bf55-fe06a3134c56",
                             Name = "User",
                             NormalizedName = "USER"
                         });

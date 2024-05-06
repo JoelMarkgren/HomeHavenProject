@@ -24,12 +24,21 @@ namespace HomeHavenAPI.Data
         {
 
             base.OnModelCreating(modelBuilder);
+            
+            modelBuilder.Entity<Category>().HasData(
 
-            List<IdentityRole> roles = new List<IdentityRole> { new IdentityRole { Name = "User", NormalizedName = "USER" } };
-
+            List<IdentityRole> roles = new List<IdentityRole>
+            {
+                new IdentityRole
+                {
+                    Name = "User",
+                    NormalizedName = "USER"
+                }
+            };
             modelBuilder.Entity<IdentityRole>().HasData(roles);
 
-            modelBuilder.Entity<Category>().HasData(
+			      modelBuilder.Entity<Category>().HasData(
+
                 new Category() { CategoryId = 1, CategoryName = "Villa" },
                 new Category() { CategoryId = 2, CategoryName = "Lägenhet" },
                 new Category() { CategoryId = 3, CategoryName = "RadHus" },

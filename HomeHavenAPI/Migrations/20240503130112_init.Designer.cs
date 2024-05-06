@@ -4,6 +4,7 @@ using HomeHavenAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240503130112_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,9 +89,11 @@ namespace HomeHavenAPI.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -117,7 +122,7 @@ namespace HomeHavenAPI.Migrations
                     b.Property<string>("ProfilePictureURL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RealtorFirmId")
+                    b.Property<int>("RealtorFirmId")
                         .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
@@ -885,7 +890,7 @@ namespace HomeHavenAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "57059a7e-22f6-4d89-9442-d75890254abf",
+                            Id = "68ded7fc-1db2-42b7-a717-9c0576d682a3",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -1001,7 +1006,9 @@ namespace HomeHavenAPI.Migrations
                 {
                     b.HasOne("HomeHavenAPI.Models.RealtorFirm", "MyRealtorFirm")
                         .WithMany()
-                        .HasForeignKey("RealtorFirmId");
+                        .HasForeignKey("RealtorFirmId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("MyRealtorFirm");
                 });
