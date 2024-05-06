@@ -50,23 +50,24 @@ builder.Services.AddSwaggerGen(option =>
 
 builder.Services.AddIdentity<Realtor, IdentityRole>(options =>
 {
-	options.Password.RequireDigit = true;
-	options.Password.RequireLowercase = true;
-	options.Password.RequireUppercase = true;
-	options.Password.RequiredLength = 6;
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequiredLength = 6;
 })
 .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddAuthentication(options =>
 {
-	options.DefaultAuthenticateScheme =
-	options.DefaultChallengeScheme =
-	options.DefaultForbidScheme =
-	options.DefaultScheme =
-	options.DefaultSignInScheme =
-	options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultAuthenticateScheme =
+    options.DefaultChallengeScheme =
+    options.DefaultForbidScheme =
+    options.DefaultScheme =
+    options.DefaultSignInScheme =
+    options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
+
 	options.TokenValidationParameters = new TokenValidationParameters
 	{
 		ValidateIssuer = true,
@@ -78,8 +79,11 @@ builder.Services.AddAuthentication(options =>
 		System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])
 		)
 	};
+
 });
 
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddDbContextPool<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IRealtor, RealtorRepository>();

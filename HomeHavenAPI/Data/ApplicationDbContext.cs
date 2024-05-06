@@ -19,10 +19,13 @@ namespace HomeHavenAPI.Data
         public DbSet<Region> Regions { get; set; }
         public DbSet<Residence> Residences { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-			base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+            
+            modelBuilder.Entity<Category>().HasData(
 
             List<IdentityRole> roles = new List<IdentityRole>
             {
@@ -34,7 +37,8 @@ namespace HomeHavenAPI.Data
             };
             modelBuilder.Entity<IdentityRole>().HasData(roles);
 
-			modelBuilder.Entity<Category>().HasData(
+			      modelBuilder.Entity<Category>().HasData(
+
                 new Category() { CategoryId = 1, CategoryName = "Villa" },
                 new Category() { CategoryId = 2, CategoryName = "Lägenhet" },
                 new Category() { CategoryId = 3, CategoryName = "RadHus" },

@@ -58,8 +58,34 @@ namespace HomeHavenAPI.Controllers
 
 		}
 
-		// POST api/<ResidenceController>
-		[HttpPost]
+        [HttpGet("GetRealtorResideneces/{realtorId}")]
+        public async Task<ActionResult<Residence>> GetRealtorResidences(int realtorId)
+		{
+			try
+			{
+                var realtorResidences = await residenceRepo.GetListAsync(realtorId);
+				if (realtorResidences == null)
+				{
+					return NotFound();
+				}
+				else
+				{
+					return Ok(realtorResidences);
+				}
+			}
+
+			catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                "Error retrieving data from the database");
+
+            }
+
+        }
+
+
+        // POST api/<ResidenceController>
+        [HttpPost]
 		public async Task Post([FromBody] Residence residence)
 		{
 			var residenceMap = mapper.Map<Residence>(residence);
@@ -83,7 +109,7 @@ namespace HomeHavenAPI.Controllers
 
 		//GET: api/<ResidenceController>
 		[HttpGet]
-		public async Task<ActionResult<IEnumerable<Residence>>> Get()
+		public async Task<ActionResult<IEnumerable<ResidenceDto>>> Get()
 		{
 			var residences = await residenceRepo.GetAllAsync();
 			return Ok(residences.Select(resi => mapper.Map<ResidenceDto>(resi)));

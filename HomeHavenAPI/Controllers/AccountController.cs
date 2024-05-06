@@ -1,4 +1,4 @@
-﻿using HomeHavenAPI.Data.Interfaces;
+using HomeHavenAPI.Data.Interfaces;
 using HomeHavenAPI.Dtos;
 using HomeHavenAPI.Models;
 using Microsoft.AspNetCore.Identity;
@@ -91,4 +91,4 @@ namespace HomeHavenAPI.Controllers
 			}
 		}
 	}
-}
+

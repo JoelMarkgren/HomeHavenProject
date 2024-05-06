@@ -1,0 +1,20 @@
+﻿<h3>RealtorsResidenceList</h3>
+@page "/realtor/realtorresidencelist/{id:int}"
+@inject IRealtorService realtorService
+@inject IResidenceService residenceService
+
+
+<ResidenceList DisplayResidences="RealtorResidenceList" />
+
+
+@code {
+    public IEnumerable<Residence> RealtorResidenceList { get; set; } = new List<Residence>();
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        RealtorResidenceList = await residenceService.GetResidencesAsync(Id);
+    }
+    
+}

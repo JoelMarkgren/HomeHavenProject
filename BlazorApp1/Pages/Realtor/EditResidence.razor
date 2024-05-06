@@ -1,0 +1,134 @@
+﻿<h3>EditResidence</h3>
+@page "/realtor/editresidence/{id:int}"
+
+@inject IResidenceService residenceService
+
+
+<div class="container">
+	<h3>Skapa Bostad</h3>
+
+	<EditForm Model="@EditedResidence" OnValidSubmit="@UpdateResidence">
+		<DataAnnotationsValidator />
+		<ValidationSummary />
+		<div class="form-floating mb-3">
+			<InputNumber type="hidden" @bind-Value="EditedResidence.ResidenceId" class="form-control" id="residenceId" />
+		</div>
+		<div class="form-floating mb-3">
+			<InputText @bind-Value="EditedResidence.Address" class="form-control" id="address" />
+			<label for="address">Adress</label>
+			<ValidationMessage For="@(() => EditedResidence.Address)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="EditedResidence.StartingPrice" class="form-control" id="startingPrice" />
+			<label for="startingPrice">Startpris</label>
+			<ValidationMessage For="@(() => EditedResidence.StartingPrice)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="EditedResidence.LivingArea" class="form-control" id="livingArea" />
+			<label for="livingArea">Boarea</label>
+			<ValidationMessage For="@(() => EditedResidence.LivingArea)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="EditedResidence.BiArea" class="form-control" id="biArea" />
+			<label for="biArea">Biarea</label>
+			<ValidationMessage For="@(() => EditedResidence.BiArea)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="EditedResidence.LandArea" class="form-control" id="landArea" />
+			<label for="landArea">Tomtarea</label>
+			<ValidationMessage For="@(() => EditedResidence.LandArea)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputTextArea @bind-Value="EditedResidence.ResidenceDescription" class="form-control" id="residenceDescription" />
+			<label for="residenceDescription">Beskrivning</label>
+			<ValidationMessage For="@(() => EditedResidence.ResidenceDescription)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="EditedResidence.RoomCount" class="form-control" id="roomCount" />
+			<label for="roomCount">Rumsantal</label>
+			<ValidationMessage For="@(() => EditedResidence.RoomCount)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="EditedResidence.MonthlyFee" class="form-control" id="monthlyFee" />
+			<label for="monthlyFee">Månadsavgift</label>
+			<ValidationMessage For="@(() => EditedResidence.MonthlyFee)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="EditedResidence.OperatingCost" class="form-control" id="operatingCost" />
+			<label for="operatingCost">Driftkostnad</label>
+			<ValidationMessage For="@(() => EditedResidence.OperatingCost)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="EditedResidence.ConstructionYear" class="form-control" id="constructionYear" />
+			<label for="constructionYear">Byggnadsår</label>
+			<ValidationMessage For="@(() => EditedResidence.ConstructionYear)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="EditedResidence.ResidenceCategory.CategoryId" class="form-control" id="categoryId" />
+			<label for="categoryId">Kategorinummer</label>
+			<ValidationMessage For="@(() => EditedResidence.ResidenceCategory.CategoryId)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="EditedResidence.ResidenceRegion.RegionId" class="form-control" id="regionId" />
+			<label for="regionId">Regionnummer</label>
+			<ValidationMessage For="@(() => EditedResidence.ResidenceRegion.RegionId)" />
+		</div>
+
+		<div class="form-floating mb-3">
+			<InputNumber @bind-Value="EditedResidence.ResidenceRealtor.RealtorId" class="form-control" id="realtorId" />
+			<label for="realtorId">Mäklarnummer</label>
+			<ValidationMessage For="@(() => EditedResidence.ResidenceRealtor.RealtorId)" />
+		</div>
+
+		@* <div class="form-floating mb-3">
+			<InputText @bind-Value="image" class="form-control" />
+			<label for="PictureList">Bild</label>
+		</div>
+
+		<button type="button" onclick="@AddImage">Lägg till bild</button>
+		@if (PictureListURL.Count != 0)
+		{
+			<h4>Tillagda Bilder:</h4>
+		}
+		@foreach (var item in PictureListURL)
+		{
+			<p class="text-black-50">@item</p>
+		} *@
+		<br /><br />
+
+		<button type="submit" class="btn btn-primary">Spara</button>
+	</EditForm>
+</div>
+
+
+@code {
+	public Residence EditedResidence { get; set; } = new Residence();
+	[Parameter]
+	public int Id { get; set; }
+
+	protected async override Task OnInitializedAsync()
+	{
+
+		EditedResidence = await residenceService.GetAsync(Id);
+
+	}
+	private void UpdateResidence()
+	{
+		
+		residenceService.UpdateAsync(EditedResidence);
+
+	}
+
+
+}

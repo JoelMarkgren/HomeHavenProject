@@ -44,5 +44,10 @@ namespace HomeHavenBlazorProject.Services
             var response = await httpClient.PutAsJsonAsync($"api/Residence/{residence.ResidenceId}", residence);
             response.EnsureSuccessStatusCode();
         }
+        public async Task<List<Residence>> GetResidencesAsync(int realtorId)
+        {
+            var response = await httpClient.GetFromJsonAsync<List<Residence>>($"api/Residence/{realtorId}");
+            return response;
+        }
     }
 }
