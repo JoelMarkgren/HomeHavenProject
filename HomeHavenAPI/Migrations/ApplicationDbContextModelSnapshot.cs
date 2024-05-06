@@ -143,6 +143,93 @@ namespace HomeHavenAPI.Migrations
                     b.HasIndex("RealtorFirmId");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "ac31313d-d278-43d9-a72d-39fc96dc2e92",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e4f4280f-47fd-4330-94b9-14d3eb2a1b15",
+                            Email = "sofia.andersson@example.com",
+                            EmailConfirmed = false,
+                            FirstName = "Sofia",
+                            LastName = "Andersson",
+                            LockoutEnabled = false,
+                            PhoneNumber = "070-1234567",
+                            PhoneNumberConfirmed = false,
+                            ProfilePictureURL = "URL",
+                            RealtorFirmId = 1,
+                            SecurityStamp = "2884ae91-2b93-4a28-9cf1-401a448b619c",
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = "e8411d7f-4c81-4e1a-92fc-1890db0e5b81",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8e4fb207-d316-41c7-b0e6-e44b2a4089ad",
+                            Email = "erik.svensson@example.com",
+                            EmailConfirmed = false,
+                            FirstName = "Erik",
+                            LastName = "Svensson",
+                            LockoutEnabled = false,
+                            PhoneNumber = "073-9876543",
+                            PhoneNumberConfirmed = false,
+                            ProfilePictureURL = "URL",
+                            RealtorFirmId = 3,
+                            SecurityStamp = "79b7b909-2b3e-435b-8ef6-8672a8298285",
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = "60205c1a-ef79-44ac-89b2-ac75176e3408",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "94c72f89-80eb-4e2f-8486-e3d2db130f13",
+                            Email = "emma.johansson@example.com",
+                            EmailConfirmed = false,
+                            FirstName = "Emma",
+                            LastName = "Johansson",
+                            LockoutEnabled = false,
+                            PhoneNumber = "076-1112233",
+                            PhoneNumberConfirmed = false,
+                            ProfilePictureURL = "URL",
+                            RealtorFirmId = 2,
+                            SecurityStamp = "4878136c-b195-4733-add8-0c242df4e3ac",
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = "9dcb614e-6280-4101-ae5a-875d51e33480",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2fd0db46-439c-4b0d-bfec-63a558e5026d",
+                            Email = "anders.karlsson@example.com",
+                            EmailConfirmed = false,
+                            FirstName = "Anders",
+                            LastName = "Karlsson",
+                            LockoutEnabled = false,
+                            PhoneNumber = "072-5554441",
+                            PhoneNumberConfirmed = false,
+                            ProfilePictureURL = "URL",
+                            RealtorFirmId = 2,
+                            SecurityStamp = "0c0a73f2-93db-4c53-9fd7-a7bc15dfd4db",
+                            TwoFactorEnabled = false
+                        },
+                        new
+                        {
+                            Id = "3869a014-937b-4970-9021-3bb704bb10a2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "82af0c9d-b174-442b-8709-b2739fb98a41",
+                            Email = "linnea.lindgren@example.com",
+                            EmailConfirmed = false,
+                            FirstName = "Linnea",
+                            LastName = "Lindgren",
+                            LockoutEnabled = false,
+                            PhoneNumber = "074-8889990",
+                            PhoneNumberConfirmed = false,
+                            ProfilePictureURL = "URL",
+                            RealtorFirmId = 5,
+                            SecurityStamp = "9ee5618a-ca20-4f8a-8c9f-0047c0450065",
+                            TwoFactorEnabled = false
+                        });
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.RealtorFirm", b =>
@@ -734,8 +821,9 @@ namespace HomeHavenAPI.Migrations
                     b.Property<string>("PictureListURL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RealtorId")
-                        .HasColumnType("int");
+                    b.Property<string>("RealtorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("RegionId")
                         .HasColumnType("int");
@@ -743,9 +831,6 @@ namespace HomeHavenAPI.Migrations
                     b.Property<string>("ResidenceDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ResidenceRealtorId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("RoomCount")
                         .HasColumnType("int");
@@ -757,9 +842,9 @@ namespace HomeHavenAPI.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("RegionId");
+                    b.HasIndex("RealtorId");
 
-                    b.HasIndex("ResidenceRealtorId");
+                    b.HasIndex("RegionId");
 
                     b.ToTable("Residences");
 
@@ -776,7 +861,7 @@ namespace HomeHavenAPI.Migrations
                             MonthlyFee = 4000,
                             OperatingCost = 50000,
                             PictureListURL = "[\"https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg\",\"https://cdn.decoist.com/wp-content/uploads/2014/08/Indoor-blossoms-in-a-modern-living-room.jpg\",\"https://homejab.com/wp-content/uploads/2021/11/https-__realtor.homejab.com_wp-content_uploads_2021_10_1906_Santa_Clara_Ave__Alameda__CA_94501__USA-20210131235707.jpg\"]",
-                            RealtorId = 5,
+                            RealtorId = "ac31313d-d278-43d9-a72d-39fc96dc2e92",
                             RegionId = 1,
                             ResidenceDescription = "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan.",
                             RoomCount = 5,
@@ -794,7 +879,7 @@ namespace HomeHavenAPI.Migrations
                             MonthlyFee = 6500,
                             OperatingCost = 24500,
                             PictureListURL = "[\"https://www.brahus.se/upload/house/1031629571.jpg\"]",
-                            RealtorId = 4,
+                            RealtorId = "e8411d7f-4c81-4e1a-92fc-1890db0e5b81",
                             RegionId = 2,
                             ResidenceDescription = "Charmigt radhus med trädgård och garage i lugnt bostadsområde nära naturen.",
                             RoomCount = 3,
@@ -812,7 +897,7 @@ namespace HomeHavenAPI.Migrations
                             MonthlyFee = 4250,
                             OperatingCost = 32400,
                             PictureListURL = "[\"https://hjaltevadshus.se/app/uploads/2022/10/nyckelfardiga-vitsippan.jpg\"]",
-                            RealtorId = 3,
+                            RealtorId = "e8411d7f-4c81-4e1a-92fc-1890db0e5b81",
                             RegionId = 3,
                             ResidenceDescription = "Funkisvilla med pool och havsutsikt på exklusiv adress vid kusten.",
                             RoomCount = 6,
@@ -830,7 +915,7 @@ namespace HomeHavenAPI.Migrations
                             MonthlyFee = 7000,
                             OperatingCost = 31500,
                             PictureListURL = "[\"https://www.osloguiden.se/wp-content/uploads/2015/04/Pilestredet.jpg\"]",
-                            RealtorId = 3,
+                            RealtorId = "ac31313d-d278-43d9-a72d-39fc96dc2e92",
                             RegionId = 2,
                             ResidenceDescription = "Gammal gård renoverad till lyxigt boende med generösa sällskapsytor och stor trädgård.",
                             RoomCount = 4,
@@ -848,7 +933,7 @@ namespace HomeHavenAPI.Migrations
                             MonthlyFee = 3750,
                             OperatingCost = 20500,
                             PictureListURL = "[\"https://www.ekonomifokus.se/wp-content/uploads/2019/01/Vad-ingar-vid-kop-och-salj-av-fastighet-och-hus-e1547480095379.jpg\"]",
-                            RealtorId = 1,
+                            RealtorId = "ac31313d-d278-43d9-a72d-39fc96dc2e92",
                             RegionId = 5,
                             ResidenceDescription = "Lägenhet i nybyggd bostadsrättsförening med gemensam takterrass och närhet till shopping och kommunikationer.",
                             RoomCount = 5,
@@ -885,7 +970,7 @@ namespace HomeHavenAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "57059a7e-22f6-4d89-9442-d75890254abf",
+                            Id = "2e34c3eb-c353-4b69-9875-295a379a5c05",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -1014,15 +1099,17 @@ namespace HomeHavenAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("HomeHavenAPI.Models.Realtor", "ResidenceRealtor")
+                        .WithMany()
+                        .HasForeignKey("RealtorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("HomeHavenAPI.Models.Region", "ResidenceRegion")
                         .WithMany()
                         .HasForeignKey("RegionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("HomeHavenAPI.Models.Realtor", "ResidenceRealtor")
-                        .WithMany()
-                        .HasForeignKey("ResidenceRealtorId");
 
                     b.Navigation("ResidenceCategory");
 

@@ -95,9 +95,9 @@ namespace HomeHavenAPI.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RealtorFirmId = table.Column<int>(type: "int", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RealtorFirmId = table.Column<int>(type: "int", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProfilePictureURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -121,8 +121,7 @@ namespace HomeHavenAPI.Migrations
                         name: "FK_AspNetUsers_Firms_RealtorFirmId",
                         column: x => x.RealtorFirmId,
                         principalTable: "Firms",
-                        principalColumn: "RealtorFirmId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "RealtorFirmId");
                 });
 
             migrationBuilder.CreateTable(
@@ -229,17 +228,17 @@ namespace HomeHavenAPI.Migrations
                     PictureListURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     RegionId = table.Column<int>(type: "int", nullable: false),
-                    RealtorId = table.Column<int>(type: "int", nullable: false),
-                    ResidenceRealtorId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    RealtorId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Residences", x => x.ResidenceId);
                     table.ForeignKey(
-                        name: "FK_Residences_AspNetUsers_ResidenceRealtorId",
-                        column: x => x.ResidenceRealtorId,
+                        name: "FK_Residences_AspNetUsers_RealtorId",
+                        column: x => x.RealtorId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Residences_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -257,7 +256,7 @@ namespace HomeHavenAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "68ded7fc-1db2-42b7-a717-9c0576d682a3", null, "User", "USER" });
+                values: new object[] { "2e34c3eb-c353-4b69-9875-295a379a5c05", null, "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -369,15 +368,27 @@ namespace HomeHavenAPI.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Residences",
-                columns: new[] { "ResidenceId", "Address", "BiArea", "CategoryId", "ConstructionYear", "LandArea", "LivingArea", "MonthlyFee", "OperatingCost", "PictureListURL", "RealtorId", "RegionId", "ResidenceDescription", "ResidenceRealtorId", "RoomCount", "StartingPrice" },
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureURL", "RealtorFirmId", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, "Sveavägen 42", 20, 1, 2004, 500, 120, 4000, 50000, "[\"https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg\",\"https://cdn.decoist.com/wp-content/uploads/2014/08/Indoor-blossoms-in-a-modern-living-room.jpg\",\"https://homejab.com/wp-content/uploads/2021/11/https-__realtor.homejab.com_wp-content_uploads_2021_10_1906_Santa_Clara_Ave__Alameda__CA_94501__USA-20210131235707.jpg\"]", 5, 1, "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan.", null, 5, 2000000 },
-                    { 2, "Storgatan 12", 30, 2, 2000, 0, 100, 6500, 24500, "[\"https://www.brahus.se/upload/house/1031629571.jpg\"]", 4, 2, "Charmigt radhus med trädgård och garage i lugnt bostadsområde nära naturen.", null, 3, 1250000 },
-                    { 3, "Strandvägen 7", 0, 3, 2018, 1000, 250, 4250, 32400, "[\"https://hjaltevadshus.se/app/uploads/2022/10/nyckelfardiga-vitsippan.jpg\"]", 3, 3, "Funkisvilla med pool och havsutsikt på exklusiv adress vid kusten.", null, 6, 3000000 },
-                    { 4, "Norra Vallgatan 14", 15, 4, 2009, 625, 130, 7000, 31500, "[\"https://www.osloguiden.se/wp-content/uploads/2015/04/Pilestredet.jpg\"]", 3, 2, "Gammal gård renoverad till lyxigt boende med generösa sällskapsytor och stor trädgård.", null, 4, 2230000 },
-                    { 5, "Östra Hamngatan 3", 50, 5, 1972, 200, 120, 3750, 20500, "[\"https://www.ekonomifokus.se/wp-content/uploads/2019/01/Vad-ingar-vid-kop-och-salj-av-fastighet-och-hus-e1547480095379.jpg\"]", 1, 5, "Lägenhet i nybyggd bostadsrättsförening med gemensam takterrass och närhet till shopping och kommunikationer.", null, 5, 1400000 }
+                    { "3869a014-937b-4970-9021-3bb704bb10a2", 0, "82af0c9d-b174-442b-8709-b2739fb98a41", "linnea.lindgren@example.com", false, "Linnea", "Lindgren", false, null, null, null, null, "074-8889990", false, "URL", 5, "9ee5618a-ca20-4f8a-8c9f-0047c0450065", false, null },
+                    { "60205c1a-ef79-44ac-89b2-ac75176e3408", 0, "94c72f89-80eb-4e2f-8486-e3d2db130f13", "emma.johansson@example.com", false, "Emma", "Johansson", false, null, null, null, null, "076-1112233", false, "URL", 2, "4878136c-b195-4733-add8-0c242df4e3ac", false, null },
+                    { "9dcb614e-6280-4101-ae5a-875d51e33480", 0, "2fd0db46-439c-4b0d-bfec-63a558e5026d", "anders.karlsson@example.com", false, "Anders", "Karlsson", false, null, null, null, null, "072-5554441", false, "URL", 2, "0c0a73f2-93db-4c53-9fd7-a7bc15dfd4db", false, null },
+                    { "ac31313d-d278-43d9-a72d-39fc96dc2e92", 0, "e4f4280f-47fd-4330-94b9-14d3eb2a1b15", "sofia.andersson@example.com", false, "Sofia", "Andersson", false, null, null, null, null, "070-1234567", false, "URL", 1, "2884ae91-2b93-4a28-9cf1-401a448b619c", false, null },
+                    { "e8411d7f-4c81-4e1a-92fc-1890db0e5b81", 0, "8e4fb207-d316-41c7-b0e6-e44b2a4089ad", "erik.svensson@example.com", false, "Erik", "Svensson", false, null, null, null, null, "073-9876543", false, "URL", 3, "79b7b909-2b3e-435b-8ef6-8672a8298285", false, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Residences",
+                columns: new[] { "ResidenceId", "Address", "BiArea", "CategoryId", "ConstructionYear", "LandArea", "LivingArea", "MonthlyFee", "OperatingCost", "PictureListURL", "RealtorId", "RegionId", "ResidenceDescription", "RoomCount", "StartingPrice" },
+                values: new object[,]
+                {
+                    { 1, "Sveavägen 42", 20, 1, 2004, 500, 120, 4000, 50000, "[\"https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg\",\"https://cdn.decoist.com/wp-content/uploads/2014/08/Indoor-blossoms-in-a-modern-living-room.jpg\",\"https://homejab.com/wp-content/uploads/2021/11/https-__realtor.homejab.com_wp-content_uploads_2021_10_1906_Santa_Clara_Ave__Alameda__CA_94501__USA-20210131235707.jpg\"]", "ac31313d-d278-43d9-a72d-39fc96dc2e92", 1, "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan.", 5, 2000000 },
+                    { 2, "Storgatan 12", 30, 2, 2000, 0, 100, 6500, 24500, "[\"https://www.brahus.se/upload/house/1031629571.jpg\"]", "e8411d7f-4c81-4e1a-92fc-1890db0e5b81", 2, "Charmigt radhus med trädgård och garage i lugnt bostadsområde nära naturen.", 3, 1250000 },
+                    { 3, "Strandvägen 7", 0, 3, 2018, 1000, 250, 4250, 32400, "[\"https://hjaltevadshus.se/app/uploads/2022/10/nyckelfardiga-vitsippan.jpg\"]", "e8411d7f-4c81-4e1a-92fc-1890db0e5b81", 3, "Funkisvilla med pool och havsutsikt på exklusiv adress vid kusten.", 6, 3000000 },
+                    { 4, "Norra Vallgatan 14", 15, 4, 2009, 625, 130, 7000, 31500, "[\"https://www.osloguiden.se/wp-content/uploads/2015/04/Pilestredet.jpg\"]", "ac31313d-d278-43d9-a72d-39fc96dc2e92", 2, "Gammal gård renoverad till lyxigt boende med generösa sällskapsytor och stor trädgård.", 4, 2230000 },
+                    { 5, "Östra Hamngatan 3", 50, 5, 1972, 200, 120, 3750, 20500, "[\"https://www.ekonomifokus.se/wp-content/uploads/2019/01/Vad-ingar-vid-kop-och-salj-av-fastighet-och-hus-e1547480095379.jpg\"]", "ac31313d-d278-43d9-a72d-39fc96dc2e92", 5, "Lägenhet i nybyggd bostadsrättsförening med gemensam takterrass och närhet till shopping och kommunikationer.", 5, 1400000 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -430,14 +441,14 @@ namespace HomeHavenAPI.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Residences_RealtorId",
+                table: "Residences",
+                column: "RealtorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Residences_RegionId",
                 table: "Residences",
                 column: "RegionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Residences_ResidenceRealtorId",
-                table: "Residences",
-                column: "ResidenceRealtorId");
         }
 
         /// <inheritdoc />

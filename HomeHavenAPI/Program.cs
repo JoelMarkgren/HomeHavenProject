@@ -93,6 +93,8 @@ builder.Services.AddScoped<IRegion, RegionRepository>();
 builder.Services.AddScoped<IResidence, ResidenceRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
+builder.Services.AddControllers().AddNewtonsoftJson();
+
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
