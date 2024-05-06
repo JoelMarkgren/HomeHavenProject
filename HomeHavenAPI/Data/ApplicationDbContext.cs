@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Net;
+using Microsoft.AspNetCore.Identity;
 
 namespace HomeHavenAPI.Data
 {
@@ -22,6 +23,16 @@ namespace HomeHavenAPI.Data
         {
 
 			base.OnModelCreating(modelBuilder);
+
+            List<IdentityRole> roles = new List<IdentityRole>
+            {
+                new IdentityRole
+                {
+                    Name = "User",
+                    NormalizedName = "USER"
+                }
+            };
+            modelBuilder.Entity<IdentityRole>().HasData(roles);
 
 			modelBuilder.Entity<Category>().HasData(
                 new Category() { CategoryId = 1, CategoryName = "Villa" },

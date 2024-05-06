@@ -2,6 +2,7 @@
 using HomeHavenAPI.Data.Interfaces;
 using HomeHavenAPI.Dtos;
 using HomeHavenAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.InteropServices;
 
@@ -28,6 +29,7 @@ namespace HomeHavenAPI.Controllers
 
 		// GET api/<ResidenceController>/5
 		[HttpGet("{id}")]
+		[Authorize]
 		public async Task<ActionResult<Residence>> Get(int id)
 		{
 			try
@@ -40,10 +42,9 @@ namespace HomeHavenAPI.Controllers
 				}
 				else
 				{
-
 					ResidenceDto residenceDto = mapper.Map<ResidenceDto>(resi);
 
-					return Ok(residenceDto);
+					return Ok(residenceDto);  //Varför är return inte Dto
 				}
 
 			}

@@ -95,7 +95,6 @@ namespace HomeHavenAPI.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RealtorId = table.Column<int>(type: "int", nullable: false),
                     RealtorFirmId = table.Column<int>(type: "int", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -254,6 +253,11 @@ namespace HomeHavenAPI.Migrations
                         principalColumn: "RegionId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "68ded7fc-1db2-42b7-a717-9c0576d682a3", null, "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "Categories",

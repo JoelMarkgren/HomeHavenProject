@@ -58,7 +58,7 @@ namespace HomeHavenAPI.Controllers
         [HttpPut("{id}")]
         public async Task<Realtor> Put(int id, [FromBody] Realtor reator)
         {
-            reator.RealtorId = id;
+            //reator.RealtorId = id;
             await realtorRepo.EditAsync(reator);
             return reator;
         }
