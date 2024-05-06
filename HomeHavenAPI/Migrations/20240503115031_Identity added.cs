@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HomeHavenAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Identityadded : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -56,5 +56,15 @@ namespace HomeHavenAPI.Data.Repos
                 .FirstOrDefaultAsync(r => r.ResidenceId == id);
 
         }
+        // Lista av residences baserat på mäklare
+        public async Task<List<Residence>> GetListAsync(int realtorId)
+        {
+            return await applicationDbContext.Residences
+                .Include(r => r.ResidenceCategory)
+                .Include(r => r.ResidenceRegion)
+                .Include(r => r.ResidenceRealtor)
+                .Where(r => r.RealtorId == realtorId)
+                .ToListAsync();
+        }
     }
 }

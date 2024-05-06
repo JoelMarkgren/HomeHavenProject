@@ -6,11 +6,11 @@ namespace HomeHavenAPI.Models
 {
 	public class Realtor : IdentityUser
 	{
-		public int RealtorId { get; set; }
+		//public int? RealtorId { get; set; }
 		[ForeignKey("RealtorFirm")]
-		public int RealtorFirmId { get; set; }
-		public string FirstName { get; set; }
-		public string LastName { get; set; }
+		public int? RealtorFirmId { get; set; }
+		public string? FirstName { get; set; }
+		public string? LastName { get; set; }
 		public string? ProfilePictureURL { get; set; }
 		[JsonIgnore]
 		public RealtorFirm? MyRealtorFirm { get; set; }

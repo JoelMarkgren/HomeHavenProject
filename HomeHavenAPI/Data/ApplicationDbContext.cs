@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Net;
+using Microsoft.AspNetCore.Identity;
 
 namespace HomeHavenAPI.Data
 {
@@ -18,12 +19,17 @@ namespace HomeHavenAPI.Data
         public DbSet<Region> Regions { get; set; }
         public DbSet<Residence> Residences { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-			base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
 
-			modelBuilder.Entity<Category>().HasData(
+            List<IdentityRole> roles = new List<IdentityRole> { new IdentityRole { Name = "User", NormalizedName = "USER" } };
+
+            modelBuilder.Entity<IdentityRole>().HasData(roles);
+
+            modelBuilder.Entity<Category>().HasData(
                 new Category() { CategoryId = 1, CategoryName = "Villa" },
                 new Category() { CategoryId = 2, CategoryName = "Lägenhet" },
                 new Category() { CategoryId = 3, CategoryName = "RadHus" },

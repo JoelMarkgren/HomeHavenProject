@@ -9,6 +9,6 @@ namespace HomeHavenBlazorProject.Services
         Task<Residence> CreateAsync(Residence residence);
         Task UpdateAsync(Residence residence);
         Task DeleteAsync(Residence residence);
-
+        Task<List<Residence>> GetResidencesAsync(int realtorId);
     }
 }
