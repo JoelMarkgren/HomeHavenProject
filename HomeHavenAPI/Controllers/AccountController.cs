@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeHavenAPI.Controllers
 {
-    [Route("api/account")]
+	[Route("api/account")]
 	[ApiController]
 	public class AccountController : ControllerBase
 	{
@@ -16,7 +16,7 @@ namespace HomeHavenAPI.Controllers
 		private readonly SignInManager<Realtor> signInManager;
 
 		public AccountController(UserManager<Realtor> userManager, ITokenService tokenService, SignInManager<Realtor> signInManager)
-        {
+		{
 			this.userManager = userManager;
 			this.tokenService = tokenService;
 			this.signInManager = signInManager;
@@ -25,7 +25,7 @@ namespace HomeHavenAPI.Controllers
 		[HttpPost("login")]
 		public async Task<IActionResult> Login(LoginDto loginDto)
 		{
-			if(!ModelState.IsValid)
+			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
@@ -43,7 +43,7 @@ namespace HomeHavenAPI.Controllers
 					Email = user.Email,
 					Token = tokenService.CreateToken(user)
 				});
-        }
+		}
 
 		[HttpPost("register")]
 		public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
@@ -55,8 +55,10 @@ namespace HomeHavenAPI.Controllers
 
 				var realtor = new Realtor
 				{
-					UserName = registerDto.Username,
-					Email = registerDto.Email
+					UserName = registerDto.UserName,
+					Email = registerDto.Email,
+					FirstName = registerDto.FirstName,
+					LastName = registerDto.LastName
 				};
 
 				var createdUser = await userManager.CreateAsync(realtor, registerDto.Password);
@@ -71,7 +73,9 @@ namespace HomeHavenAPI.Controllers
 							{
 								UserName = realtor.UserName,
 								Email = realtor.Email,
-								Token = tokenService.CreateToken(realtor)
+								Token = tokenService.CreateToken(realtor),
+								FirstName = realtor.FirstName,
+								LastName = realtor.LastName
 							}
 						);
 					}
@@ -91,4 +95,5 @@ namespace HomeHavenAPI.Controllers
 			}
 		}
 	}
+}
 

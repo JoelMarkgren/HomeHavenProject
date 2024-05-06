@@ -23,9 +23,7 @@ namespace HomeHavenAPI.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            base.OnModelCreating(modelBuilder);
-            
-            modelBuilder.Entity<Category>().HasData(
+            base.OnModelCreating(modelBuilder);          
 
             List<IdentityRole> roles = new List<IdentityRole>
             {
@@ -125,10 +123,6 @@ namespace HomeHavenAPI.Data
                 new Region() { RegionId = 82, County = "Blekinge", Township = "Ronneby" },
                 new Region() { RegionId = 83, County = "Blekinge", Township = "Karlshamn" },
                 new Region() { RegionId = 84, County = "Blekinge", Township = "Sölvesborg" }
-
-
-
-
                 );
 
             modelBuilder.Entity<RealtorFirm>().HasData(
@@ -139,22 +133,20 @@ namespace HomeHavenAPI.Data
                 new RealtorFirm() { RealtorFirmId = 5, Descrpition = "Tar sina kunder till nya horisonter genom att guida dem genom köp- och säljprocessen med en personlig och professionell approach.", FirmName = "Horizon Homes Real Estate", LogoURL = "URL" }
                 );
 
-            //modelBuilder.Entity<Realtor>().HasData(
-            //    new Realtor() { RealtorId = 1, FirstName = "Sofia", LastName = "Andersson", Email = "sofia.andersson@example.com", PhoneNumber = "070-1234567", ProfilePictureURL = "URL", RealtorFirmId = 1 },
-            //    new Realtor() { RealtorId = 2, FirstName = "Erik", LastName = "Svensson", Email = "erik.svensson@example.com", PhoneNumber = "073-9876543", ProfilePictureURL = "URL", RealtorFirmId = 3 },
-            //    new Realtor() { RealtorId = 3, FirstName = "Emma", LastName = "Johansson", Email = "emma.johansson@example.com", PhoneNumber = "076-1112233", ProfilePictureURL = "URL", RealtorFirmId = 2 },
-            //    new Realtor() { RealtorId = 4, FirstName = "Anders", LastName = "Karlsson", Email = "anders.karlsson@example.com", PhoneNumber = "072-5554441", ProfilePictureURL = "URL", RealtorFirmId = 2 },
-            //    new Realtor() { RealtorId = 5, FirstName = "Linnea", LastName = "Lindgren", Email = "linnea.lindgren@example.com", PhoneNumber = "074-8889990", ProfilePictureURL = "URL", RealtorFirmId = 5 }
-            //    );
+            modelBuilder.Entity<Realtor>().HasData(
+                new Realtor() { Id = "ac31313d-d278-43d9-a72d-39fc96dc2e92", FirstName = "Sofia", LastName = "Andersson", Email = "sofia.andersson@example.com", PhoneNumber = "070-1234567", ProfilePictureURL = "URL", RealtorFirmId = 1 },
+                new Realtor() { Id = "e8411d7f-4c81-4e1a-92fc-1890db0e5b81", FirstName = "Erik", LastName = "Svensson", Email = "erik.svensson@example.com", PhoneNumber = "073-9876543", ProfilePictureURL = "URL", RealtorFirmId = 3 },
+                new Realtor() { Id = "60205c1a-ef79-44ac-89b2-ac75176e3408", FirstName = "Emma", LastName = "Johansson", Email = "emma.johansson@example.com", PhoneNumber = "076-1112233", ProfilePictureURL = "URL", RealtorFirmId = 2 },
+                new Realtor() { Id = "9dcb614e-6280-4101-ae5a-875d51e33480", FirstName = "Anders", LastName = "Karlsson", Email = "anders.karlsson@example.com", PhoneNumber = "072-5554441", ProfilePictureURL = "URL", RealtorFirmId = 2 },
+                new Realtor() { Id = "3869a014-937b-4970-9021-3bb704bb10a2", FirstName = "Linnea", LastName = "Lindgren", Email = "linnea.lindgren@example.com", PhoneNumber = "074-8889990", ProfilePictureURL = "URL", RealtorFirmId = 5 }
+                );
 
             modelBuilder.Entity<Residence>().HasData(
-                new Residence() { ResidenceId = 1, Address = "Sveavägen 42", BiArea = 20, LandArea = 500, LivingArea = 120, ConstructionYear = 2004, StartingPrice = 2000000, MonthlyFee = 4000, OperatingCost = 50000, PictureListURL = ["https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg", "https://cdn.decoist.com/wp-content/uploads/2014/08/Indoor-blossoms-in-a-modern-living-room.jpg", "https://homejab.com/wp-content/uploads/2021/11/https-__realtor.homejab.com_wp-content_uploads_2021_10_1906_Santa_Clara_Ave__Alameda__CA_94501__USA-20210131235707.jpg"], RoomCount = 5, CategoryId = 1, RealtorId = 5, RegionId = 1, ResidenceDescription = "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan." },
-                new Residence() { ResidenceId = 2, Address = "Storgatan 12", BiArea = 30, LandArea = 0, LivingArea = 100, ConstructionYear = 2000, StartingPrice = 1250000, MonthlyFee = 6500, OperatingCost = 24500, PictureListURL = ["https://www.brahus.se/upload/house/1031629571.jpg"], RoomCount = 3, CategoryId = 2, RealtorId = 4, RegionId = 2, ResidenceDescription = "Charmigt radhus med trädgård och garage i lugnt bostadsområde nära naturen." },
-                new Residence() { ResidenceId = 3, Address = "Strandvägen 7", BiArea = 0, LandArea = 1000, LivingArea = 250, ConstructionYear = 2018, StartingPrice = 3000000, MonthlyFee = 4250, OperatingCost = 32400, PictureListURL = ["https://hjaltevadshus.se/app/uploads/2022/10/nyckelfardiga-vitsippan.jpg"], RoomCount = 6, CategoryId = 3, RealtorId = 3, RegionId = 3, ResidenceDescription = "Funkisvilla med pool och havsutsikt på exklusiv adress vid kusten." },
-                new Residence() { ResidenceId = 4, Address = "Norra Vallgatan 14", BiArea = 15, LandArea = 625, LivingArea = 130, ConstructionYear = 2009, StartingPrice = 2230000, MonthlyFee = 7000, OperatingCost = 31500, PictureListURL = ["https://www.osloguiden.se/wp-content/uploads/2015/04/Pilestredet.jpg"], RoomCount = 4, CategoryId = 4, RealtorId = 3, RegionId = 2, ResidenceDescription = "Gammal gård renoverad till lyxigt boende med generösa sällskapsytor och stor trädgård." },
-                new Residence() { ResidenceId = 5, Address = "Östra Hamngatan 3", BiArea = 50, LandArea = 200, LivingArea = 120, ConstructionYear = 1972, StartingPrice = 1400000, MonthlyFee = 3750, OperatingCost = 20500, PictureListURL = ["https://www.ekonomifokus.se/wp-content/uploads/2019/01/Vad-ingar-vid-kop-och-salj-av-fastighet-och-hus-e1547480095379.jpg"], RoomCount = 5, CategoryId = 5, RealtorId = 1, RegionId = 5, ResidenceDescription = "Lägenhet i nybyggd bostadsrättsförening med gemensam takterrass och närhet till shopping och kommunikationer." }
-
-
+                new Residence() { ResidenceId = 1, Address = "Sveavägen 42", BiArea = 20, LandArea = 500, LivingArea = 120, ConstructionYear = 2004, StartingPrice = 2000000, MonthlyFee = 4000, OperatingCost = 50000, PictureListURL = ["https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg", "https://cdn.decoist.com/wp-content/uploads/2014/08/Indoor-blossoms-in-a-modern-living-room.jpg", "https://homejab.com/wp-content/uploads/2021/11/https-__realtor.homejab.com_wp-content_uploads_2021_10_1906_Santa_Clara_Ave__Alameda__CA_94501__USA-20210131235707.jpg"], RoomCount = 5, CategoryId = 1, RealtorId = "ac31313d-d278-43d9-a72d-39fc96dc2e92", RegionId = 1, ResidenceDescription = "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan." },
+                new Residence() { ResidenceId = 2, Address = "Storgatan 12", BiArea = 30, LandArea = 0, LivingArea = 100, ConstructionYear = 2000, StartingPrice = 1250000, MonthlyFee = 6500, OperatingCost = 24500, PictureListURL = ["https://www.brahus.se/upload/house/1031629571.jpg"], RoomCount = 3, CategoryId = 2, RealtorId = "e8411d7f-4c81-4e1a-92fc-1890db0e5b81", RegionId = 2, ResidenceDescription = "Charmigt radhus med trädgård och garage i lugnt bostadsområde nära naturen." },
+                new Residence() { ResidenceId = 3, Address = "Strandvägen 7", BiArea = 0, LandArea = 1000, LivingArea = 250, ConstructionYear = 2018, StartingPrice = 3000000, MonthlyFee = 4250, OperatingCost = 32400, PictureListURL = ["https://hjaltevadshus.se/app/uploads/2022/10/nyckelfardiga-vitsippan.jpg"], RoomCount = 6, CategoryId = 3, RealtorId = "e8411d7f-4c81-4e1a-92fc-1890db0e5b81", RegionId = 3, ResidenceDescription = "Funkisvilla med pool och havsutsikt på exklusiv adress vid kusten." },
+                new Residence() { ResidenceId = 4, Address = "Norra Vallgatan 14", BiArea = 15, LandArea = 625, LivingArea = 130, ConstructionYear = 2009, StartingPrice = 2230000, MonthlyFee = 7000, OperatingCost = 31500, PictureListURL = ["https://www.osloguiden.se/wp-content/uploads/2015/04/Pilestredet.jpg"], RoomCount = 4, CategoryId = 4, RealtorId = "ac31313d-d278-43d9-a72d-39fc96dc2e92", RegionId = 2, ResidenceDescription = "Gammal gård renoverad till lyxigt boende med generösa sällskapsytor och stor trädgård." },
+                new Residence() { ResidenceId = 5, Address = "Östra Hamngatan 3", BiArea = 50, LandArea = 200, LivingArea = 120, ConstructionYear = 1972, StartingPrice = 1400000, MonthlyFee = 3750, OperatingCost = 20500, PictureListURL = ["https://www.ekonomifokus.se/wp-content/uploads/2019/01/Vad-ingar-vid-kop-och-salj-av-fastighet-och-hus-e1547480095379.jpg"], RoomCount = 5, CategoryId = 5, RealtorId = "ac31313d-d278-43d9-a72d-39fc96dc2e92", RegionId = 5, ResidenceDescription = "Lägenhet i nybyggd bostadsrättsförening med gemensam takterrass och närhet till shopping och kommunikationer." }
                 );
 
         }

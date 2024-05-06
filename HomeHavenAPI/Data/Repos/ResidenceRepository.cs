@@ -57,7 +57,7 @@ namespace HomeHavenAPI.Data.Repos
 
         }
         // Lista av residences baserat på mäklare
-        public async Task<List<Residence>> GetListAsync(int realtorId)
+        public async Task<List<Residence>> GetListAsync(string realtorId)
         {
             return await applicationDbContext.Residences
                 .Include(r => r.ResidenceCategory)
