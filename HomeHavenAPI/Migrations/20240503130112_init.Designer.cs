@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240503110203_init")]
+    [Migration("20240503130112_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -123,9 +123,6 @@ namespace HomeHavenAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RealtorFirmId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RealtorId")
                         .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
@@ -889,6 +886,14 @@ namespace HomeHavenAPI.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "68ded7fc-1db2-42b7-a717-9c0576d682a3",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
