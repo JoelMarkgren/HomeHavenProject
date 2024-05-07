@@ -1,7 +1,7 @@
 ﻿body {
     font-family: Georgia, 'Times New Roman', Times, serif;
     background-image: url("background.jpg");
-    background-size: 20%;
+    background-size: 12%;
 }
 
 
@@ -100,6 +100,11 @@
     width: 600px;
     margin: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: rgb(255, 254, 245);
+}
+
+.resicard{
+    width:450px;
 }
 
 .box {
