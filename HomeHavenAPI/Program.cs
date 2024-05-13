@@ -101,14 +101,17 @@ builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.Re
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(
-        policy =>
-        {
-            policy.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-        });
+	options.AddDefaultPolicy(
+		policy =>
+		{
+			policy.AllowAnyOrigin()
+			.AllowAnyMethod()
+			.AllowAnyHeader();
+		});
 });
+
+
+
 
 var app = builder.Build();
 
