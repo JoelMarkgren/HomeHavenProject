@@ -19,6 +19,7 @@ namespace BlazorApp1
 			builder.Services.AddScoped<ICategoryService, CategoryService>();
 			builder.Services.AddScoped<IRegionService, RegionService>();
             builder.Services.AddScoped<IRealtorService, RealtorService>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
 
             await builder.Build().RunAsync();
 		}

@@ -95,39 +95,46 @@
 }
 
 .filter-box {
-    border: solid 1px gray;
+    border: solid 3px white;
     border-radius: 10px;
     width: 600px;
     margin: auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: rgb(255, 254, 245);
+    background-color: rgb(57, 64, 58);
+    color: white;
 }
 
-.resicard{
-    width:450px;
+.resicard {
+    width: 450px;
 }
+.cardresi {
+    border: solid 2px gray;
+}
+
+
 
 .box {
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
+    border: solid 2px white;
 }
 
 .regiondrop {
 }
 
 .cate-box {
-    border: solid 1px gray;
+    border: solid 2px white;
     width: 170px;
 }
 
 .room-box {
-    border: solid 1px gray;
+    border: solid 2px white;
     width: 185px;
 }
 
 .price-box {
-    border: solid 1px gray;
+    border: solid 2px white;
 }
 
 .stitle {
