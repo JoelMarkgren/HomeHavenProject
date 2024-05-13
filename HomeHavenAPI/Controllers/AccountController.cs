@@ -29,8 +29,8 @@ namespace HomeHavenAPI.Controllers
 			{
 				return BadRequest(ModelState);
 			}
-			var user = await userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.UserName.ToLower());
-			if (user == null) return Unauthorized("Invalid username!");
+			var user = await userManager.Users.FirstOrDefaultAsync(x => x.Email == loginDto.Email.ToLower());
+			if (user == null) return Unauthorized("Invalid Email!");
 
 			var result = await signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
@@ -41,6 +41,8 @@ namespace HomeHavenAPI.Controllers
 				{
 					UserName = user.UserName,
 					Email = user.Email,
+					FirstName = user.FirstName,
+					LastName = user.LastName,
 					Token = tokenService.CreateToken(user)
 				});
 		}
