@@ -4,17 +4,20 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text;
 using System.Net.Http.Headers;
+using Blazored.LocalStorage;
 
 namespace HomeHavenBlazorProject.Services
 {
 	public class AuthService : IAuthService
 	{
 		private readonly HttpClient httpClient;
+        private readonly ILocalStorageService localStorage;
 
-		public AuthService(HttpClient httpClient)
+        public AuthService(HttpClient httpClient, ILocalStorageService localStorage)
 		{
 			this.httpClient = httpClient;
-		}
+            this.localStorage = localStorage;
+        }
 
 		public async Task<RegisterResult> Register(RegisterModel registerModel)
 		{
@@ -36,15 +39,20 @@ namespace HomeHavenBlazorProject.Services
 				return loginResult;
 			}
 
+			await localStorage.SetItemAsync("Token", loginResult.Token);
+
 			httpClient.DefaultRequestHeaders.Authorization =
 				new AuthenticationHeaderValue("bearer", loginResult.Token);
 			loginResult.Successful = true;
+
+
 
 			return loginResult;
 		}
 
 		public async Task Logout()
 		{
+			await localStorage.RemoveItemAsync("Token");
 			httpClient.DefaultRequestHeaders.Authorization = null;
 		}
 	}
