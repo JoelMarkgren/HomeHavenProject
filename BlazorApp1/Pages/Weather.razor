@@ -1,10 +1,15 @@
 ﻿@page "/"
+@using System.IdentityModel.Tokens.Jwt
+@using System.Text.Json
 
 @inject IResidenceService ResidenceService
 @inject IRealtorFirmService RealtorFirmService
 @inject ICategoryService categoryService
 @inject IRegionService RegionService
+@inject ILocalStorageService localstorage
 
+@User.given_name
+@User.email
 
 <div class="filter-box">
 	<h2 class="stitle">SÖK BOSTAD</h2><hr />
@@ -26,7 +31,7 @@
 			</div>
 
 		</div>
-		
+
 
 		<div class="cate-box box">
 			@if (CategoryList == null)
@@ -41,16 +46,16 @@
 				}
 			}
 		</div>
-		
+
 	</div>
-	
+
 	<div class="price-box box">
 		<MinMaxPrice OnSelectedMinPrice="GetMinPrice" OnSelectedMaxPrice="GetMaxPrice" />
 	</div>
-	
-	
 
-	
+
+
+
 </div>
 
 <FilteredList MaxRoomCount="MaxCount" MinRoomCount="MinCount" MinPrice="MinPriceValue" MaxPrice="MaxPriceValue" Categories="SelectedCategoryList" SelectedRegion="SelectedRegion" />
@@ -74,12 +79,25 @@
 	int MinPriceValue { get; set; } = 300000;
 	int MaxPriceValue { get; set; } = 20000000;
 
+	public UserJwt User { get; set; } = new UserJwt();
+
 	protected override async Task OnInitializedAsync()
 	{
 		Firms = await RealtorFirmService.GetAllAsync();
 		CategoryList = await categoryService.GetAllAsync();
 		FilteredResidences = await ResidenceService.GetAllAsync();
 		RegionList = await RegionService.GetAllAsync();
+
+		var token = await localstorage.GetItemAsync<string>("Token");
+		if (token != null)
+		{
+			JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+			JwtSecurityToken jwt = handler.ReadJwtToken(token);
+
+			var jsonPayload = JsonSerializer.Serialize(jwt.Payload);
+			User = JsonSerializer.Deserialize<UserJwt>(jsonPayload);
+		}
+
 	}
 
 	private void GetMinRoomCount(int min)

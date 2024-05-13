@@ -22,7 +22,9 @@ namespace HomeHavenBlazorProject.Services
 		public async Task<RegisterResult> Register(RegisterModel registerModel)
 		{
 			var response = await httpClient.PostAsJsonAsync("api/account/register", registerModel);
-			return await response.Content.ReadFromJsonAsync<RegisterResult>();
+			var registerResult = await response.Content.ReadFromJsonAsync<RegisterResult>();
+			registerResult.Successful = true;
+			return registerResult;
 		}
 
 		public async Task<LoginResult> Login(LoginModel loginModel)

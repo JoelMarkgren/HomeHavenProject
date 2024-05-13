@@ -1,0 +1,69 @@
+﻿@page "/register"
+@inject IAuthService AuthService
+@inject NavigationManager NavigationManager
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Please enter your details</h5>
+        <EditForm Model="registerModel" OnValidSubmit="RegisterHandler">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="form-group">
+                <label for="username">Användarnamn</label>
+                <InputText Id="username" Class="form-control" @bind-Value="registerModel.UserName" />
+                <ValidationMessage For="@(() => registerModel.UserName)" />
+            </div>
+            <div class="form-group">
+                <label for="firstname">Förnamn</label>
+                <InputText Id="firstname" Class="form-control" @bind-Value="registerModel.FirstName" />
+                <ValidationMessage For="@(() => registerModel.FirstName)" />
+            </div><div class="form-group">
+                <label for="lastname">Efternamn</label>
+                <InputText Id="efternamn" Class="form-control" @bind-Value="registerModel.LastName" />
+                <ValidationMessage For="@(() => registerModel.LastName)" />
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <InputText Id="email" Class="form-control" @bind-Value="registerModel.Email" />
+                <ValidationMessage For="@(() => registerModel.Email)" />
+            </div>
+            <div class="form-group">
+                <label for="password">Lösenord</label>
+                <InputText Id="password" type="password" Class="form-control" @bind-Value="registerModel.Password" />
+                <ValidationMessage For="@(() => registerModel.Password)" />
+            </div>
+            <div class="form-group">
+                <label for="passwordValidation">Bekräfta Lösenord</label>
+                <InputText Id="passwordValidation" type="password" Class="form-control" @bind-Value="registerModel.ConfirmPassword" />
+                <ValidationMessage For="@(() => registerModel.ConfirmPassword)" />
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </EditForm>
+    </div>
+</div>
+
+
+@code {
+    private RegisterModel registerModel { get; set; } = new RegisterModel();
+    private bool ShowErrors;
+    private string Error = "";
+
+    private async Task RegisterHandler()
+    {
+        ShowErrors = false;
+
+        var result = await AuthService.Register(registerModel);
+
+        if (result.Successful)
+        {
+            NavigationManager.NavigateTo("/login");
+        }
+        else
+        {
+            // Error = result.Errors;
+            ShowErrors = true;
+        }
+    }
+}
