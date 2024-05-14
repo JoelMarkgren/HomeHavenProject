@@ -7,7 +7,6 @@
         <h5 class="card-title">Please enter your details</h5>
         <EditForm Model="loginModel" OnValidSubmit="LoginHandler">
             <DataAnnotationsValidator />
-            <ValidationSummary />
 
             <div class="form-group">
                 <label for="email">Email address</label>
@@ -19,20 +18,24 @@
                 <InputText Id="password" type="password" Class="form-control" @bind-Value="loginModel.Password" />
                 <ValidationMessage For="@(() => loginModel.Password)" />
             </div>
+            @if(IsValid == false)
+            {
+                <p class="text-danger">@Error</p>
+            }
             <button type="submit" class="btn btn-primary">Submit</button>
-        </EditForm>
+        </EditForm> 
     </div>
 </div>
 
 
 @code {
     private LoginModel loginModel { get; set; } = new LoginModel();
-    private bool ShowErrors;
-    private string Error = "";
+    private bool IsValid = true;
+    private string Error = "Email eller lösenord stämmer inte";
 
     private async Task LoginHandler()
     {
-        ShowErrors = false;
+        IsValid = true;
 
         var result = await AuthService.Login(loginModel);
 
@@ -42,8 +45,7 @@
         }
         else
         {
-            Error = result.Error;
-            ShowErrors = true;
+            IsValid = false;
         }  
     }
 }
