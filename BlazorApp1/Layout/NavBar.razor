@@ -1,23 +1,33 @@
-﻿<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link" href="/realtor/createresidence">Create Residence</a>
-				
-            </div>
-            <a class="nav-link h1 text-white border-2  mx-auto m-3 fw-bold" href="/">HOME HAVEN</a>
-				
+﻿@inject ILocalStorageService localstorage
 
-        </div>
-        
-    </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container-fluid">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a class="nav-link" href="/realtor/createresidence">Create Residence</a>
+
+			</div>
+			<a class="nav-link h1 text-white border-2  mx-auto m-3 fw-bold" href="/">HOME HAVEN</a>
+			@if ((localstorage.GetItemAsync<string>) == null)
+			{
+				<a class="nav-link" href="/login">Login</a>
+				<a class="nav-link" href="/register">Register</a>
+			}
+			else
+			{
+				<a class="nav-link" href="/logout">Logout</a>
+			}
+
+		</div>
+
+	</div>
 </nav>
 
 
 
 @code {
-
+	
 }

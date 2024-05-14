@@ -7,7 +7,6 @@
         <h5 class="card-title">Please enter your details</h5>
         <EditForm Model="registerModel" OnValidSubmit="RegisterHandler">
             <DataAnnotationsValidator />
-            <ValidationSummary />
             <div class="form-group">
                 <label for="username">Användarnamn</label>
                 <InputText Id="username" Class="form-control" @bind-Value="registerModel.UserName" />
@@ -37,7 +36,10 @@
                 <InputText Id="passwordValidation" type="password" Class="form-control" @bind-Value="registerModel.ConfirmPassword" />
                 <ValidationMessage For="@(() => registerModel.ConfirmPassword)" />
             </div>
-
+            @if(ShowErrors == true)
+            {
+                <p class="text-danger">@Error</p>
+            }
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </EditForm>
@@ -48,7 +50,7 @@
 @code {
     private RegisterModel registerModel { get; set; } = new RegisterModel();
     private bool ShowErrors;
-    private string Error = "";
+    private string Error = "En eller flera rader är ogiltiga";
 
     private async Task RegisterHandler()
     {
@@ -62,7 +64,6 @@
         }
         else
         {
-            // Error = result.Errors;
             ShowErrors = true;
         }
     }

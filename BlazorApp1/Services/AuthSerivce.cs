@@ -8,54 +8,62 @@ using Blazored.LocalStorage;
 
 namespace HomeHavenBlazorProject.Services
 {
-	public class AuthService : IAuthService
-	{
-		private readonly HttpClient httpClient;
+    public class AuthService : IAuthService
+    {
+        private readonly HttpClient httpClient;
         private readonly ILocalStorageService localStorage;
 
         public AuthService(HttpClient httpClient, ILocalStorageService localStorage)
-		{
-			this.httpClient = httpClient;
+        {
+            this.httpClient = httpClient;
             this.localStorage = localStorage;
         }
 
-		public async Task<RegisterResult> Register(RegisterModel registerModel)
-		{
-			var response = await httpClient.PostAsJsonAsync("api/account/register", registerModel);
-			var registerResult = await response.Content.ReadFromJsonAsync<RegisterResult>();
-			registerResult.Successful = true;
-			return registerResult;
-		}
+        public async Task<RegisterResult> Register(RegisterModel registerModel)
+        {
+            var response = await httpClient.PostAsJsonAsync("api/account/register", registerModel);
 
-		public async Task<LoginResult> Login(LoginModel loginModel)
-		{
-			var loginAsJson = JsonSerializer.Serialize(loginModel);
-			var response = await httpClient.PostAsync("api/account/login",
-				new StringContent(loginAsJson, Encoding.UTF8, "application/json"));
-			var loginResult = JsonSerializer.Deserialize<LoginResult>(
-				await response.Content.ReadAsStringAsync(),
-				new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            RegisterResult registerResult = new RegisterResult();
+            if (!response.IsSuccessStatusCode)
+            {
+                return registerResult;
+            }
+            registerResult = await response.Content.ReadFromJsonAsync<RegisterResult>();
+            registerResult.Successful = true;
+            return registerResult;
+        }
 
-			if (!response.IsSuccessStatusCode)
-			{
-				return loginResult;
-			}
+        public async Task<LoginResult> Login(LoginModel loginModel)
+        {
+            var loginAsJson = JsonSerializer.Serialize(loginModel);
+            var response = await httpClient.PostAsync("api/account/login",
+                new StringContent(loginAsJson, Encoding.UTF8, "application/json"));
 
-			await localStorage.SetItemAsync("Token", loginResult.Token);
+            LoginResult loginResult = new LoginResult();
 
-			httpClient.DefaultRequestHeaders.Authorization =
-				new AuthenticationHeaderValue("bearer", loginResult.Token);
-			loginResult.Successful = true;
+            if (!response.IsSuccessStatusCode)
+            {
+                return loginResult;
+            }
+            loginResult = JsonSerializer.Deserialize<LoginResult>(
+                await response.Content.ReadAsStringAsync(),
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            await localStorage.SetItemAsync("Token", loginResult.Token);
+
+            httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("bearer", loginResult.Token);
+            loginResult.Successful = true;
 
 
 
-			return loginResult;
-		}
+            return loginResult;
+        }
 
-		public async Task Logout()
-		{
-			await localStorage.RemoveItemAsync("Token");
-			httpClient.DefaultRequestHeaders.Authorization = null;
-		}
-	}
+        public async Task Logout()
+        {
+            await localStorage.RemoveItemAsync("Token");
+            httpClient.DefaultRequestHeaders.Authorization = null;
+        }
+    }
 }
