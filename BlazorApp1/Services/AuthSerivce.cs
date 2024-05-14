@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text;
 using System.Net.Http.Headers;
 using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace HomeHavenBlazorProject.Services
 {
@@ -12,12 +13,14 @@ namespace HomeHavenBlazorProject.Services
     {
         private readonly HttpClient httpClient;
         private readonly ILocalStorageService localStorage;
+		private readonly AuthenticationStateProvider authenticationStateProvider;
 
-        public AuthService(HttpClient httpClient, ILocalStorageService localStorage)
+		public AuthService(HttpClient httpClient, ILocalStorageService localStorage, AuthenticationStateProvider authenticationStateProvider)
         {
             this.httpClient = httpClient;
             this.localStorage = localStorage;
-        }
+			this.authenticationStateProvider = authenticationStateProvider;
+		}
 
         public async Task<RegisterResult> Register(RegisterModel registerModel)
         {
@@ -51,7 +54,9 @@ namespace HomeHavenBlazorProject.Services
 
             await localStorage.SetItemAsync("Token", loginResult.Token);
 
-            httpClient.DefaultRequestHeaders.Authorization =
+			((ApiAuthenticationStateProvider)authenticationStateProvider)
+			   .MarkUserAsAuthenticated(loginModel.Email);
+			httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("bearer", loginResult.Token);
             loginResult.Successful = true;
 
@@ -63,7 +68,9 @@ namespace HomeHavenBlazorProject.Services
         public async Task Logout()
         {
             await localStorage.RemoveItemAsync("Token");
-            httpClient.DefaultRequestHeaders.Authorization = null;
+			((ApiAuthenticationStateProvider)authenticationStateProvider)
+				.MarkUserAsLoggedOut();
+			httpClient.DefaultRequestHeaders.Authorization = null;
         }
     }
 }

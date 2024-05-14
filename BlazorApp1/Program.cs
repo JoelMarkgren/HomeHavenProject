@@ -1,6 +1,7 @@
 using Blazored.LocalStorage;
 using HomeHavenBlazorProject;
 using HomeHavenBlazorProject.Services;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -21,6 +22,8 @@ namespace BlazorApp1
 			builder.Services.AddScoped<IRegionService, RegionService>();
             builder.Services.AddScoped<IRealtorService, RealtorService>();
 			builder.Services.AddScoped<IAuthService, AuthService>();
+			builder.Services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
+			builder.Services.AddAuthorizationCore();
 
 			builder.Services.AddBlazoredLocalStorage();
 
