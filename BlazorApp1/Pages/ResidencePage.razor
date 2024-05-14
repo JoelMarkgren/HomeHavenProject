@@ -3,81 +3,87 @@
 @inject IResidenceService ResidenceService
 @inject IRealtorFirmService RealtorFirmService
 
-
-
-@if (Residence != null)
-{
-	<div class="c-wrapper">
-		<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-			<div class="carousel-inner">
-				<div class="carousel-item active c-item">
-					<img src="@Residence.PictureListURL[0]" class="d-block w-100 c-image" alt="...">
-				</div>
-
-				@for (int i = 1; i < Residence.PictureListURL.Count; i++)
-				{
-					<div class="carousel-item c-item">
-						<img src="@Residence.PictureListURL[i]" class="d-block w-100 c-image" alt="...">
+<AuthorizeView>
+	<NotAuthorized>
+		<p>Du har inte behörighet för att se den här sidan.</p>
+	</NotAuthorized>
+	<Authorized>
+		@if (Residence != null)
+		{
+		<div class="c-wrapper">
+			<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active c-item">
+						<img src="@Residence.PictureListURL[0]" class="d-block w-100 c-image" alt="...">
 					</div>
+
+					@for (int i = 1; i < Residence.PictureListURL.Count; i++)
+					{
+						<div class="carousel-item c-item">
+							<img src="@Residence.PictureListURL[i]" class="d-block w-100 c-image" alt="...">
+						</div>
+					}
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+		</div>
+
+		<div class="infobox">
+			<div class="resi-title">
+				<p>@Residence.Address, @Residence.ResidenceRegion.Township</p>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-8 bg-light p-3 border descbox overflow-auto">
+					<h4>Beskrivning:</h4>
+					<p>@Residence.ResidenceDescription</p>
+				</div>
+				<div class="col-sm-3 bg-light p-3 border detailsbox overflow-auto">
+					<h4>Pris: @Residence.StartingPrice kr</h4>
+					<p>Boarea: @Residence.LivingArea m²</p>
+					<p>Biarea: @Residence.BiArea m²</p>
+					<p>Tomtarea: @Residence.LandArea m²</p>
+					<p>Antal rum: @Residence.RoomCount st</p>
+					<p>Månadskostnad: @Residence.MonthlyFee kr</p>
+					<p>Driftkostnad: @Residence.OperatingCost kr/år</p>
+					<p>Byggnadsår: @Residence.ConstructionYear</p>
+					<br />
+					<br />
+					<a href="#" style="text-align: center">Visa på Karta</a>
+
+				</div>
+			</div>
+			<div class="col-sm-8 bg-light p-3 border realtorbox">
+				<h1 class="sub-titles">@Residence.ResidenceRealtor.FirstName @Residence.ResidenceRealtor.LastName</h1>
+				<h4>@RealtorFirm.FirmName</h4>
+				<p style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ">@Residence.ResidenceRealtor.PhoneNumber</p>
+				<p>@Residence.ResidenceRealtor.Email</p>
+				@if (string.IsNullOrEmpty(Residence.ResidenceRealtor.ProfilePictureURL))
+				{
+					<img src="https://st3.depositphotos.com/6672868/13701/v/380/depositphotos_137014128-stock-illustration-user-profile-icon.jpg" class="img-thumbnail realtorProfilePic">
 				}
-			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
-		</div>
-	</div>
-
-	<div class="infobox">
-		<div class="resi-title">
-			<p>@Residence.Address, @Residence.ResidenceRegion.Township</p>
-		</div>
-
-		<div class="row">
-			<div class="col-sm-8 bg-light p-3 border descbox overflow-auto">
-				<h4>Beskrivning:</h4>
-				<p>@Residence.ResidenceDescription</p>
-			</div>
-			<div class="col-sm-3 bg-light p-3 border detailsbox overflow-auto">
-				<h4>Pris: @Residence.StartingPrice kr</h4>
-				<p>Boarea: @Residence.LivingArea m²</p>
-				<p>Biarea: @Residence.BiArea m²</p>
-				<p>Tomtarea: @Residence.LandArea m²</p>
-				<p>Antal rum: @Residence.RoomCount st</p>
-				<p>Månadskostnad: @Residence.MonthlyFee kr</p>
-				<p>Driftkostnad: @Residence.OperatingCost kr/år</p>
-				<p>Byggnadsår: @Residence.ConstructionYear</p>
-				<br />
-				<br />
-				<a href="#" style="text-align: center">Visa på Karta</a>
+				else
+				{
+					<img src="@Residence.ResidenceRealtor.ProfilePictureURL" class="img-thumbnail realtorProfilePic">
+				}
 
 			</div>
-		</div>
-		<div class="col-sm-8 bg-light p-3 border realtorbox">
-			<h1 class="sub-titles">@Residence.ResidenceRealtor.FirstName @Residence.ResidenceRealtor.LastName</h1>
-			<h4>@RealtorFirm.FirmName</h4>
-			<p style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ">@Residence.ResidenceRealtor.PhoneNumber</p>
-			<p>@Residence.ResidenceRealtor.Email</p>
-			@if (string.IsNullOrEmpty(Residence.ResidenceRealtor.ProfilePictureURL))
-			{
-				<img src="https://st3.depositphotos.com/6672868/13701/v/380/depositphotos_137014128-stock-illustration-user-profile-icon.jpg" class="img-thumbnail realtorProfilePic">
-			}
-			else
-			{
-				<img src="@Residence.ResidenceRealtor.ProfilePictureURL" class="img-thumbnail realtorProfilePic">
-			}
+
+
 
 		</div>
 
+		}
+	</Authorized>
 
-
-	</div>
-
-}
+</AuthorizeView>
 
 
 
