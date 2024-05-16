@@ -22,6 +22,7 @@ namespace BlazorApp1
 			builder.Services.AddScoped<IRegionService, RegionService>();
             builder.Services.AddScoped<IRealtorService, RealtorService>();
 			builder.Services.AddScoped<IAuthService, AuthService>();
+			builder.Services.AddScoped<IFirmRequestService, FirmRequestService>();
 			builder.Services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
 			builder.Services.AddAuthorizationCore();
 

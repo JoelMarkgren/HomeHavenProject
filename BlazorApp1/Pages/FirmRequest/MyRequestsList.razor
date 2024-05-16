@@ -1,0 +1,19 @@
+﻿@if (MyRequests.Count() == 0)
+{
+	<h2>Inga requests</h2>
+}
+else
+{
+	@foreach (var request in MyRequests)
+	{
+		<p>
+			@request.ToEmail
+		</p>
+	}
+}
+
+@code {
+	[Parameter]
+	public IEnumerable<FirmRequest> MyRequests { get; set; }
+
+}

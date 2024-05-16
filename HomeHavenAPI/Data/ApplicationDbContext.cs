@@ -18,6 +18,7 @@ namespace HomeHavenAPI.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<Residence> Residences { get; set; }
+        public DbSet<FirmRequest> FirmRequests { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

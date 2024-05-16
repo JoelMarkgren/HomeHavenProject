@@ -1,0 +1,19 @@
+﻿@if (MyInvites.Count() == 0)
+{
+	<h2>Inga requests</h2>
+}
+else
+{
+	@foreach (var invite in MyInvites)
+	{
+		<p>
+			@invite.ToEmail
+		</p>
+	}
+}
+
+@code {
+	[Parameter]
+	public IEnumerable<FirmRequest> MyInvites { get; set; }
+
+}

@@ -21,7 +21,8 @@ namespace HomeHavenAPI.Service
 			var claims = new List<Claim>
 			{
 				new Claim(JwtRegisteredClaimNames.Email, realtor.Email),
-				new Claim(JwtRegisteredClaimNames.GivenName, realtor.UserName)
+				new Claim(JwtRegisteredClaimNames.GivenName, realtor.UserName),
+				new Claim("Id", realtor.Id)
 			};
 
 			var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);

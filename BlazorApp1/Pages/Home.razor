@@ -8,8 +8,13 @@
 @inject IRegionService RegionService
 @inject ILocalStorageService localstorage
 
-@User.given_name
-@User.email
+
+<AuthorizeView>
+	<Authorized>
+			@context.User.FindFirst("Id")
+		
+	</Authorized>
+</AuthorizeView>
 
 <div class="filter-box">
 	<h2 class="stitle">SÖK BOSTAD</h2><hr />
@@ -79,7 +84,7 @@
 	int MinPriceValue { get; set; } = 300000;
 	int MaxPriceValue { get; set; } = 20000000;
 
-	public UserJwt User { get; set; } = new UserJwt();
+	public UserJwt User { get; set; } = new UserJwt();  //Ta bort
 
 	protected override async Task OnInitializedAsync()
 	{
@@ -88,7 +93,7 @@
 		FilteredResidences = await ResidenceService.GetAllAsync();
 		RegionList = await RegionService.GetAllAsync();
 
-		var token = await localstorage.GetItemAsync<string>("Token");
+		var token = await localstorage.GetItemAsync<string>("Token");  //Ta Bort
 		if (token != null)
 		{
 			JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
@@ -97,7 +102,7 @@
 			var jsonPayload = JsonSerializer.Serialize(jwt.Payload);
 			User = JsonSerializer.Deserialize<UserJwt>(jsonPayload);
 		}
-
+		
 	}
 
 	private void GetMinRoomCount(int min)

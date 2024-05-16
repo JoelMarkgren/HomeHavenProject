@@ -92,6 +92,7 @@ builder.Services.AddScoped<ICategory, CategoryRepository>();
 builder.Services.AddScoped<IRegion, RegionRepository>();
 builder.Services.AddScoped<IResidence, ResidenceRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IFirmRequest, FirmRequestRepository>();
 
 builder.Services.AddControllers().AddNewtonsoftJson();
 
