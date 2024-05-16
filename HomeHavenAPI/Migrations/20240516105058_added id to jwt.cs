@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HomeHavenAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class addedidtojwt : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -38,6 +38,21 @@ namespace HomeHavenAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.CategoryId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FirmRequests",
+                columns: table => new
+                {
+                    FirmRequestId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FromEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ToEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RealtorFirmId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FirmRequests", x => x.FirmRequestId);
                 });
 
             migrationBuilder.CreateTable(
@@ -256,7 +271,7 @@ namespace HomeHavenAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "87cc7d88-048c-4074-a876-6a29d489943e", null, "User", "USER" });
+                values: new object[] { "daa75951-15b4-48ab-bd58-adfab165444d", null, "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -372,11 +387,11 @@ namespace HomeHavenAPI.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureURL", "RealtorFirmId", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3869a014-937b-4970-9021-3bb704bb10a2", 0, "6a48067b-0cec-4eff-921a-372733117352", "linnea.lindgren@example.com", false, "Linnea", "Lindgren", false, null, null, null, null, "074-8889990", false, "URL", 5, "3b272690-aff7-42cf-aafa-2da54d1c057f", false, null },
-                    { "60205c1a-ef79-44ac-89b2-ac75176e3408", 0, "570b637d-2dcb-4f88-acfb-0045aefe88dc", "emma.johansson@example.com", false, "Emma", "Johansson", false, null, null, null, null, "076-1112233", false, "URL", 2, "25bfee4b-c0df-46dc-b9c7-6a89ff93311b", false, null },
-                    { "9dcb614e-6280-4101-ae5a-875d51e33480", 0, "b50f7d2e-16a5-4b90-95d8-f917b7656d0c", "anders.karlsson@example.com", false, "Anders", "Karlsson", false, null, null, null, null, "072-5554441", false, "URL", 2, "37636edb-1bcf-43f1-bc7a-b70fca3bf34a", false, null },
-                    { "ac31313d-d278-43d9-a72d-39fc96dc2e92", 0, "7ebf0424-4017-4d02-8a36-7784e6679f85", "sofia.andersson@example.com", false, "Sofia", "Andersson", false, null, null, null, null, "070-1234567", false, "URL", 1, "cdd113df-73a5-4427-8590-6d1b33d84c11", false, null },
-                    { "e8411d7f-4c81-4e1a-92fc-1890db0e5b81", 0, "310f7adf-86cd-49f6-9c90-bd6f548704d1", "erik.svensson@example.com", false, "Erik", "Svensson", false, null, null, null, null, "073-9876543", false, "URL", 3, "f58e3b2a-8a58-426d-95c7-a9322cbb1776", false, null }
+                    { "3869a014-937b-4970-9021-3bb704bb10a2", 0, "08a7381b-f594-4cf7-ac31-8c1d2e67bfe0", "linnea.lindgren@example.com", false, "Linnea", "Lindgren", false, null, null, null, null, "074-8889990", false, "URL", 5, "01a41fe4-757c-44a4-b086-53a8e58e5755", false, null },
+                    { "60205c1a-ef79-44ac-89b2-ac75176e3408", 0, "b329f83c-6c2f-41e2-9fc7-20d71e10b245", "emma.johansson@example.com", false, "Emma", "Johansson", false, null, null, null, null, "076-1112233", false, "URL", 2, "95f2c52d-fa6d-44a5-b830-67c7a00fdaee", false, null },
+                    { "9dcb614e-6280-4101-ae5a-875d51e33480", 0, "8807be55-14e2-498a-8efa-31bf8e4518b1", "anders.karlsson@example.com", false, "Anders", "Karlsson", false, null, null, null, null, "072-5554441", false, "URL", 2, "b3b0d666-104c-44e6-9e37-b11f78f64352", false, null },
+                    { "ac31313d-d278-43d9-a72d-39fc96dc2e92", 0, "da92b296-d0d9-4a06-9674-43c4d4fa2cd2", "sofia.andersson@example.com", false, "Sofia", "Andersson", false, null, null, null, null, "070-1234567", false, "URL", 1, "290c811f-bc88-45e3-a196-02eff0169631", false, null },
+                    { "e8411d7f-4c81-4e1a-92fc-1890db0e5b81", 0, "6825afb4-10f5-4ee2-9708-026e78b5250a", "erik.svensson@example.com", false, "Erik", "Svensson", false, null, null, null, null, "073-9876543", false, "URL", 3, "10b97328-02bd-4dce-b797-1ccd96be001a", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -468,6 +483,9 @@ namespace HomeHavenAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "FirmRequests");
 
             migrationBuilder.DropTable(
                 name: "Residences");

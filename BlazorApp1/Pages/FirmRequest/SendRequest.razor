@@ -1,0 +1,36 @@
+﻿@inject IFirmRequestService FirmRequestService
+@* <h2>Skicka Ibjudan:</h2>
+<AuthorizeView>
+	<Authorized>
+		<EditForm Model="Request" OnValidSubmit="RequestHandler">
+			<DataAnnotationsValidator />
+			<div class="form-group">
+				<label for="ToEmail">E-mail:</label>
+				<InputText Id="ToEmail" Class="form-control" @bind-Value="Request.ToEmail" />
+				<ValidationMessage For="@(() => Request.ToEmail)" />
+			</div>
+
+			<Input type=“hidden” value="@FromEmail" bind="@Request.FromEmail" />
+			<Input type=“hidden” value="" bind="@Request.FirmRequestId" />
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</EditForm>
+	</Authorized>
+	<NotAuthorized>
+
+	</NotAuthorized>
+</AuthorizeView> *@
+
+
+@code {
+	// [Parameter]
+	// public string FromEmail { get; set; }
+
+	// public FirmRequest Request { get; set; }
+
+	// private async Task RequestHandler()
+	// {
+
+
+	// }
+}

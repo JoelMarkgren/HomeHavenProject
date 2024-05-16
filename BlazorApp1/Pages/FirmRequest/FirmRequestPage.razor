@@ -1,0 +1,38 @@
+﻿@page "/realtor/requests"
+@using System.IdentityModel.Tokens.Jwt
+@using System.Text.Json
+@inject IFirmRequestService FirmRequestService
+@inject ILocalStorageService localstorage
+@* <SendRequest FromEmail="@User.email"></SendRequest> *@
+<h2>Mina Inbjudningar:</h2>
+<MyRequestsList MyRequests="MyRequests"></MyRequestsList>
+<h2>Mina Förfrågningar:</h2>
+<MyInvitesList MyInvites="MyInvites"></MyInvitesList>
+
+
+@code {
+
+	public IEnumerable<FirmRequest> MyInvites { get; set; } = new List<FirmRequest>();
+	public IEnumerable<FirmRequest> MyRequests { get; set; } = new List<FirmRequest>();
+	public int MyProperty { get; set; }
+	public UserJwt User { get; set; } = new UserJwt();
+	public string UserId { get; set; }
+
+	protected async override Task OnInitializedAsync()
+	{
+		var token = await localstorage.GetItemAsync<string>("Token");
+		if (token != null)
+		{
+			JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+			JwtSecurityToken jwt = handler.ReadJwtToken(token);
+
+			var jsonPayload = JsonSerializer.Serialize(jwt.Payload);
+			User = JsonSerializer.Deserialize<UserJwt>(jsonPayload);
+		}
+		
+
+		MyRequests = await FirmRequestService.GetAllRequestsAsync(User.email);
+		MyInvites = await FirmRequestService.GetAllInivtesAsync(User.email);
+	}
+
+}
