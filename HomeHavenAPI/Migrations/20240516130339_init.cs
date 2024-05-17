@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HomeHavenAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class addedidtojwt : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -271,7 +271,7 @@ namespace HomeHavenAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "daa75951-15b4-48ab-bd58-adfab165444d", null, "User", "USER" });
+                values: new object[] { "5d9efdf1-df1b-4d21-a7a1-03f1286e2cf1", null, "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -387,11 +387,11 @@ namespace HomeHavenAPI.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureURL", "RealtorFirmId", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3869a014-937b-4970-9021-3bb704bb10a2", 0, "08a7381b-f594-4cf7-ac31-8c1d2e67bfe0", "linnea.lindgren@example.com", false, "Linnea", "Lindgren", false, null, null, null, null, "074-8889990", false, "URL", 5, "01a41fe4-757c-44a4-b086-53a8e58e5755", false, null },
-                    { "60205c1a-ef79-44ac-89b2-ac75176e3408", 0, "b329f83c-6c2f-41e2-9fc7-20d71e10b245", "emma.johansson@example.com", false, "Emma", "Johansson", false, null, null, null, null, "076-1112233", false, "URL", 2, "95f2c52d-fa6d-44a5-b830-67c7a00fdaee", false, null },
-                    { "9dcb614e-6280-4101-ae5a-875d51e33480", 0, "8807be55-14e2-498a-8efa-31bf8e4518b1", "anders.karlsson@example.com", false, "Anders", "Karlsson", false, null, null, null, null, "072-5554441", false, "URL", 2, "b3b0d666-104c-44e6-9e37-b11f78f64352", false, null },
-                    { "ac31313d-d278-43d9-a72d-39fc96dc2e92", 0, "da92b296-d0d9-4a06-9674-43c4d4fa2cd2", "sofia.andersson@example.com", false, "Sofia", "Andersson", false, null, null, null, null, "070-1234567", false, "URL", 1, "290c811f-bc88-45e3-a196-02eff0169631", false, null },
-                    { "e8411d7f-4c81-4e1a-92fc-1890db0e5b81", 0, "6825afb4-10f5-4ee2-9708-026e78b5250a", "erik.svensson@example.com", false, "Erik", "Svensson", false, null, null, null, null, "073-9876543", false, "URL", 3, "10b97328-02bd-4dce-b797-1ccd96be001a", false, null }
+                    { "3869a014-937b-4970-9021-3bb704bb10a2", 0, "1261f18e-f8da-4e56-a5c4-96741662dbcc", "linnea.lindgren@example.com", false, "Linnea", "Lindgren", false, null, null, null, null, "074-8889990", false, "URL", 5, "61c52ab2-93a0-419c-bdc7-2a3de47549e7", false, null },
+                    { "60205c1a-ef79-44ac-89b2-ac75176e3408", 0, "f6620fdf-d215-401f-a547-e417c9d827c0", "emma.johansson@example.com", false, "Emma", "Johansson", false, null, null, null, null, "076-1112233", false, "URL", 2, "bd42a976-f623-460c-82ae-7fe68c9cdf4b", false, null },
+                    { "9dcb614e-6280-4101-ae5a-875d51e33480", 0, "4c145cb5-97dc-4c45-975f-7a91ac942a5c", "anders.karlsson@example.com", false, "Anders", "Karlsson", false, null, null, null, null, "072-5554441", false, "URL", 2, "2adf5b9f-e982-442a-b192-60586eb3c99a", false, null },
+                    { "ac31313d-d278-43d9-a72d-39fc96dc2e92", 0, "db2e5ae2-20ac-4c00-8df7-3aafe5e86fe9", "sofia.andersson@example.com", false, "Sofia", "Andersson", false, null, null, null, null, "070-1234567", false, "URL", 1, "6e0e7de0-d3df-455b-a3c5-047be199f100", false, null },
+                    { "e8411d7f-4c81-4e1a-92fc-1890db0e5b81", 0, "9be00381-c892-4839-91a7-2213886275d9", "erik.svensson@example.com", false, "Erik", "Svensson", false, null, null, null, null, "073-9876543", false, "URL", 3, "7b56e3fa-738f-4df8-9b65-a1141224d47d", false, null }
                 });
 
             migrationBuilder.InsertData(

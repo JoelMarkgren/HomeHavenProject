@@ -1,20 +1,34 @@
-﻿<h3>RealtorsResidenceList</h3>
-@page "/realtor/realtorresidencelist/{id:int}"
-@inject IRealtorService realtorService
+﻿
+@page "/realtor/realtorresidencelist"
+@using System.IdentityModel.Tokens.Jwt
+@using System.Text.Json
+@inject ILocalStorageService localStorage
 @inject IResidenceService residenceService
 
 
-<ResidenceList DisplayResidences="RealtorResidenceList" />
+<CrudResidenceList DisplayResidences="RealtorResidenceList" />
+<br />
+<br />
+<p>Hejsan</p>
 
 
 @code {
     public IEnumerable<Residence> RealtorResidenceList { get; set; } = new List<Residence>();
-    [Parameter]
-    public int Id { get; set; }
+    public UserJwt User { get; set; } = new UserJwt();
 
     protected override async Task OnInitializedAsync()
     {
-        RealtorResidenceList = await residenceService.GetResidencesAsync(Id);
+        var token = await localStorage.GetItemAsync<string>("Token");
+        if (token != null)
+        {
+            JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+            JwtSecurityToken jwt = handler.ReadJwtToken(token);
+
+            var jsonPayload = JsonSerializer.Serialize(jwt.Payload);
+            User = JsonSerializer.Deserialize<UserJwt>(jsonPayload);
+        }
+
+        RealtorResidenceList = await residenceService.GetRealtorResidencesAsync(User.Id);
     }
     
 }

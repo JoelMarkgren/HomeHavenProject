@@ -1,13 +1,16 @@
 ﻿<h3>EditResidence</h3>
-@page "/realtor/editresidence/{id:int}"
-
+@page "/realtor/editresidence/{residenceid:int}"
+@using System.IdentityModel.Tokens.Jwt
+@using System.Text.Json
+@inject NavigationManager navMangager
+@inject ILocalStorageService localStorage
 @inject IResidenceService residenceService
 
 
 <div class="container">
-	<h3>Skapa Bostad</h3>
+	<h3>Ändra bostad</h3> 
 
-	<EditForm Model="@EditedResidence" OnValidSubmit="@UpdateResidence">
+	<EditForm Model="EditedResidence" OnValidSubmit="@UpdateResidence">
 		<DataAnnotationsValidator />
 		<ValidationSummary />
 		<div class="form-floating mb-3">
@@ -74,24 +77,30 @@
 		</div>
 
 		<div class="form-floating mb-3">
-			<InputNumber @bind-Value="EditedResidence.ResidenceCategory.CategoryId" class="form-control" id="categoryId" />
+			<InputNumber @bind-Value="EditedResidence.CategoryId" class="form-control" id="categoryId" />
 			<label for="categoryId">Kategorinummer</label>
-			<ValidationMessage For="@(() => EditedResidence.ResidenceCategory.CategoryId)" />
+			<ValidationMessage For="@(() => EditedResidence.CategoryId)" />
 		</div>
 
 		<div class="form-floating mb-3">
-			<InputNumber @bind-Value="EditedResidence.ResidenceRegion.RegionId" class="form-control" id="regionId" />
+			<InputNumber @bind-Value="EditedResidence.RegionId" class="form-control" id="regionId" />
 			<label for="regionId">Regionnummer</label>
-			<ValidationMessage For="@(() => EditedResidence.ResidenceRegion.RegionId)" />
+			<ValidationMessage For="@(() => EditedResidence.RegionId)" />
 		</div>
-
-		<div class="form-floating mb-3">
-			<InputNumber @bind-Value="EditedResidence.ResidenceRealtor.RealtorId" class="form-control" id="realtorId" />
-			<label for="realtorId">Mäklarnummer</label>
-			<ValidationMessage For="@(() => EditedResidence.ResidenceRealtor.RealtorId)" />
-		</div>
-
+		
 		@* <div class="form-floating mb-3">
+			<InputText @bind-Value="EditedResidence.RealtorId" class="form-control" id="realtorId" />
+			<label for="realtorId">Mäklarnummer</label>
+			<ValidationMessage For="@(() => EditedResidence.RealtorId)" />
+		</div> *@
+		<button type="submit" class="btn btn-primary">Spara</button>
+
+
+
+
+
+
+		 @* <div class="form-floating mb-3">
 			<InputText @bind-Value="image" class="form-control" />
 			<label for="PictureList">Bild</label>
 		</div>
@@ -103,31 +112,43 @@
 		}
 		@foreach (var item in PictureListURL)
 		{
-			<p class="text-black-50">@item</p>
-		} *@
-		<br /><br />
+			<p class="text-black-50">@item</p> *@
+		}
+		
 
-		<button type="submit" class="btn btn-primary">Spara</button>
-	</EditForm>
-</div>
+		
+	</EditForm> 
+	</div>
 
 
 @code {
 	public Residence EditedResidence { get; set; } = new Residence();
 	[Parameter]
-	public int Id { get; set; }
+	public int ResidenceId { get; set; }
+	public UserJwt User { get; set; }
 
 	protected async override Task OnInitializedAsync()
 	{
+		var token = await localStorage.GetItemAsync<string>("Token");
+		if (token != null)
+		{
+			JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+			JwtSecurityToken jwt = handler.ReadJwtToken(token);
 
-		EditedResidence = await residenceService.GetAsync(Id);
+			var jsonPayload = JsonSerializer.Serialize(jwt.Payload);
+			User = JsonSerializer.Deserialize<UserJwt>(jsonPayload);
+		}
 
+		EditedResidence = await residenceService.GetAsync(ResidenceId);
+		EditedResidence.CategoryId = EditedResidence.ResidenceCategory.CategoryId;
+		EditedResidence.RegionId = EditedResidence.ResidenceRegion.RegionId;
+		EditedResidence.RealtorId = User.Id;
 	}
 	private void UpdateResidence()
 	{
-		
-		residenceService.UpdateAsync(EditedResidence);
 
+		residenceService.UpdateAsync(EditedResidence);
+		navMangager.NavigateTo("/realtor/realtorresidencelist");
 	}
 
 

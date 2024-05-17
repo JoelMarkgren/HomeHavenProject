@@ -4,7 +4,7 @@ namespace HomeHavenBlazorProject.Models
 {
     public class Realtor
     {
-        public int RealtorId { get; set; }
+        public string RealtorId { get; set; }
         public int RealtorFirmId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
