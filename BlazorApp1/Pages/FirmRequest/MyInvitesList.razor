@@ -1,19 +1,62 @@
-﻿@if (MyInvites.Count() == 0)
+﻿@inject IRealtorFirmService realtorFirmService
+@inject IFirmRequestService firmRequestService
+@inject IRealtorService realtorService
+@inject NavigationManager NavigationManager
+
+<h2>Mottagna:</h2>
+@if (MyInvites.Count() == 0)
 {
-	<h2>Inga requests</h2>
+	<h4 class="mb-3">Inga inbjudningar</h4>
 }
 else
 {
-	@foreach (var invite in MyInvites)
-	{
-		<p>
-			@invite.ToEmail
-		</p>
-	}
+	<div>
+		@foreach (var invite in MyInvites)
+		{
+			<div>
+				<h4>@invite.FromEmail, @invite.RealtorFirmName
+				<button @onclick="(e=> AcceptInvite(invite.FirmRequestId, invite.RealtorFirmId))" type="button" class="btn btn-success ">Acceptera</button>
+				<button @onclick="(e=> DeleteInvite(invite.FirmRequestId))" type="button" class="btn btn-danger">X</button>
+				</h4>
+			</div>		
+		}
+	</div>
+
+
+
 }
 
 @code {
 	[Parameter]
 	public IEnumerable<FirmRequest> MyInvites { get; set; }
+	[Parameter]
+	public string MyId { get; set; }
+
+	public List<RealtorFirm> RealtorFirms { get; set; } = new List<RealtorFirm>();
+
+	protected async override Task OnParametersSetAsync()
+	{
+		foreach (var invite in MyInvites)
+		{
+			var tempFirm = await realtorFirmService.GetAsync(invite.RealtorFirmId);
+			RealtorFirms.Add(tempFirm);
+			invite.RealtorFirmName = tempFirm.FirmName;
+		}
+	}
+
+	public async void AcceptInvite(int RequestId, int FirmId)
+	{
+		Realtor MyRealtor = await realtorService.GetAsync(MyId);
+		MyRealtor.RealtorFirmId = FirmId;
+		await realtorService.UpdateAsync(MyRealtor, MyId);
+		DeleteInvite(RequestId);
+	}
+	public async void DeleteInvite(int id)
+	{
+		await firmRequestService.DeleteAsync(id);
+		NavigationManager.Refresh();
+	}
+
+
 
 }

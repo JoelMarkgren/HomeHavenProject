@@ -3,11 +3,17 @@
 @using System.Text.Json
 @inject IFirmRequestService FirmRequestService
 @inject ILocalStorageService localstorage
-@* <SendRequest FromEmail="@User.email"></SendRequest> *@
-<h2>Mina Inbjudningar:</h2>
-<MyRequestsList MyRequests="MyRequests"></MyRequestsList>
-<h2>Mina Förfrågningar:</h2>
-<MyInvitesList MyInvites="MyInvites"></MyInvitesList>
+@inject IRealtorService RealtorService
+
+<div class="container firmRequest-box">
+	<SendRequest RealtorFirmId="MyRealtorFirmId" FromEmail="@User.email"></SendRequest>
+
+	<MyRequestsList MyRequests="MyRequests"></MyRequestsList>
+	<hr />
+
+	<MyInvitesList MyId="@User.Id" MyInvites="MyInvites"></MyInvitesList>
+</div>
+
 
 
 @code {
@@ -16,7 +22,7 @@
 	public IEnumerable<FirmRequest> MyRequests { get; set; } = new List<FirmRequest>();
 	public int MyProperty { get; set; }
 	public UserJwt User { get; set; } = new UserJwt();
-	public string UserId { get; set; }
+	public int MyRealtorFirmId { get; set; }
 
 	protected async override Task OnInitializedAsync()
 	{
@@ -29,10 +35,11 @@
 			var jsonPayload = JsonSerializer.Serialize(jwt.Payload);
 			User = JsonSerializer.Deserialize<UserJwt>(jsonPayload);
 		}
-		
+		var realtor = await RealtorService.GetAsync(User.Id);
+		MyRealtorFirmId = realtor.RealtorFirmId;
 
-		MyRequests = await FirmRequestService.GetAllRequestsAsync(User.email);
-		MyInvites = await FirmRequestService.GetAllInivtesAsync(User.email);
+		MyRequests = await FirmRequestService.GetAllInivtesAsync(User.email);
+		MyInvites = await FirmRequestService.GetAllRequestsAsync(User.email);
 	}
 
 }

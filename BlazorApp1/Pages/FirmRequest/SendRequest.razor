@@ -1,36 +1,38 @@
 ﻿@inject IFirmRequestService FirmRequestService
-@* <h2>Skicka Ibjudan:</h2>
-<AuthorizeView>
-	<Authorized>
-		<EditForm Model="Request" OnValidSubmit="RequestHandler">
-			<DataAnnotationsValidator />
-			<div class="form-group">
-				<label for="ToEmail">E-mail:</label>
-				<InputText Id="ToEmail" Class="form-control" @bind-Value="Request.ToEmail" />
-				<ValidationMessage For="@(() => Request.ToEmail)" />
-			</div>
+@inject NavigationManager NavigationManager
 
-			<Input type=“hidden” value="@FromEmail" bind="@Request.FromEmail" />
-			<Input type=“hidden” value="" bind="@Request.FirmRequestId" />
+<h2 class="mt-2">Skicka Ibjudan</h2>
 
-			<button type="submit" class="btn btn-primary">Submit</button>
-		</EditForm>
-	</Authorized>
-	<NotAuthorized>
+<EditForm Model="Request" OnSubmit="RequestHandler">
+	<DataAnnotationsValidator />
+	<div class="form-group">
+		<label for="ToEmail">E-mail:</label>
+		<InputText Id="ToEmail" Class="form-control" @bind-Value="Request.ToEmail" />
+		<ValidationMessage For="@(() => Request.ToEmail)" />
+		<input type="hidden" @bind="Request.RealtorFirmId" style="display: none;" />
+		<input type="hidden" @bind="Request.FromEmail" style="display: none;" />
 
-	</NotAuthorized>
-</AuthorizeView> *@
+	</div>
+
+	<button type="submit" class="btn btn-secondary mt-2 mb-2">Submit</button>
+</EditForm>
+
 
 
 @code {
-	// [Parameter]
-	// public string FromEmail { get; set; }
+	[Parameter]
+	public string FromEmail { get; set; }
+	[Parameter]
+	public int RealtorFirmId { get; set; }
 
-	// public FirmRequest Request { get; set; }
-
-	// private async Task RequestHandler()
-	// {
+	public FirmRequest Request { get; set; } = new FirmRequest();
 
 
-	// }
+	private async Task RequestHandler()
+	{
+		Request.FromEmail = FromEmail;
+		Request.RealtorFirmId = RealtorFirmId;
+		FirmRequestService.CreateAsync(Request);
+		NavigationManager.Refresh();
+	}
 }

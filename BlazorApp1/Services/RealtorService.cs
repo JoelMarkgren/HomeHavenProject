@@ -1,5 +1,6 @@
 ﻿using HomeHavenBlazorProject.Models;
 using System.Net.Http.Json;
+using System.Reflection.PortableExecutable;
 
 namespace HomeHavenBlazorProject.Services
 {
@@ -43,14 +44,15 @@ namespace HomeHavenBlazorProject.Services
             
         }
 
-        public Task<Realtor> GetAsync(int id)
+        public async Task<Realtor> GetAsync(string id)
         {
-            throw new NotImplementedException();
-        }
+			var realtor = await httpClient.GetFromJsonAsync<Realtor>($"api/Realtor/{id}");
+			return realtor;
+		}
 
-        public Task UpdateAsync(int id)
+        public async Task UpdateAsync(Realtor realtor, string id)
         {
-            throw new NotImplementedException();
+            var respons = await httpClient.PutAsJsonAsync($"api/Realtor/{id}", realtor);
         }
     }
 }

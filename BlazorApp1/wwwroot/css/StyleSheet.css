@@ -40,6 +40,7 @@
     border: solid 1px gray;
     height: 600px;
     margin-bottom: 30px;
+    background-color:white;
 }
 
 .resi-title {
@@ -92,6 +93,15 @@
 .pricelabel {
     text-align:center;
     margin: auto;
+}
+.firmRequest-box {
+    border: solid 3px white;
+    border-radius: 10px;
+    width: 800px;
+    margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: rgb(57, 64, 58);
+    color: white;
 }
 
 .filter-box {

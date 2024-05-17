@@ -11,5 +11,6 @@ namespace HomeHavenBlazorProject.Models
 		public string ToEmail { get; set; }
 		[Required]
 		public int RealtorFirmId { get; set; }
+		public string? RealtorFirmName { get; set; }
 	}
 }

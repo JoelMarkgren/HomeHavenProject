@@ -9,13 +9,6 @@
 @inject ILocalStorageService localstorage
 
 
-<AuthorizeView>
-	<Authorized>
-			@context.User.FindFirst("Id")
-		
-	</Authorized>
-</AuthorizeView>
-
 <div class="filter-box">
 	<h2 class="stitle">SÖK BOSTAD</h2><hr />
 	<div class="toprowfilter">
@@ -102,7 +95,6 @@
 			var jsonPayload = JsonSerializer.Serialize(jwt.Payload);
 			User = JsonSerializer.Deserialize<UserJwt>(jsonPayload);
 		}
-		
 	}
 
 	private void GetMinRoomCount(int min)
