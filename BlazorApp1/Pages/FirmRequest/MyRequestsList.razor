@@ -1,14 +1,19 @@
-﻿@if (MyRequests.Count() == 0)
+﻿@inject IFirmRequestService firmRequestService
+@inject NavigationManager NavigationManager
+<h2>Skickade:</h2>
+@if (MyRequests.Count() == 0)
 {
-	<h2>Inga requests</h2>
+	<h4>Inga inbjudningar</h4>
 }
 else
 {
 	@foreach (var request in MyRequests)
 	{
-		<p>
-			@request.ToEmail
-		</p>
+		<h4>
+			Till: @request.ToEmail
+			<button @onclick="(e=> DeleteRequest(request.FirmRequestId))" type="button" class="btn btn-danger">X</button>
+		</h4>
+
 	}
 }
 
@@ -16,4 +21,10 @@ else
 	[Parameter]
 	public IEnumerable<FirmRequest> MyRequests { get; set; }
 
+
+	public void DeleteRequest(int id)
+	{
+		firmRequestService.DeleteAsync(id);
+		NavigationManager.Refresh();
+	}
 }

@@ -4,10 +4,10 @@ namespace HomeHavenAPI.Data.Interfaces
 {
     public interface IRealtor
     {
-        Task<Realtor> GetAsync(int id);
+        Task<Realtor> GetAsync(string id);
         Task<IEnumerable<Realtor>> GetAllAsync();
-        Task<Realtor> EditAsync(Realtor realtor);
-        Task DeleteAsync(int id);
+        Task<Realtor> EditAsync(Realtor realtor, string id);
+        Task DeleteAsync(string id);
         Task CreateAsync(Realtor realtor);
 
     }

@@ -34,7 +34,7 @@ namespace HomeHavenAPI.Controllers
 
         // GET api/<RealtorController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Realtor>> Get(int id)
+        public async Task<ActionResult<Realtor>> Get(string id)
         {
             var realtor = await realtorRepo.GetAsync(id);
             if (realtor == null)
@@ -60,14 +60,14 @@ namespace HomeHavenAPI.Controllers
         {
 
             realtor.Id = id;
-            await realtorRepo.EditAsync(realtor);
+            await realtorRepo.EditAsync(realtor, id);
             return realtor;
 
         }
 
         // DELETE api/<RealtorController>/5
         [HttpDelete("{id}")]
-        public async void Delete(int id)
+        public async void Delete(string id)
         {
             await realtorRepo.DeleteAsync(id);
 
