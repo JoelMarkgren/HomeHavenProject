@@ -87,7 +87,7 @@
 		</div>
 
 		<div class="form-floating mb-3">
-			<InputNumber @bind-Value="newResidence.RealtorId" class="form-control" id="realtorId" />
+			<InputText @bind-Value="newResidence.RealtorId" class="form-control" id="realtorId" />
 			<label for="realtorId">Mäklarnummer</label>
 			<ValidationMessage For="@(() => newResidence.RealtorId)" />
 		</div>
