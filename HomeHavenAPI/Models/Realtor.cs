@@ -7,7 +7,7 @@ namespace HomeHavenAPI.Models
 	public class Realtor : IdentityUser
 	{
 		[ForeignKey("RealtorFirm")]
-		public int? RealtorFirmId { get; set; }
+		public int RealtorFirmId { get; set; }
 		public string? FirstName { get; set; }
 		public string? LastName { get; set; }
 		public string? ProfilePictureURL { get; set; }

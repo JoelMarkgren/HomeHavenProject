@@ -57,13 +57,13 @@ namespace HomeHavenAPI.Controllers
 
 		}
 
-        [HttpGet("GetRealtorResideneces/{realtorId}")]
-        public async Task<ActionResult<Residence>> GetRealtorResidences(string realtorId)
+        [HttpGet("GetRealtorResidences/{id}")]
+        public async Task<ActionResult<IEnumerable<Residence>>> GetRealtorResidences(string id)
 		{
 			try
 			{
-                var realtorResidences = await residenceRepo.GetListAsync(realtorId);
-				if (realtorResidences == null)
+                var realtorResidences = await residenceRepo.GetRealtorListAsync(id);
+				if (realtorResidences == null || realtorResidences.Count == 0)
 				{
 					return NotFound();
 				}
@@ -79,7 +79,6 @@ namespace HomeHavenAPI.Controllers
                                 "Error retrieving data from the database");
 
             }
-
         }
 
 
