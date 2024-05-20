@@ -4,6 +4,8 @@
 @inject NavigationManager navMangager
 @inject ILocalStorageService localStorage
 @inject IResidenceService residenceService
+@inject ICategoryService categoryService
+@inject IRegionService regionService
 
 
 <div class="card formresi">
@@ -13,9 +15,6 @@
 		<EditForm Model="EditedResidence" OnValidSubmit="@UpdateResidence">
 			<DataAnnotationsValidator />
 			<ValidationSummary />
-			<div class="form-floating mb-3">
-				<InputNumber type="hidden" @bind-Value="EditedResidence.ResidenceId" class="form-control" id="residenceId" />
-			</div>
 			<div class="form-floating mb-3">
 				<InputText @bind-Value="EditedResidence.Address" class="form-control" id="address" />
 				<label for="address">Adress</label>
@@ -76,18 +75,24 @@
 				<ValidationMessage For="@(() => EditedResidence.ConstructionYear)" />
 			</div>
 
-			<div class="form-floating mb-3">
-				<InputNumber @bind-Value="EditedResidence.CategoryId" class="form-control" id="categoryId" />
-				<label for="categoryId">Kategorinummer</label>
-				<ValidationMessage For="@(() => EditedResidence.CategoryId)" />
+			@* <div class="form-floating mb-3">
+			<InputNumber @bind-Value="EditedResidence.CategoryId" class="form-control" id="categoryId" />
+			<label for="categoryId">Kategorinummer</label>
+			<ValidationMessage For="@(() => EditedResidence.CategoryId)" />
+			</div> *@
+			<div class="mb-3">
+				<RegionDropDownList AllRegions="RegionList.OrderBy(r => r.Township).ToList()" Region="GetRegion" />
 			</div>
 
-			<div class="form-floating mb-3">
+			<div class="mb-3">
+				<CategoryDropDownList AllCategories="categories" Category="GetCategory" />
+			</div>
+
+			@* <div class="form-floating mb-3">
 				<InputNumber @bind-Value="EditedResidence.RegionId" class="form-control" id="regionId" />
 				<label for="regionId">Regionnummer</label>
 				<ValidationMessage For="@(() => EditedResidence.RegionId)" />
-			</div>
-
+			</div> *@
 
 			<button type="submit" class="btn btn-light btn-outline-dark mt-2">Spara</button>
 
@@ -101,6 +106,11 @@
 	[Parameter]
 	public int ResidenceId { get; set; }
 	public UserJwt User { get; set; }
+
+	private Category Category = new Category();
+	private Region SelectedRegion = new Region();
+	private IEnumerable<Category> categories = new List<Category>();
+	public IEnumerable<Region> RegionList { get; set; } = new List<Region>();
 
 	protected async override Task OnInitializedAsync()
 	{
@@ -119,12 +129,25 @@
 		EditedResidence.CategoryId = EditedResidence.ResidenceCategory.CategoryId;
 		EditedResidence.RegionId = EditedResidence.ResidenceRegion.RegionId;
 		EditedResidence.RealtorId = User.Id;
+
+		categories = await categoryService.GetAllAsync();
+		RegionList = await regionService.GetAllAsync();
 	}
 	private async Task UpdateResidence()
 	{
-
+		EditedResidence.CategoryId = Category.CategoryId;
+		EditedResidence.RegionId = SelectedRegion.RegionId;
 		await residenceService.UpdateAsync(EditedResidence);
 		navMangager.NavigateTo("/realtor/realtorresidencelist");
+	}
+
+	private void GetCategory(Category category)
+	{
+		Category = category;
+	}
+	private void GetRegion(Region region)
+	{
+		SelectedRegion = region;
 	}
 
 

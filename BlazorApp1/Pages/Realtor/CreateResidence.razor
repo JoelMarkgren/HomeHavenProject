@@ -6,79 +6,80 @@
 @inject IResidenceService residenceService
 @inject ICategoryService categoryService
 @inject IRealtorService realtorService
+@inject ILocalStorageService localStorage
 
 <div class="card formresi">
-    <div class="card-body">
-        <h2 class="card-title text-white mb-2">Skapa Bostad</h2>
+	<div class="card-body">
+		<h2 class="card-title text-white mb-2">Skapa Bostad</h2>
 
-	<EditForm Model="@newResidence" OnValidSubmit="@AddResidence">
-		<DataAnnotationsValidator />
-		<ValidationSummary />
+		<EditForm Model="@newResidence" OnValidSubmit="@AddResidence">
+			<DataAnnotationsValidator />
+			<ValidationSummary />
 
-		<div class="form-floating mb-3">
-			<InputText @bind-Value="newResidence.Address" class="form-control" id="address" />
-			<label for="address">Adress</label>
-			<ValidationMessage For="@(() => newResidence.Address)" />
-		</div>
+			<div class="form-floating mb-3">
+				<InputText @bind-Value="newResidence.Address" class="form-control" id="address" />
+				<label for="address">Adress</label>
+				<ValidationMessage For="@(() => newResidence.Address)" />
+			</div>
 
-		<div class="form-floating mb-3">
-			<InputNumber @bind-Value="newResidence.StartingPrice" class="form-control" id="startingPrice" />
-			<label for="startingPrice">Startpris</label>
-			<ValidationMessage For="@(() => newResidence.StartingPrice)" />
-		</div>
+			<div class="form-floating mb-3">
+				<InputNumber @bind-Value="newResidence.StartingPrice" class="form-control" id="startingPrice" />
+				<label for="startingPrice">Startpris</label>
+				<ValidationMessage For="@(() => newResidence.StartingPrice)" />
+			</div>
 
-		<div class="form-floating mb-3">
-			<InputNumber @bind-Value="newResidence.LivingArea" class="form-control" id="livingArea" />
-			<label for="livingArea">Boarea</label>
-			<ValidationMessage For="@(() => newResidence.LivingArea)" />
-		</div>
+			<div class="form-floating mb-3">
+				<InputNumber @bind-Value="newResidence.LivingArea" class="form-control" id="livingArea" />
+				<label for="livingArea">Boarea</label>
+				<ValidationMessage For="@(() => newResidence.LivingArea)" />
+			</div>
 
-		<div class="form-floating mb-3">
-			<InputNumber @bind-Value="newResidence.BiArea" class="form-control" id="biArea" />
-			<label for="biArea">Biarea</label>
-			<ValidationMessage For="@(() => newResidence.BiArea)" />
-		</div>
+			<div class="form-floating mb-3">
+				<InputNumber @bind-Value="newResidence.BiArea" class="form-control" id="biArea" />
+				<label for="biArea">Biarea</label>
+				<ValidationMessage For="@(() => newResidence.BiArea)" />
+			</div>
 
-		<div class="form-floating mb-3">
-			<InputNumber @bind-Value="newResidence.LandArea" class="form-control" id="landArea" />
-			<label for="landArea">Tomtarea</label>
-			<ValidationMessage For="@(() => newResidence.LandArea)" />
-		</div>
+			<div class="form-floating mb-3">
+				<InputNumber @bind-Value="newResidence.LandArea" class="form-control" id="landArea" />
+				<label for="landArea">Tomtarea</label>
+				<ValidationMessage For="@(() => newResidence.LandArea)" />
+			</div>
 
-		<div class="form-floating mb-3">
-			<InputTextArea @bind-Value="newResidence.ResidenceDescription" class="form-control" id="residenceDescription" />
-			<label for="residenceDescription">Beskrivning</label>
-			<ValidationMessage For="@(() => newResidence.ResidenceDescription)" />
-		</div>
+			<div class="form-floating mb-3">
+				<InputTextArea @bind-Value="newResidence.ResidenceDescription" class="form-control" id="residenceDescription" />
+				<label for="residenceDescription">Beskrivning</label>
+				<ValidationMessage For="@(() => newResidence.ResidenceDescription)" />
+			</div>
 
-		<div class="form-floating mb-3">
-			<InputNumber @bind-Value="newResidence.RoomCount" class="form-control" id="roomCount" />
-			<label for="roomCount">Rumsantal</label>
-			<ValidationMessage For="@(() => newResidence.RoomCount)" />
-		</div>
+			<div class="form-floating mb-3">
+				<InputNumber @bind-Value="newResidence.RoomCount" class="form-control" id="roomCount" />
+				<label for="roomCount">Rumsantal</label>
+				<ValidationMessage For="@(() => newResidence.RoomCount)" />
+			</div>
 
-		<div class="form-floating mb-3">
-			<InputNumber @bind-Value="newResidence.MonthlyFee" class="form-control" id="monthlyFee" />
-			<label for="monthlyFee">Månadsavgift</label>
-			<ValidationMessage For="@(() => newResidence.MonthlyFee)" />
-		</div>
+			<div class="form-floating mb-3">
+				<InputNumber @bind-Value="newResidence.MonthlyFee" class="form-control" id="monthlyFee" />
+				<label for="monthlyFee">Månadsavgift</label>
+				<ValidationMessage For="@(() => newResidence.MonthlyFee)" />
+			</div>
 
-		<div class="form-floating mb-3">
-			<InputNumber @bind-Value="newResidence.OperatingCost" class="form-control" id="operatingCost" />
-			<label for="operatingCost">Driftkostnad</label>
-			<ValidationMessage For="@(() => newResidence.OperatingCost)" />
-		</div>
+			<div class="form-floating mb-3">
+				<InputNumber @bind-Value="newResidence.OperatingCost" class="form-control" id="operatingCost" />
+				<label for="operatingCost">Driftkostnad</label>
+				<ValidationMessage For="@(() => newResidence.OperatingCost)" />
+			</div>
 
-		<div class="form-floating mb-3">
-			<InputNumber @bind-Value="newResidence.ConstructionYear" class="form-control" id="constructionYear" />
-			<label for="constructionYear">Byggnadsår</label>
-			<ValidationMessage For="@(() => newResidence.ConstructionYear)" />
-		</div>
-		<div>
+			<div class="form-floating mb-3">
+				<InputNumber @bind-Value="newResidence.ConstructionYear" class="form-control" id="constructionYear" />
+				<label for="constructionYear">Byggnadsår</label>
+				<ValidationMessage For="@(() => newResidence.ConstructionYear)" />
+			</div>
+			<div class="mb-3">
 				<CategoryDropDownList AllCategories="categories" Category="GetCategory" />
-		</div>
+			</div>
 
-		<div class="regiondrop box">
+			<div class="mb-3">
 				@if (RegionList == null)
 				{
 					<h2>loading...</h2>
@@ -87,57 +88,47 @@
 				{
 					<RegionDropDownList AllRegions="RegionList.OrderBy(r => r.Township).ToList()" Region="GetRegion" />
 				}
-				</div>
-	
-		@* <div class="form-floating mb-3">
-			<InputNumber @bind-Value="newResidence.RegionId" class="form-control" id="regionId" />
-			<label for="regionId">Regionnummer</label>
-			<ValidationMessage For="@(() => newResidence.RegionId)" />
-		</div> *@
+			</div>
 
-		<div class="form-floating mb-3">
-			<InputText @bind-Value="newResidence.RealtorId" class="form-control" id="realtorId" />
-			<label for="realtorId">Mäklarnummer</label>
-			<ValidationMessage For="@(() => newResidence.RealtorId)" />
-		</div>
 
-		<div class="form-floating mb-3">
-			<InputText @bind-Value="image" class="form-control" />
-			<label for="PictureList">Bild</label>
-		</div>
-		@if (PictureListURL.Count() < 40)
-		{
-			<button type="button" onclick="@AddImage">Lägg till bild</button>
-		}
-		else
-		{
-			<h4>Du kan inte lägga till mer än 40 bilder</h4>
-		}
+			<div class="form-floating mb-3">
+				<InputText @bind-Value="image" class="form-control" />
+				<label for="PictureList">Bild</label>
+			</div>
+			@if (PictureListURL.Count() < 40)
+			{
+				<button type="button" onclick="@AddImage">Lägg till bild</button>
+			}
+			else
+			{
+				<h4>Du kan inte lägga till mer än 40 bilder</h4>
+			}
 
-		@if (PictureListURL.Count != 0)
-		{
-			<h4 class="text-white mt-2">Tillagda Bilder:</h4>
-		}
-		@foreach (var item in PictureListURL)
-		{
-			<h4 class="text-white">@item <button @onclick="(e=> RemoveFromList(item))" class="btn btn-danger">x</button></h4>
-		}
-		<br /><br />
+			@if (PictureListURL.Count != 0)
+			{
+				<h4 class="text-white mt-2">Tillagda Bilder:</h4>
+			}
+			@foreach (var item in PictureListURL)
+			{
+				<h4 class="text-white">@item <button @onclick="(e=> RemoveFromList(item))" class="btn btn-danger">x</button></h4>
+			}
+			<br /><br />
 
 			<button type="submit" class="btn btn-light btn-outline-dark mt-2">Skapa</button>
-	</EditForm>
+		</EditForm>
 	</div>
 </div>
 
 
 
 @code {
-	//Author Joel
+	//Author Joel co-Author: Jakob
 	private IEnumerable<Category> categories = new List<Category>();
 	private List<string> PictureListURL = new List<string>();
 	private Category Category = new Category();
 	private Region SelectedRegion = new Region();
 	public IEnumerable<Region> RegionList { get; set; } = new List<Region>();
+	public UserJwt User { get; set; }
 
 	[Parameter]
 	public int Id { get; set; }
@@ -150,12 +141,23 @@
 
 	protected override async Task OnInitializedAsync()
 	{
+		var token = await localStorage.GetItemAsync<string>("Token");
+		if (token != null)
+		{
+			JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+			JwtSecurityToken jwt = handler.ReadJwtToken(token);
+
+			var jsonPayload = JsonSerializer.Serialize(jwt.Payload);
+			User = JsonSerializer.Deserialize<UserJwt>(jsonPayload);
+		}
+
 		categories = await categoryService.GetAllAsync();
 		RegionList = await regionService.GetAllAsync();
 	}
 
 	private void AddResidence()
 	{
+		newResidence.RealtorId = User.Id;
 		newResidence.CategoryId = Category.CategoryId;
 		newResidence.RegionId = SelectedRegion.RegionId;
 		newResidence.PictureListURL = PictureListURL;
@@ -173,7 +175,7 @@
 	{
 		PictureListURL.Remove(item);
 	}
-	
+
 
 	private void GetCategory(Category category)
 	{
@@ -183,6 +185,6 @@
 	{
 		SelectedRegion = region;
 	}
-	
+
 
 }
