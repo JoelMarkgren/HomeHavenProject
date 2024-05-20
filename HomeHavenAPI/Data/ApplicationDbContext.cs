@@ -127,7 +127,7 @@ namespace HomeHavenAPI.Data
                 );
 
             modelBuilder.Entity<RealtorFirm>().HasData(
-                new RealtorFirm() { RealtorFirmId = 1, Descrpition = "En mäklarfirm med fokus på att göra drömmar till verklighet för kunder genom att matcha dem med sitt perfekta hem.", FirmName = "Dream Home Realty", LogoURL = "URL" },
+                new RealtorFirm() { RealtorFirmId = 1, Descrpition = "Tillhör ej någon mäklarfirma", FirmName = "Ingen", LogoURL = "URL" },
                 new RealtorFirm() { RealtorFirmId = 2, Descrpition = "Specialiserade på lyxiga och exklusiva fastigheter, erbjuder Elite Properties en förstklassig service för kunder som söker det bästa av det bästa.", FirmName = "Elite Properties", LogoURL = "URL" },
                 new RealtorFirm() { RealtorFirmId = 3, Descrpition = "Med starka förbindelser och expertis inom fastighetsmarknaden, strävar Prime Real Estate Solutions efter att hjälpa kunder att hitta de mest lönsamma fastighetsaffärerna.", FirmName = "Prime Real Estate Solutions", LogoURL = "URL" },
                 new RealtorFirm() { RealtorFirmId = 4, Descrpition = "Fokuserar på att skapa en \"näste\" åt sina kunder där de kan känna sig hemma och bekväma i den stadsmiljö de älskar.", FirmName = "Urban Nest Realty", LogoURL = "URL" },

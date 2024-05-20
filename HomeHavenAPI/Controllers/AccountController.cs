@@ -60,7 +60,8 @@ namespace HomeHavenAPI.Controllers
 					UserName = registerDto.UserName,
 					Email = registerDto.Email,
 					FirstName = registerDto.FirstName,
-					LastName = registerDto.LastName
+					LastName = registerDto.LastName,
+					RealtorFirmId = registerDto.RealtorFirmId
 				};
 
 				var createdUser = await userManager.CreateAsync(realtor, registerDto.Password);

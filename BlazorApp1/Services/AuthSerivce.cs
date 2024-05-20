@@ -24,6 +24,7 @@ namespace HomeHavenBlazorProject.Services
 
         public async Task<RegisterResult> Register(RegisterModel registerModel)
         {
+            registerModel.RealtorFirmId = 1;
             var response = await httpClient.PostAsJsonAsync("api/account/register", registerModel);
 
             RegisterResult registerResult = new RegisterResult();

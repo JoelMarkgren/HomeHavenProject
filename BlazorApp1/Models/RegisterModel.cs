@@ -4,7 +4,8 @@ namespace HomeHavenBlazorProject.Models
 {
 	public class RegisterModel
 	{
-		[Required]
+        public int RealtorFirmId { get; set; }
+        [Required]
 		public string UserName { get; set; }
 		[Required]
 		[EmailAddress]

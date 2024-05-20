@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240520070356_Init")]
-    partial class Init
+    [Migration("20240520073142_ init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -144,7 +144,7 @@ namespace HomeHavenAPI.Migrations
                     b.Property<string>("ProfilePictureURL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RealtorFirmId")
+                    b.Property<int?>("RealtorFirmId")
                         .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
@@ -176,7 +176,7 @@ namespace HomeHavenAPI.Migrations
                         {
                             Id = "ac31313d-d278-43d9-a72d-39fc96dc2e92",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5aa24a6e-4b0c-4a43-addc-ba3908c92a11",
+                            ConcurrencyStamp = "6bc52be2-fc41-4957-b91e-e04418418374",
                             Email = "sofia.andersson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Sofia",
@@ -186,14 +186,14 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 1,
-                            SecurityStamp = "93b87d9f-7925-4b0c-bde0-3e0512b4f680",
+                            SecurityStamp = "825bb991-a44b-4ec8-9525-c55eb0e4b8a9",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "e8411d7f-4c81-4e1a-92fc-1890db0e5b81",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "dd526e98-293a-4aee-9c40-929b242e544b",
+                            ConcurrencyStamp = "db6e868c-c0af-47fa-87b0-d63551c67d7f",
                             Email = "erik.svensson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Erik",
@@ -203,14 +203,14 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 3,
-                            SecurityStamp = "65452f62-66a4-4313-a40a-94bcc3f21d8f",
+                            SecurityStamp = "19e750cb-98fa-464e-ba4b-40a04751fe1b",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "60205c1a-ef79-44ac-89b2-ac75176e3408",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "07f6e138-49db-4541-b09f-eaf2c7ada705",
+                            ConcurrencyStamp = "a508c685-a06b-4cf1-b27a-74d3600115a6",
                             Email = "emma.johansson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Emma",
@@ -220,14 +220,14 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 2,
-                            SecurityStamp = "191d6361-089c-4281-ab64-a14044278dd0",
+                            SecurityStamp = "4c3b5d17-ce12-4d48-95fa-bfa61f1cd271",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "9dcb614e-6280-4101-ae5a-875d51e33480",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3a73685b-8b35-4516-8152-e8d4eaf68b2a",
+                            ConcurrencyStamp = "af4ac181-4718-4c2c-baf0-9b2311ee6adf",
                             Email = "anders.karlsson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Anders",
@@ -237,14 +237,14 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 2,
-                            SecurityStamp = "20896d1f-c494-4eef-8859-d4ead79d2170",
+                            SecurityStamp = "54928968-0125-4d82-9763-c4f6c5f94db8",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "3869a014-937b-4970-9021-3bb704bb10a2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0eb2df47-62a7-41fc-9a7d-689c6c734174",
+                            ConcurrencyStamp = "4c4a9638-c9bd-4550-acbf-73b028b4ff35",
                             Email = "linnea.lindgren@example.com",
                             EmailConfirmed = false,
                             FirstName = "Linnea",
@@ -254,7 +254,7 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 5,
-                            SecurityStamp = "1c2d3699-e7a6-416b-b254-9c698bb99f1c",
+                            SecurityStamp = "35328074-2a5b-471b-b5da-5e93dfc23f6d",
                             TwoFactorEnabled = false
                         });
                 });
@@ -287,8 +287,8 @@ namespace HomeHavenAPI.Migrations
                         new
                         {
                             RealtorFirmId = 1,
-                            Descrpition = "En mäklarfirm med fokus på att göra drömmar till verklighet för kunder genom att matcha dem med sitt perfekta hem.",
-                            FirmName = "Dream Home Realty",
+                            Descrpition = "Tillhör ej någon mäklarfirma",
+                            FirmName = "Ingen",
                             LogoURL = "URL"
                         },
                         new
@@ -997,7 +997,7 @@ namespace HomeHavenAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "abaeda88-ca2f-487f-a27e-cf3cb0a9def6",
+                            Id = "96a53341-381f-47d7-a2cf-96907aec7123",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -1113,9 +1113,7 @@ namespace HomeHavenAPI.Migrations
                 {
                     b.HasOne("HomeHavenAPI.Models.RealtorFirm", "MyRealtorFirm")
                         .WithMany()
-                        .HasForeignKey("RealtorFirmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RealtorFirmId");
 
                     b.Navigation("MyRealtorFirm");
                 });
