@@ -23,8 +23,22 @@ namespace HomeHavenBlazorProject.Services
 
         public async Task DeleteAsync(Residence residence)
         {
-            var response = await httpClient.DeleteAsync($"api/Residence/{residence.ResidenceId}");
-            response.EnsureSuccessStatusCode();
+            //var response = await httpClient.DeleteAsync($"api/Residence/{residence.ResidenceId}");
+            //response.EnsureSuccessStatusCode();
+          
+            {
+                if (residence == null)
+                {
+                    throw new ArgumentNullException(nameof(residence));
+                }
+
+                var response = await httpClient.DeleteAsync($"api/Residence/{residence.ResidenceId}");
+                if (!response.IsSuccessStatusCode)
+                {
+                    var errorMessage = await response.Content.ReadAsStringAsync();
+                    throw new InvalidOperationException($"Unable to delete residence with ID {residence.ResidenceId}. Error: {errorMessage}");
+                }
+            }
 
         }
 

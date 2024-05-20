@@ -88,11 +88,7 @@
 			<ValidationMessage For="@(() => EditedResidence.RegionId)" />
 		</div>
 		
-		@* <div class="form-floating mb-3">
-			<InputText @bind-Value="EditedResidence.RealtorId" class="form-control" id="realtorId" />
-			<label for="realtorId">Mäklarnummer</label>
-			<ValidationMessage For="@(() => EditedResidence.RealtorId)" />
-		</div> *@
+		
 		<button type="submit" class="btn btn-primary">Spara</button>
 
 
@@ -144,10 +140,10 @@
 		EditedResidence.RegionId = EditedResidence.ResidenceRegion.RegionId;
 		EditedResidence.RealtorId = User.Id;
 	}
-	private void UpdateResidence()
+	private async Task UpdateResidence()
 	{
 
-		residenceService.UpdateAsync(EditedResidence);
+		await residenceService.UpdateAsync(EditedResidence);
 		navMangager.NavigateTo("/realtor/realtorresidencelist");
 	}
 

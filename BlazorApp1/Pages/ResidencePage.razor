@@ -3,11 +3,7 @@
 @inject IResidenceService ResidenceService
 @inject IRealtorFirmService RealtorFirmService
 
-<AuthorizeView>
-	<NotAuthorized>
-		<p>Du har inte behörighet för att se den här sidan.</p>
-	</NotAuthorized>
-	<Authorized>
+
 		@if (Residence != null)
 		{
 		<div class="c-wrapper">
@@ -79,9 +75,7 @@
 		</div>
 
 		}
-	</Authorized>
 
-</AuthorizeView>
 
 
 
