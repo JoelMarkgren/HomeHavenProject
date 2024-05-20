@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240520094329_init")]
+    [Migration("20240520182847_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -176,7 +176,7 @@ namespace HomeHavenAPI.Migrations
                         {
                             Id = "ac31313d-d278-43d9-a72d-39fc96dc2e92",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a0c29aec-7a32-49bf-b6cf-0c9fbdfba07f",
+                            ConcurrencyStamp = "5b2c55da-3662-4b57-9088-1df86cc710ff",
                             Email = "sofia.andersson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Sofia",
@@ -184,16 +184,16 @@ namespace HomeHavenAPI.Migrations
                             LockoutEnabled = false,
                             PhoneNumber = "070-1234567",
                             PhoneNumberConfirmed = false,
-                            ProfilePictureURL = "URL",
-                            RealtorFirmId = 1,
-                            SecurityStamp = "eb1a5df5-7f88-4b4f-96b0-03c3a63bc38c",
+                            ProfilePictureURL = "https://www.feedingmatters.org/wp-content/uploads/2022/12/Generic-profile-pic.png",
+                            RealtorFirmId = 2,
+                            SecurityStamp = "b1587c61-83f5-4e74-b3d7-db7b6f024bbc",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "e8411d7f-4c81-4e1a-92fc-1890db0e5b81",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "44c8c03e-e4a7-4461-a4f6-9c27fdae7469",
+                            ConcurrencyStamp = "f8191bdd-fd4a-4251-b66c-59234546190e",
                             Email = "erik.svensson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Erik",
@@ -201,16 +201,16 @@ namespace HomeHavenAPI.Migrations
                             LockoutEnabled = false,
                             PhoneNumber = "073-9876543",
                             PhoneNumberConfirmed = false,
-                            ProfilePictureURL = "URL",
+                            ProfilePictureURL = "https://st3.depositphotos.com/4060975/17707/v/450/depositphotos_177073010-stock-illustration-male-vector-icon.jpg",
                             RealtorFirmId = 3,
-                            SecurityStamp = "4d65d05d-c32b-4fad-9c08-2b46ca30c381",
+                            SecurityStamp = "7a763fb4-2654-45a8-95e9-e834d766a9bf",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "60205c1a-ef79-44ac-89b2-ac75176e3408",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "048286e2-6206-45b5-aca3-8046d6f75620",
+                            ConcurrencyStamp = "46d7623d-72ae-4c1e-a1fd-449361b15450",
                             Email = "emma.johansson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Emma",
@@ -218,16 +218,15 @@ namespace HomeHavenAPI.Migrations
                             LockoutEnabled = false,
                             PhoneNumber = "076-1112233",
                             PhoneNumberConfirmed = false,
-                            ProfilePictureURL = "URL",
                             RealtorFirmId = 2,
-                            SecurityStamp = "4f7e8e0e-9f99-4a67-849b-7bdc42081fee",
+                            SecurityStamp = "dcefd990-982c-420b-b391-ae8927e3ccb6",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "9dcb614e-6280-4101-ae5a-875d51e33480",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "84dbbaf6-4179-4221-a7d3-cd0ca1004653",
+                            ConcurrencyStamp = "3a5df987-cb47-47a7-b82b-4823fa9797e0",
                             Email = "anders.karlsson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Anders",
@@ -235,16 +234,16 @@ namespace HomeHavenAPI.Migrations
                             LockoutEnabled = false,
                             PhoneNumber = "072-5554441",
                             PhoneNumberConfirmed = false,
-                            ProfilePictureURL = "URL",
-                            RealtorFirmId = 2,
-                            SecurityStamp = "cfc13fd0-6457-4b08-a46b-71e252af8833",
+                            ProfilePictureURL = "https://www.creativefabrica.com/wp-content/uploads/2023/05/23/Bearded-man-avatar-Generic-male-profile-Graphics-70342414-1.png",
+                            RealtorFirmId = 4,
+                            SecurityStamp = "5b5f9e5e-47ba-4797-a103-8b891f7f18b9",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "3869a014-937b-4970-9021-3bb704bb10a2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1c77cf42-fc7f-407e-a2e1-c056fd53f6e5",
+                            ConcurrencyStamp = "4c285ee4-3d98-4894-a681-f27e3d3f9ec7",
                             Email = "linnea.lindgren@example.com",
                             EmailConfirmed = false,
                             FirstName = "Linnea",
@@ -252,9 +251,8 @@ namespace HomeHavenAPI.Migrations
                             LockoutEnabled = false,
                             PhoneNumber = "074-8889990",
                             PhoneNumberConfirmed = false,
-                            ProfilePictureURL = "URL",
                             RealtorFirmId = 5,
-                            SecurityStamp = "354314ce-aa17-438f-ba95-204e0100e774",
+                            SecurityStamp = "ef9f1d1d-2dbd-4c1a-914b-9dbf4b01c805",
                             TwoFactorEnabled = false
                         });
                 });
@@ -890,7 +888,7 @@ namespace HomeHavenAPI.Migrations
                             PictureListURL = "[\"https://gotenehus.se/app/uploads/2022/09/puff-vassholm-lada-1344x896.jpg\",\"https://cdn.decoist.com/wp-content/uploads/2014/08/Indoor-blossoms-in-a-modern-living-room.jpg\",\"https://homejab.com/wp-content/uploads/2021/11/https-__realtor.homejab.com_wp-content_uploads_2021_10_1906_Santa_Clara_Ave__Alameda__CA_94501__USA-20210131235707.jpg\"]",
                             RealtorId = "ac31313d-d278-43d9-a72d-39fc96dc2e92",
                             RegionId = 1,
-                            ResidenceDescription = "Modern lägenhet med öppen planlösning och balkong belägen i centrala stan.",
+                            ResidenceDescription = "Letar du efter en villa där du kan flytta rakt in utan att behöva renovera? \r\nDå ska du spana in denna trevliga 2-plansvilla som har genomgått en totalrenovering de senaste åren. Belägen på den generösa hörntomten erbjuds utrymme för odling, avkoppling och umgänge med familj och vänner på uteplatser i flera vädersträck. \r\nNjut av bekvämligheter som fjärrvärme, fiber och en carport som skyddar bilen mot väder och vind.\r\nVillan är besiktigad och besiktningsprotokollet finner du bilagt i annonsen.\r\nTa chansen att uppleva detta trevliga hus - välkommen att boka dig på visning!",
                             RoomCount = 5,
                             StartingPrice = 2000000
                         },
@@ -899,16 +897,16 @@ namespace HomeHavenAPI.Migrations
                             ResidenceId = 2,
                             Address = "Storgatan 12",
                             BiArea = 30,
-                            CategoryId = 2,
+                            CategoryId = 1,
                             ConstructionYear = 2000,
                             LandArea = 0,
                             LivingArea = 100,
                             MonthlyFee = 6500,
                             OperatingCost = 24500,
-                            PictureListURL = "[\"https://www.brahus.se/upload/house/1031629571.jpg\"]",
+                            PictureListURL = "[\"https://bilder.hemnet.se/images/1024x/6d/e1/6de128c921bb2a0995de33a177fd7bdb.jpg\",\"https://bilder.hemnet.se/images/1024x/ba/02/ba0287abadb206747f13f9dce44ae0da.jpg\",\"https://bilder.hemnet.se/images/1024x/ce/55/ce55b3f6d283f55579312a806f02c0f8.jpg\",\"https://bilder.hemnet.se/images/1024x/dd/57/dd578b3d87879ecdb89fa2a4e0fdfd27.jpg\",\"https://bilder.hemnet.se/images/1024x/15/ef/15efb48083ba66b6dc1a5395b1b8cd8d.jpg\"]",
                             RealtorId = "e8411d7f-4c81-4e1a-92fc-1890db0e5b81",
                             RegionId = 2,
-                            ResidenceDescription = "Charmigt radhus med trädgård och garage i lugnt bostadsområde nära naturen.",
+                            ResidenceDescription = "Letar du efter en villa där du kan flytta rakt in utan att behöva renovera? \r\nDå ska du spana in denna trevliga 2-plansvilla som har genomgått en totalrenovering de senaste åren. Belägen på den generösa hörntomten erbjuds utrymme för odling, avkoppling och umgänge med familj och vänner på uteplatser i flera vädersträck. \r\nNjut av bekvämligheter som fjärrvärme, fiber och en carport som skyddar bilen mot väder och vind.\r\nVillan är besiktigad och besiktningsprotokollet finner du bilagt i annonsen.\r\nTa chansen att uppleva detta trevliga hus - välkommen att boka dig på visning!",
                             RoomCount = 3,
                             StartingPrice = 1250000
                         },
@@ -917,16 +915,16 @@ namespace HomeHavenAPI.Migrations
                             ResidenceId = 3,
                             Address = "Strandvägen 7",
                             BiArea = 0,
-                            CategoryId = 3,
+                            CategoryId = 2,
                             ConstructionYear = 2018,
                             LandArea = 1000,
                             LivingArea = 250,
                             MonthlyFee = 4250,
                             OperatingCost = 32400,
-                            PictureListURL = "[\"https://hjaltevadshus.se/app/uploads/2022/10/nyckelfardiga-vitsippan.jpg\"]",
+                            PictureListURL = "[\"https://bilder.hemnet.se/images/1024x/82/ef/82ef5b32d254189c566c4bb6e16139ba.jpg\",\"https://bilder.hemnet.se/images/1024x/03/a3/03a35f482b889f513c3303b5f8d32c47.jpg\",\"https://bilder.hemnet.se/images/1024x/09/ba/09ba42eac3e24be70df9ccfd0234f4b9.jpg\",\"https://bilder.hemnet.se/images/1024x/52/dc/52dc234a8326652e1c451dff24c5977d.jpg\",\"https://bilder.hemnet.se/images/1024x/81/1b/811bda81e4c8832f78b9f8450ba25a79.jpg\"]",
                             RealtorId = "e8411d7f-4c81-4e1a-92fc-1890db0e5b81",
                             RegionId = 3,
-                            ResidenceDescription = "Funkisvilla med pool och havsutsikt på exklusiv adress vid kusten.",
+                            ResidenceDescription = "Välkommen till denna trevliga bostadsrätt belägen i Riksbyggen Brf Björket i Kristianstad. Med en boyta på 84 kvadratmeter erbjuds här ett hem med två sovrum, rymligt vardagsrum, kök och matplats samt ett härligt inglasat uterum där man kan tillbringa många härliga dagar. Föreningen erbjuder trygghet och gemenskap samtidigt som man har närhet till stadens puls och service.\r\nBoendet på våningsplan ett passar perfekt för den som önskar ett lättillgängligt  boende med närhet till grönområden och promenadstråk i björket. \r\nVälkomna att kontakta mäklaren vid intresse! ",
                             RoomCount = 6,
                             StartingPrice = 3000000
                         },
@@ -935,16 +933,16 @@ namespace HomeHavenAPI.Migrations
                             ResidenceId = 4,
                             Address = "Norra Vallgatan 14",
                             BiArea = 15,
-                            CategoryId = 4,
+                            CategoryId = 3,
                             ConstructionYear = 2009,
                             LandArea = 625,
                             LivingArea = 130,
                             MonthlyFee = 7000,
                             OperatingCost = 31500,
-                            PictureListURL = "[\"https://www.osloguiden.se/wp-content/uploads/2015/04/Pilestredet.jpg\"]",
+                            PictureListURL = "[\"https://bilder.hemnet.se/images/1024x/0c/a5/0ca567fe6f8edeab861615c89e193fb1.jpg\",\"https://bilder.hemnet.se/images/1024x/3a/8c/3a8cbdbe3459c82fabadf2300dac4892.jpg\",\"https://bilder.hemnet.se/images/1024x/59/ce/59ce80115fc1db27b1bb69e0c332d650.jpg\",\"https://bilder.hemnet.se/images/1024x/53/d1/53d1e3f8cc5663a224a6df69f1f6bc67.jpg\"]",
                             RealtorId = "ac31313d-d278-43d9-a72d-39fc96dc2e92",
                             RegionId = 2,
-                            ResidenceDescription = "Gammal gård renoverad till lyxigt boende med generösa sällskapsytor och stor trädgård.",
+                            ResidenceDescription = "Välkommen till Alfabetsvägen 52 och ett mycket tilltalande radhus i barnvänligt och populärt område! Entréplan rymmer ett stort kök med matplats, ett lättmöblerat vardagsrum, rymligt sovrum, modernt badrum med bastu och en praktisk tvättstuga. Ovanvåningen huserar fyra bra planerade sovrum och ett helkaklat badrum. Både fram- och baksida har härliga uteplatser med gott om utrymme för både loungemöbler och matmöblemang. Gräsmatta med plats för studsmatta, odlingar eller liknande på baksidan. Carport finns mittemot huset, extra p-plats och separat förråd. Här bor du nära både buss, förskola/skola, natur och flertalet stormarknader!\r\n",
                             RoomCount = 4,
                             StartingPrice = 2230000
                         },
@@ -953,16 +951,16 @@ namespace HomeHavenAPI.Migrations
                             ResidenceId = 5,
                             Address = "Östra Hamngatan 3",
                             BiArea = 50,
-                            CategoryId = 5,
+                            CategoryId = 3,
                             ConstructionYear = 1972,
                             LandArea = 200,
                             LivingArea = 120,
                             MonthlyFee = 3750,
                             OperatingCost = 20500,
-                            PictureListURL = "[\"https://www.ekonomifokus.se/wp-content/uploads/2019/01/Vad-ingar-vid-kop-och-salj-av-fastighet-och-hus-e1547480095379.jpg\"]",
+                            PictureListURL = "[\"https://bilder.hemnet.se/images/1024x/12/f5/12f553af156dc9976c7b017c52e579d9.jpg\",\"https://bilder.hemnet.se/images/1024x/18/5b/185b2966fb0ada2fb03f989fe9c45a22.jpg\",\"https://bilder.hemnet.se/images/1024x/a8/92/a89266955a44d70df2fe4a76651af4e1.jpg\",\"https://bilder.hemnet.se/images/1024x/73/fe/73fe58e7f6e8db52a07f9b224fa7ca08.jpg\"]",
                             RealtorId = "ac31313d-d278-43d9-a72d-39fc96dc2e92",
                             RegionId = 5,
-                            ResidenceDescription = "Lägenhet i nybyggd bostadsrättsförening med gemensam takterrass och närhet till shopping och kommunikationer.",
+                            ResidenceDescription = "Sällsynt tillfälle att bli ägare till detta utmärkt planerade gavelradhus i två plan om ca 160 kvm i ett av Luthagens/Stabbys mest eftertraktade kvarter. Det här är ett perfekt hem för den växande familjen, med närhet till utmärkta förskolor och skolor i ett tryggt och barnvänligt område.\r\n\r\n\r\n\r\nRadhuset erbjuder rymlig hall som leder dig till ett ljust och luftigt vardagsrum med gott om ljusinsläpp genom de generösa fönstren. Ett funktionellt vinkelkök med stor matplats är perfekt för familjemiddagar. Uteplatser både på framsidan och baksidan ger dig möjlighet att njuta av solen från morgon till kväll. Huset rymmer totalt fem sovrum, varav två praktiskt placerade på entréplanet och tre på övre våningen. Master bedroom har dessutom en egen balkong där du kan njuta av ditt morgonkaffe. Ett stort allrum ger extra utrymme för familjens aktiviteter och kan enkelt omvandlas till ytterligare sovrum om så önskas. Dessutom finns två renoverade badrum för familjens bekvämlighet.\r\n\r\n\r\n\r\nUteplatsen på framsidan bjuder in till avkopplande stunder i eftermiddags- och kvällssolen, medan baksidans altan ger dig möjlighet att njuta av frukosten i solens första strålar. Den trevliga trädgården är perfekt för lek och rekreation, med gräsyta och fruktträd som ger trädgården extra charm. Du kommer att älska det trivsamma och omtyckta området med närhet till skogspromenader som ger glädje året runt, inklusive möjligheter till löprundor och skidåkning. Service som vårdcentral, restauranger, café och gym finns bara några kvarter bort vid Mimmi Ekholms plats. Närhet till förskolor och skolor gör vardagen smidig för hela familjen. Det här är verkligen ett hem som erbjuder både komfort och livskvalitet. Missa inte chansen att bli ägare till detta fantastiska radhus och skapa ditt drömboende för din familj.",
                             RoomCount = 5,
                             StartingPrice = 1400000
                         },
@@ -1087,7 +1085,7 @@ namespace HomeHavenAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "853b628e-0dee-44ea-936d-090d528f7517",
+                            Id = "e116f8a0-bfd5-43cc-b014-4ce2a2063664",
                             Name = "User",
                             NormalizedName = "USER"
                         });

@@ -1,5 +1,4 @@
-﻿<h3>Ta bort bostad</h3>
-@page "/realtor/deleteresidence/{residenceid:int}"
+﻿@page "/realtor/deleteresidence/{residenceid:int}"
 @using System.IdentityModel.Tokens.Jwt
 @using System.Text.Json
 @inject IResidenceService residenceService
@@ -7,94 +6,97 @@
 @inject NavigationManager navManager
 @if (ResidenceToDelete != null)
 {
-    <div class="card">
-        <div>
-            <h5 class="card-title">Är du säkert på att du vill ta bort denna bostad?</h5>
-            <p class="card-text"><strong>Adress:</strong> @ResidenceToDelete.Address</p>
-            <p class="card-text"><strong>Region:</strong> @ResidenceToDelete.ResidenceRegion.Township, @ResidenceToDelete.ResidenceRegion.County</p>
-            <p class="card-text"><strong>Startpris:</strong> @ResidenceToDelete.StartingPrice kr</p>
-            <p class="card-text"><strong>Antal rum:</strong> @ResidenceToDelete.RoomCount</p>
-            <p class="card-text"><strong>Boarea:</strong> @ResidenceToDelete.LivingArea m²</p>
+	<div class="card formbox">
+		<div class="card-body">
+			<h2 class="card-title text-white mb-2">Skapa Bostad</h2>
+			<div>
+				<h5 class="card-title">Är du säkert på att du vill ta bort denna bostad?</h5>
+				<p class="card-text"><strong>Adress:</strong> @ResidenceToDelete.Address</p>
+				<p class="card-text"><strong>Region:</strong> @ResidenceToDelete.ResidenceRegion.Township, @ResidenceToDelete.ResidenceRegion.County</p>
+				<p class="card-text"><strong>Startpris:</strong> @ResidenceToDelete.StartingPrice kr</p>
+				<p class="card-text"><strong>Antal rum:</strong> @ResidenceToDelete.RoomCount</p>
+				<p class="card-text"><strong>Boarea:</strong> @ResidenceToDelete.LivingArea m²</p>
 
-            <div class="mt-3">
-                <button class="btn btn-danger" @onclick="DeleteResidenceAsync">Ta bort</button>
-                <button class="btn btn-secondary" @onclick="Cancel">Avbryt</button>
-            </div>
-        </div>
-    </div>
+				<div class="mt-3">
+					<button class="btn btn-danger" @onclick="DeleteResidenceAsync">Ta bort</button>
+					<button class="btn btn-secondary" @onclick="Cancel">Avbryt</button>
+				</div>
+			</div>
+		</div>
+	</div>
 }
 else
 {
-    <p>Loading...</p>
+	<p>Loading...</p>
 }
 
 @code {
-    [Parameter]
-    public int ResidenceId { get; set; }
+	[Parameter]
+	public int ResidenceId { get; set; }
 
-    public Residence ResidenceToDelete { get; set; } = null;
-    public UserJwt User { get; set; }
+	public Residence ResidenceToDelete { get; set; } = null;
+	public UserJwt User { get; set; }
 
-    protected async override Task OnInitializedAsync()
-    {
-        try
-        {
-            var token = await localStorage.GetItemAsync<string>("Token");
+	protected async override Task OnInitializedAsync()
+	{
+		try
+		{
+			var token = await localStorage.GetItemAsync<string>("Token");
 
-            if (token != null)
-            {
-                JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
-                JwtSecurityToken jwt = handler.ReadJwtToken(token);
+			if (token != null)
+			{
+				JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+				JwtSecurityToken jwt = handler.ReadJwtToken(token);
 
-                var jsonPayload = JsonSerializer.Serialize(jwt.Payload);
-                User = JsonSerializer.Deserialize<UserJwt>(jsonPayload);
-            }
+				var jsonPayload = JsonSerializer.Serialize(jwt.Payload);
+				User = JsonSerializer.Deserialize<UserJwt>(jsonPayload);
+			}
 
-            ResidenceToDelete = await residenceService.GetAsync(ResidenceId);
+			ResidenceToDelete = await residenceService.GetAsync(ResidenceId);
 
-            if (ResidenceToDelete != null)
-            {
-                ResidenceToDelete.CategoryId = ResidenceToDelete.ResidenceCategory.CategoryId;
-                ResidenceToDelete.RegionId = ResidenceToDelete.ResidenceRegion.RegionId;
-                ResidenceToDelete.RealtorId = User.Id;
-            }
-            else
-            {
-                navManager.NavigateTo("/error");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error in OnInitializedAsync: {ex.Message}");
-            navManager.NavigateTo("/error");
-        }
-    }
+			if (ResidenceToDelete != null)
+			{
+				ResidenceToDelete.CategoryId = ResidenceToDelete.ResidenceCategory.CategoryId;
+				ResidenceToDelete.RegionId = ResidenceToDelete.ResidenceRegion.RegionId;
+				ResidenceToDelete.RealtorId = User.Id;
+			}
+			else
+			{
+				navManager.NavigateTo("/error");
+			}
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Error in OnInitializedAsync: {ex.Message}");
+			navManager.NavigateTo("/error");
+		}
+	}
 
-    private async Task DeleteResidenceAsync()
-    {
-        try
-        {
-            if (ResidenceToDelete != null)
-            {
-                await residenceService.DeleteAsync(ResidenceToDelete);
-                navManager.NavigateTo("/realtor/realtorresidencelist");
-            }
-            else
-            {
-                Console.WriteLine("ResidenceToDelete is null in DeleteResidenceAsync");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error in DeleteResidenceAsync: {ex.Message}");
-            navManager.NavigateTo("/error");
-        }
-    }
+	private async Task DeleteResidenceAsync()
+	{
+		try
+		{
+			if (ResidenceToDelete != null)
+			{
+				await residenceService.DeleteAsync(ResidenceToDelete);
+				navManager.NavigateTo("/realtor/realtorresidencelist");
+			}
+			else
+			{
+				Console.WriteLine("ResidenceToDelete is null in DeleteResidenceAsync");
+			}
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Error in DeleteResidenceAsync: {ex.Message}");
+			navManager.NavigateTo("/error");
+		}
+	}
 
-    private void Cancel()
-    {
-        navManager.NavigateTo("/realtor/realtorresidencelist");
-    }
+	private void Cancel()
+	{
+		navManager.NavigateTo("/realtor/realtorresidencelist");
+	}
 }
 
 
@@ -114,7 +116,7 @@ else
     public Residence ResidenceToDelete { get; set; } = new Residence();
     public UserJwt User { get; set; }
     protected async override Task OnInitializedAsync()
-    {   
+    {
         ResidenceToDelete = await residenceService.GetAsync(ResidenceId);
     }
     private async Task DeleteResidenceAsync()
