@@ -96,15 +96,22 @@
 			<InputText @bind-Value="image" class="form-control" />
 			<label for="PictureList">Bild</label>
 		</div>
+		@if (PictureListURL.Count() < 40)
+		{
+			<button type="button" onclick="@AddImage">Lägg till bild</button>
+		}
+		else
+		{
+			<h4>Du kan inte lägga till mer än 40 bilder</h4>
+		}
 
-		<button type="button" onclick="@AddImage">Lägg till bild</button>
-		@if(PictureListURL.Count != 0)
+		@if (PictureListURL.Count != 0)
 		{
 			<h4>Tillagda Bilder:</h4>
 		}
 		@foreach (var item in PictureListURL)
 		{
-			<p class="text-black-50">@item</p>
+			<h4 class="text-black-50">@item <button @onclick="(e=> RemoveFromList(item))" class="btn btn-danger">X</button></h4>
 		}
 		<br /><br />
 
@@ -115,23 +122,28 @@
 
 
 @code {
-    private List<Category> categories = new List<Category>();
-    private List<string> PictureListURL = new List<string>();
+	private List<Category> categories = new List<Category>();
+	private List<string> PictureListURL = new List<string>();
 
-    public Residence newResidence { get; set; } = new Residence();
-    public int Count { get; set; } = 1;
-    public string? image { get; set; }
+	public Residence newResidence { get; set; } = new Residence();
+	public int Count { get; set; } = 1;
+	public string? image { get; set; }
 
-    private void AddResidence()
-    {
-        newResidence.PictureListURL = PictureListURL;
-        residenceService.CreateAsync(newResidence);
-        NavManager.NavigateTo("/");
-    }
+	private void AddResidence()
+	{
+		newResidence.PictureListURL = PictureListURL;
+		residenceService.CreateAsync(newResidence);
+		NavManager.NavigateTo("/");
+	}
 
-    private void AddImage()
-    {
-        PictureListURL.Add(image);
-        image = null;
-    }
+	private void AddImage()
+	{
+		PictureListURL.Add(image);
+		image = null;
+	}
+
+	private void RemoveFromList(string item)
+	{
+		PictureListURL.Remove(item);
+	}
 }

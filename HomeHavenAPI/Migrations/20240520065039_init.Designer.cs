@@ -4,6 +4,7 @@ using HomeHavenAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240520065039_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,7 +144,7 @@ namespace HomeHavenAPI.Migrations
                     b.Property<string>("ProfilePictureURL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RealtorFirmId")
+                    b.Property<int?>("RealtorFirmId")
                         .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
@@ -173,9 +176,7 @@ namespace HomeHavenAPI.Migrations
                         {
                             Id = "ac31313d-d278-43d9-a72d-39fc96dc2e92",
                             AccessFailedCount = 0,
-
                             ConcurrencyStamp = "384ded6a-c23f-4c7f-85f2-3eb02156c16d",
-
                             Email = "sofia.andersson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Sofia",
@@ -185,18 +186,14 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 1,
-
                             SecurityStamp = "6b6fa33c-82ea-4321-90ac-11d02c30213f",
-
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "e8411d7f-4c81-4e1a-92fc-1890db0e5b81",
                             AccessFailedCount = 0,
-
                             ConcurrencyStamp = "020fc7c0-ba4a-44b9-831d-0612cca6e880",
-
                             Email = "erik.svensson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Erik",
@@ -206,18 +203,14 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 3,
-
                             SecurityStamp = "2a6d5a5a-fd03-4a7c-af79-81712f683894",
-
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "60205c1a-ef79-44ac-89b2-ac75176e3408",
                             AccessFailedCount = 0,
-
                             ConcurrencyStamp = "6a8e8569-ba3f-415a-b2bd-6d1eba77aaa8",
-
                             Email = "emma.johansson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Emma",
@@ -227,18 +220,14 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 2,
-
                             SecurityStamp = "ffa6c6b2-9b4b-4695-b1b9-e463b4c2dc68",
-
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "9dcb614e-6280-4101-ae5a-875d51e33480",
                             AccessFailedCount = 0,
-
                             ConcurrencyStamp = "c2872605-dd74-41bf-9c79-22efb5464599",
-
                             Email = "anders.karlsson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Anders",
@@ -248,18 +237,14 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 2,
-
                             SecurityStamp = "f24732ea-9562-44ea-8b4c-9288c8e0c6e6",
-
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "3869a014-937b-4970-9021-3bb704bb10a2",
                             AccessFailedCount = 0,
-
                             ConcurrencyStamp = "19c3e932-07a2-4075-ac07-cedee90f30ca",
-
                             Email = "linnea.lindgren@example.com",
                             EmailConfirmed = false,
                             FirstName = "Linnea",
@@ -269,10 +254,7 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 5,
-
-
                             SecurityStamp = "99c285c1-5626-4c8b-ae2c-99165a0e78ab",
-
                             TwoFactorEnabled = false
                         });
                 });
@@ -1015,11 +997,7 @@ namespace HomeHavenAPI.Migrations
                     b.HasData(
                         new
                         {
-
-             
-
                             Id = "d281477e-9a00-4468-9da3-be9c5ee75769",
-
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -1135,9 +1113,7 @@ namespace HomeHavenAPI.Migrations
                 {
                     b.HasOne("HomeHavenAPI.Models.RealtorFirm", "MyRealtorFirm")
                         .WithMany()
-                        .HasForeignKey("RealtorFirmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RealtorFirmId");
 
                     b.Navigation("MyRealtorFirm");
                 });
