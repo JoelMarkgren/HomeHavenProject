@@ -24,7 +24,6 @@ namespace HomeHavenBlazorProject.Services
 
         public async Task DeleteAsync(Residence residence)
         {
-
             {
                 if (residence == null)
                 {

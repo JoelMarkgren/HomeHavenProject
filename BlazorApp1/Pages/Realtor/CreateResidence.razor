@@ -74,18 +74,26 @@
 			<label for="constructionYear">Byggnadsår</label>
 			<ValidationMessage For="@(() => newResidence.ConstructionYear)" />
 		</div>
-
-		<div class="form-floating mb-3">
-			<InputNumber @bind-Value="newResidence.CategoryId" class="form-control" id="categoryId" />
-			<label for="categoryId">Kategorinummer</label>
-			<ValidationMessage For="@(() => newResidence.CategoryId)" />
+		<div>
+				<CategoryDropDownList AllCategories="categories" Category="GetCategory" />
 		</div>
 
-		<div class="form-floating mb-3">
+		<div class="regiondrop box">
+				@if (RegionList == null)
+				{
+					<h2>loading...</h2>
+				}
+				else
+				{
+					<RegionDropDownList AllRegions="RegionList.OrderBy(r => r.Township).ToList()" Region="GetRegion" />
+				}
+				</div>
+	
+		@* <div class="form-floating mb-3">
 			<InputNumber @bind-Value="newResidence.RegionId" class="form-control" id="regionId" />
 			<label for="regionId">Regionnummer</label>
 			<ValidationMessage For="@(() => newResidence.RegionId)" />
-		</div>
+		</div> *@
 
 		<div class="form-floating mb-3">
 			<InputText @bind-Value="newResidence.RealtorId" class="form-control" id="realtorId" />
@@ -125,15 +133,31 @@
 
 @code {
 	//Author Joel
-	private List<Category> categories = new List<Category>();
+	private IEnumerable<Category> categories = new List<Category>();
 	private List<string> PictureListURL = new List<string>();
+	private Category Category = new Category();
+	private Region SelectedRegion = new Region();
+	public IEnumerable<Region> RegionList { get; set; } = new List<Region>();
+
+	[Parameter]
+	public int Id { get; set; }
+
 
 	public Residence newResidence { get; set; } = new Residence();
 	public int Count { get; set; } = 1;
 	public string? image { get; set; }
 
+
+	protected override async Task OnInitializedAsync()
+	{
+		categories = await categoryService.GetAllAsync();
+		RegionList = await regionService.GetAllAsync();
+	}
+
 	private void AddResidence()
 	{
+		newResidence.CategoryId = Category.CategoryId;
+		newResidence.RegionId = SelectedRegion.RegionId;
 		newResidence.PictureListURL = PictureListURL;
 		residenceService.CreateAsync(newResidence);
 		NavManager.NavigateTo("/");
@@ -149,4 +173,16 @@
 	{
 		PictureListURL.Remove(item);
 	}
+	
+
+	private void GetCategory(Category category)
+	{
+		Category = category;
+	}
+	private void GetRegion(Region region)
+	{
+		SelectedRegion = region;
+	}
+	
+
 }
