@@ -11,7 +11,7 @@ else
 	{
 		<h4>
 			Till: @request.ToEmail
-			<button @onclick="(e=> DeleteRequest(request.FirmRequestId))" type="button" class="btn btn-danger">X</button>
+			<button @onclick="(e=> DeleteRequest(request))" type="button" class="btn btn-danger">X</button>
 		</h4>
 
 	}
@@ -19,12 +19,12 @@ else
 
 @code {
 	[Parameter]
-	public IEnumerable<FirmRequest> MyRequests { get; set; }
+	public List<FirmRequest> MyRequests { get; set; }
 
 
-	public void DeleteRequest(int id)
+	public void DeleteRequest(FirmRequest Request)
 	{
-		firmRequestService.DeleteAsync(id);
-		NavigationManager.Refresh();
+		MyRequests.Remove(Request);
+		firmRequestService.DeleteAsync(Request.FirmRequestId);
 	}
 }

@@ -1,6 +1,7 @@
-﻿<h3>CrudResidenceList</h3>
-@inject IResidenceService ResidenceService
+﻿@inject IResidenceService ResidenceService
 @inject NavigationManager navManager
+<h2 class="mb-2">Mina Bostäder</h2>
+<a class="link-dark h4" href="/realtor/createresidence">Lägg till ny Bostad</a>
 @if (DisplayResidences != null)
 {
     <div class="row row-cols-md-4 g-4">
@@ -16,10 +17,10 @@
                         <p class="card-text">Antal rum: @Resi.RoomCount</p>
                         <p class="card-text">@Resi.LivingArea m²</p>
                         <p class="card-text">@Resi.ResidenceCategory.CategoryName</p>
-                        <a href="/residence/@Resi.ResidenceId" class="btn btn-primary">Visa</a>
+                        <a href="/residence/@Resi.ResidenceId" class="btn btn-success">Visa</a>
                         @* <a href="/realtor/editresidence/@Resi.ResidenceId" class="btn btn-primary">Ändra</a> *@
                         <button class="btn btn-primary" @onclick="() => EditResidence(Resi)">Ändra</button>
-                        <button class="btn btn-primary" @onclick="() => DeleteResidence(Resi)">Ta bort</button>
+                        <button class="btn btn-danger" @onclick="() => DeleteResidence(Resi)">Ta bort</button>
                     </div>
                 </div>
             </div>

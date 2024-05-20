@@ -30,6 +30,25 @@
     max-height: 800px;
 }
 
+.formbox {
+    border: solid 3px white;
+    border-radius: 10px;
+    width: 800px;
+    margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: rgb(57, 64, 58);
+    color: white;
+}
+.formresi {
+    width: 1200px;
+    border: solid 3px white;
+    border-radius: 10px;
+    width: 1200px;
+    margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: rgb(57, 64, 58);
+}
+
 .infobox {
     width: 60%;
     max-width: 1260px;

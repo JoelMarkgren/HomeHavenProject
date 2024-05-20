@@ -2,19 +2,19 @@
 @inject IAuthService AuthService
 @inject NavigationManager NavigationManager
 
-<div class="card">
+<div class="card formbox">
     <div class="card-body">
-        <h5 class="card-title">Please enter your details</h5>
+        <h5 class="card-title">Inloggning</h5>
         <EditForm Model="loginModel" OnValidSubmit="LoginHandler">
             <DataAnnotationsValidator />
 
             <div class="form-group">
-                <label for="email">Email address</label>
+                <label for="email">Email:</label>
                 <InputText Id="email" Class="form-control" @bind-Value="loginModel.Email" />
                 <ValidationMessage For="@(() => loginModel.Email)" />
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">Lösenord:</label>
                 <InputText Id="password" type="password" Class="form-control" @bind-Value="loginModel.Password" />
                 <ValidationMessage For="@(() => loginModel.Password)" />
             </div>
@@ -22,7 +22,7 @@
             {
                 <p class="text-danger">@Error</p>
             }
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-light btn-outline-dark mt-2">Logga in</button>
         </EditForm> 
     </div>
 </div>

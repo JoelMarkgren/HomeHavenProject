@@ -14,11 +14,12 @@ else
 		@foreach (var invite in MyInvites)
 		{
 			<div>
-				<h4>@invite.FromEmail, @invite.RealtorFirmName
-				<button @onclick="(e=> AcceptInvite(invite.FirmRequestId, invite.RealtorFirmId))" type="button" class="btn btn-success ">Acceptera</button>
-				<button @onclick="(e=> DeleteInvite(invite.FirmRequestId))" type="button" class="btn btn-danger">X</button>
+				<h4>
+					@invite.FromEmail, @invite.RealtorFirmName
+					<button @onclick="(e=> AcceptInvite(invite))" type="button" class="btn btn-success ">Acceptera</button>
+					<button @onclick="(e=> DeleteInvite(invite))" type="button" class="btn btn-danger">X</button>
 				</h4>
-			</div>		
+			</div>
 		}
 	</div>
 
@@ -28,7 +29,7 @@ else
 
 @code {
 	[Parameter]
-	public IEnumerable<FirmRequest> MyInvites { get; set; }
+	public List<FirmRequest> MyInvites { get; set; }
 	[Parameter]
 	public string MyId { get; set; }
 
@@ -44,17 +45,18 @@ else
 		}
 	}
 
-	public async void AcceptInvite(int RequestId, int FirmId)
+	public async void AcceptInvite(FirmRequest Request)
 	{
 		Realtor MyRealtor = await realtorService.GetAsync(MyId);
-		MyRealtor.RealtorFirmId = FirmId;
+		MyRealtor.RealtorFirmId = Request.RealtorFirmId;
 		await realtorService.UpdateAsync(MyRealtor, MyId);
-		DeleteInvite(RequestId);
+		DeleteInvite(Request);
 	}
-	public async void DeleteInvite(int id)
+	public void DeleteInvite(FirmRequest Request)
 	{
-		await firmRequestService.DeleteAsync(id);
-		NavigationManager.Refresh();
+		MyInvites.Remove(Request);
+		firmRequestService.DeleteAsync(Request.FirmRequestId);
+		StateHasChanged();
 	}
 
 
