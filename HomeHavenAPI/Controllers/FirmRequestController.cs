@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HomeHavenAPI.Controllers
 {
+	//Author Jakob
 	[Route("api/[controller]")]
 	[ApiController]
 	public class FirmRequestController : ControllerBase

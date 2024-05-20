@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeHavenAPI.Controllers
 {
+	//Author Joel,Jakob
 	[Route("api/account")]
 	[ApiController]
 	public class AccountController : ControllerBase

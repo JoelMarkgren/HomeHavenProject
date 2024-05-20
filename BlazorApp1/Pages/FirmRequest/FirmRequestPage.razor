@@ -26,6 +26,7 @@
 
 	protected async override Task OnInitializedAsync()
 	{
+		//Author Jakob
 		var token = await localstorage.GetItemAsync<string>("Token");
 		if (token != null)
 		{

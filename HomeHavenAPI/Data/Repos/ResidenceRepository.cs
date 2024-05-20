@@ -6,7 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HomeHavenAPI.Data.Repos
 {
-    public class ResidenceRepository : IResidence
+	//Author Joel,Jakob
+	public class ResidenceRepository : IResidence
     {
         private readonly ApplicationDbContext applicationDbContext;
 

@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeHavenAPI.Data.Repos
 {
-    public class CategoryRepository : ICategory
+	//Author Joel,Jakob
+	public class CategoryRepository : ICategory
     {
         private readonly ApplicationDbContext applicationDbContext;
 
