@@ -1,6 +1,7 @@
 ﻿using HomeHavenAPI.Data.Interfaces;
 using HomeHavenAPI.Dtos;
 using HomeHavenAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace HomeHavenAPI.Controllers
 		}
 
 		[HttpPost]
+		[Authorize]
 		public async Task Post([FromBody] FirmRequest firmRequest)
 		{
 			await firmRequestRepo.CreateAsync(firmRequest);
@@ -53,6 +55,7 @@ namespace HomeHavenAPI.Controllers
 		}
 
 		[HttpDelete("{id}")]
+		[Authorize]
 		public async Task Delete(int id)
 		{
 			await firmRequestRepo.DeleteAsync(id);

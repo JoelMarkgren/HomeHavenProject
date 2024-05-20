@@ -84,6 +84,7 @@ namespace HomeHavenAPI.Controllers
 
         // POST api/<ResidenceController>
         [HttpPost]
+		[Authorize]
 		public async Task Post([FromBody] Residence residence)
 		{
 			var residenceMap = mapper.Map<Residence>(residence);
@@ -92,6 +93,7 @@ namespace HomeHavenAPI.Controllers
 
 		// PUT api/<ResidenceController>/5
 		[HttpPut("{id}")]
+		[Authorize]
 		public async Task Put(int id, [FromBody] Residence residence)
 		{
 			residence.ResidenceId = id;
@@ -100,6 +102,7 @@ namespace HomeHavenAPI.Controllers
 
 		// DELETE api/<ResidenceController>/5
 		[HttpDelete("{id}")]
+		[Authorize]
 		public async Task Delete(int id)
 		{
 			await residenceRepo.DeleteAsync(id);

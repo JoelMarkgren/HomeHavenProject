@@ -7,8 +7,9 @@
 @inject ICategoryService categoryService
 @inject IRealtorService realtorService
 
-<div class="container">
-	<h3>Skapa Bostad</h3>
+<div class="card formresi">
+    <div class="card-body">
+        <h2 class="card-title text-white mb-2">Skapa Bostad</h2>
 
 	<EditForm Model="@newResidence" OnValidSubmit="@AddResidence">
 		<DataAnnotationsValidator />
@@ -107,16 +108,17 @@
 
 		@if (PictureListURL.Count != 0)
 		{
-			<h4>Tillagda Bilder:</h4>
+			<h4 class="text-white mt-2">Tillagda Bilder:</h4>
 		}
 		@foreach (var item in PictureListURL)
 		{
-			<h4 class="text-black-50">@item <button @onclick="(e=> RemoveFromList(item))" class="btn btn-danger">X</button></h4>
+			<h4 class="text-white">@item <button @onclick="(e=> RemoveFromList(item))" class="btn btn-danger">x</button></h4>
 		}
 		<br /><br />
 
-		<button type="submit" class="btn btn-primary">Spara</button>
+			<button type="submit" class="btn btn-light btn-outline-dark mt-2">Skapa</button>
 	</EditForm>
+	</div>
 </div>
 
 

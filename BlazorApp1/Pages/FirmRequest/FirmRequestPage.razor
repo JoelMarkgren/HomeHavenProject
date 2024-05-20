@@ -18,8 +18,8 @@
 
 @code {
 
-	public IEnumerable<FirmRequest> MyInvites { get; set; } = new List<FirmRequest>();
-	public IEnumerable<FirmRequest> MyRequests { get; set; } = new List<FirmRequest>();
+	public List<FirmRequest> MyInvites { get; set; } = new List<FirmRequest>();
+	public List<FirmRequest> MyRequests { get; set; } = new List<FirmRequest>();
 	public int MyProperty { get; set; }
 	public UserJwt User { get; set; } = new UserJwt();
 	public int MyRealtorFirmId { get; set; }
@@ -38,8 +38,11 @@
 		var realtor = await RealtorService.GetAsync(User.Id);
 		MyRealtorFirmId = realtor.RealtorFirmId;
 
-		MyRequests = await FirmRequestService.GetAllInivtesAsync(User.email);
-		MyInvites = await FirmRequestService.GetAllRequestsAsync(User.email);
+		var MyRequestsIenu = await FirmRequestService.GetAllInivtesAsync(User.email);
+		MyRequests = MyRequestsIenu.ToList();
+
+		var MyInvitesIenu = await FirmRequestService.GetAllRequestsAsync(User.email);
+		MyInvites = MyInvitesIenu.ToList();
 	}
 
 }
