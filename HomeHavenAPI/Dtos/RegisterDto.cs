@@ -5,7 +5,8 @@ namespace HomeHavenAPI.Dtos
 
     public class RegisterDto
     {
-        [Required]
+		public int RealtorFirmId { get; set; }
+		[Required]
         public string UserName { get; set; }
         [Required]
         [EmailAddress]
