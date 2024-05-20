@@ -271,7 +271,7 @@ namespace HomeHavenAPI.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "5d9efdf1-df1b-4d21-a7a1-03f1286e2cf1", null, "User", "USER" });
+                values: new object[] { "d281477e-9a00-4468-9da3-be9c5ee75769", null, "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -387,11 +387,11 @@ namespace HomeHavenAPI.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureURL", "RealtorFirmId", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3869a014-937b-4970-9021-3bb704bb10a2", 0, "1261f18e-f8da-4e56-a5c4-96741662dbcc", "linnea.lindgren@example.com", false, "Linnea", "Lindgren", false, null, null, null, null, "074-8889990", false, "URL", 5, "61c52ab2-93a0-419c-bdc7-2a3de47549e7", false, null },
-                    { "60205c1a-ef79-44ac-89b2-ac75176e3408", 0, "f6620fdf-d215-401f-a547-e417c9d827c0", "emma.johansson@example.com", false, "Emma", "Johansson", false, null, null, null, null, "076-1112233", false, "URL", 2, "bd42a976-f623-460c-82ae-7fe68c9cdf4b", false, null },
-                    { "9dcb614e-6280-4101-ae5a-875d51e33480", 0, "4c145cb5-97dc-4c45-975f-7a91ac942a5c", "anders.karlsson@example.com", false, "Anders", "Karlsson", false, null, null, null, null, "072-5554441", false, "URL", 2, "2adf5b9f-e982-442a-b192-60586eb3c99a", false, null },
-                    { "ac31313d-d278-43d9-a72d-39fc96dc2e92", 0, "db2e5ae2-20ac-4c00-8df7-3aafe5e86fe9", "sofia.andersson@example.com", false, "Sofia", "Andersson", false, null, null, null, null, "070-1234567", false, "URL", 1, "6e0e7de0-d3df-455b-a3c5-047be199f100", false, null },
-                    { "e8411d7f-4c81-4e1a-92fc-1890db0e5b81", 0, "9be00381-c892-4839-91a7-2213886275d9", "erik.svensson@example.com", false, "Erik", "Svensson", false, null, null, null, null, "073-9876543", false, "URL", 3, "7b56e3fa-738f-4df8-9b65-a1141224d47d", false, null }
+                    { "3869a014-937b-4970-9021-3bb704bb10a2", 0, "19c3e932-07a2-4075-ac07-cedee90f30ca", "linnea.lindgren@example.com", false, "Linnea", "Lindgren", false, null, null, null, null, "074-8889990", false, "URL", 5, "99c285c1-5626-4c8b-ae2c-99165a0e78ab", false, null },
+                    { "60205c1a-ef79-44ac-89b2-ac75176e3408", 0, "6a8e8569-ba3f-415a-b2bd-6d1eba77aaa8", "emma.johansson@example.com", false, "Emma", "Johansson", false, null, null, null, null, "076-1112233", false, "URL", 2, "ffa6c6b2-9b4b-4695-b1b9-e463b4c2dc68", false, null },
+                    { "9dcb614e-6280-4101-ae5a-875d51e33480", 0, "c2872605-dd74-41bf-9c79-22efb5464599", "anders.karlsson@example.com", false, "Anders", "Karlsson", false, null, null, null, null, "072-5554441", false, "URL", 2, "f24732ea-9562-44ea-8b4c-9288c8e0c6e6", false, null },
+                    { "ac31313d-d278-43d9-a72d-39fc96dc2e92", 0, "384ded6a-c23f-4c7f-85f2-3eb02156c16d", "sofia.andersson@example.com", false, "Sofia", "Andersson", false, null, null, null, null, "070-1234567", false, "URL", 1, "6b6fa33c-82ea-4321-90ac-11d02c30213f", false, null },
+                    { "e8411d7f-4c81-4e1a-92fc-1890db0e5b81", 0, "020fc7c0-ba4a-44b9-831d-0612cca6e880", "erik.svensson@example.com", false, "Erik", "Svensson", false, null, null, null, null, "073-9876543", false, "URL", 3, "2a6d5a5a-fd03-4a7c-af79-81712f683894", false, null }
                 });
 
             migrationBuilder.InsertData(
