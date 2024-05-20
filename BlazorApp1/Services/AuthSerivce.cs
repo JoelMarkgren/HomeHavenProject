@@ -11,7 +11,8 @@ namespace HomeHavenBlazorProject.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly HttpClient httpClient;
+		//Author Jakob
+		private readonly HttpClient httpClient;
         private readonly ILocalStorageService localStorage;
 		private readonly AuthenticationStateProvider authenticationStateProvider;
 
@@ -60,8 +61,6 @@ namespace HomeHavenBlazorProject.Services
 			httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("bearer", loginResult.Token);
             loginResult.Successful = true;
-
-
 
             return loginResult;
         }

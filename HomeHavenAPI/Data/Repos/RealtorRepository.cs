@@ -6,6 +6,7 @@ using Microsoft.Identity.Client;
 
 namespace HomeHavenAPI.Data.Repos
 {
+	//Author Joel,Jakob
 	public class RealtorRepository : IRealtor
 	{
 		private readonly ApplicationDbContext applicationDbContext;

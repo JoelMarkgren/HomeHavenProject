@@ -7,6 +7,7 @@ using System.Text;
 
 namespace HomeHavenAPI.Service
 {
+	//Author Jakob
 	public class TokenService : ITokenService
 	{
 		private readonly IConfiguration _config;

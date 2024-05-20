@@ -6,7 +6,8 @@ namespace HomeHavenBlazorProject.Services
 {
     public class RegionService : IRegionService
     {
-        private readonly HttpClient httpClient;
+		//Author Joel, Jakob
+		private readonly HttpClient httpClient;
 
         public RegionService(HttpClient httpClient)
         {

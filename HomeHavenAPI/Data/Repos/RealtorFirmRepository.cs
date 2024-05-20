@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeHavenAPI.Data.Repos
 {
-    public class RealtorFirmRepository : IRealtorFirm
+	//Author Joel,Jakob
+	public class RealtorFirmRepository : IRealtorFirm
     {
         private readonly ApplicationDbContext applicationDbContext;
 

@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HomeHavenAPI.Controllers
 {
-    [Route("api/[controller]")]
+	//Author Joel,Jakob
+	[Route("api/[controller]")]
     [ApiController]
     public class RealtorController : ControllerBase
     {

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Runtime.InteropServices;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
+//Author Joel,Jakob
 namespace HomeHavenAPI.Controllers
 {
 	[Route("api/[controller]")]

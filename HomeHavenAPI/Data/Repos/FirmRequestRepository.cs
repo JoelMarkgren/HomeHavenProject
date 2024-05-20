@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeHavenAPI.Data.Repos
 {
+	//Author Jakob
 	public class FirmRequestRepository : IFirmRequest
 	{
 		private readonly ApplicationDbContext applicationDbContext;
