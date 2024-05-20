@@ -30,6 +30,10 @@
     max-height: 800px;
 }
 
+.navbtn {
+    display:block;
+}
+
 .formbox {
     border: solid 3px white;
     border-radius: 10px;
