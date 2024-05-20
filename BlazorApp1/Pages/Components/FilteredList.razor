@@ -38,7 +38,7 @@
 		{
 			if (SelectedRegion == null || resi.ResidenceRegion.Township == SelectedRegion.Township)
 			{
-				if (MinRoomCount <= resi.RoomCount && MaxRoomCount >= resi.RoomCount || MinRoomCount == 0 && MaxRoomCount == 0)
+				if (MinRoomCount <= resi.RoomCount && MaxRoomCount >= resi.RoomCount || MinRoomCount == 0 && MaxRoomCount == 0 || MinRoomCount <= resi.RoomCount && MaxRoomCount == 0)
 				{
 					if (resi.StartingPrice >= MinPrice && resi.StartingPrice <= MaxPrice)
 					{

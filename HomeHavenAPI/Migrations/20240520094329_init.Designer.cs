@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeHavenAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240520073142_ init")]
+    [Migration("20240520094329_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -176,7 +176,7 @@ namespace HomeHavenAPI.Migrations
                         {
                             Id = "ac31313d-d278-43d9-a72d-39fc96dc2e92",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6bc52be2-fc41-4957-b91e-e04418418374",
+                            ConcurrencyStamp = "a0c29aec-7a32-49bf-b6cf-0c9fbdfba07f",
                             Email = "sofia.andersson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Sofia",
@@ -186,14 +186,14 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 1,
-                            SecurityStamp = "825bb991-a44b-4ec8-9525-c55eb0e4b8a9",
+                            SecurityStamp = "eb1a5df5-7f88-4b4f-96b0-03c3a63bc38c",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "e8411d7f-4c81-4e1a-92fc-1890db0e5b81",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "db6e868c-c0af-47fa-87b0-d63551c67d7f",
+                            ConcurrencyStamp = "44c8c03e-e4a7-4461-a4f6-9c27fdae7469",
                             Email = "erik.svensson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Erik",
@@ -203,14 +203,14 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 3,
-                            SecurityStamp = "19e750cb-98fa-464e-ba4b-40a04751fe1b",
+                            SecurityStamp = "4d65d05d-c32b-4fad-9c08-2b46ca30c381",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "60205c1a-ef79-44ac-89b2-ac75176e3408",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a508c685-a06b-4cf1-b27a-74d3600115a6",
+                            ConcurrencyStamp = "048286e2-6206-45b5-aca3-8046d6f75620",
                             Email = "emma.johansson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Emma",
@@ -220,14 +220,14 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 2,
-                            SecurityStamp = "4c3b5d17-ce12-4d48-95fa-bfa61f1cd271",
+                            SecurityStamp = "4f7e8e0e-9f99-4a67-849b-7bdc42081fee",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "9dcb614e-6280-4101-ae5a-875d51e33480",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "af4ac181-4718-4c2c-baf0-9b2311ee6adf",
+                            ConcurrencyStamp = "84dbbaf6-4179-4221-a7d3-cd0ca1004653",
                             Email = "anders.karlsson@example.com",
                             EmailConfirmed = false,
                             FirstName = "Anders",
@@ -237,14 +237,14 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 2,
-                            SecurityStamp = "54928968-0125-4d82-9763-c4f6c5f94db8",
+                            SecurityStamp = "cfc13fd0-6457-4b08-a46b-71e252af8833",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "3869a014-937b-4970-9021-3bb704bb10a2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4c4a9638-c9bd-4550-acbf-73b028b4ff35",
+                            ConcurrencyStamp = "1c77cf42-fc7f-407e-a2e1-c056fd53f6e5",
                             Email = "linnea.lindgren@example.com",
                             EmailConfirmed = false,
                             FirstName = "Linnea",
@@ -254,18 +254,18 @@ namespace HomeHavenAPI.Migrations
                             PhoneNumberConfirmed = false,
                             ProfilePictureURL = "URL",
                             RealtorFirmId = 5,
-                            SecurityStamp = "35328074-2a5b-471b-b5da-5e93dfc23f6d",
+                            SecurityStamp = "354314ce-aa17-438f-ba95-204e0100e774",
                             TwoFactorEnabled = false
                         });
                 });
 
             modelBuilder.Entity("HomeHavenAPI.Models.RealtorFirm", b =>
                 {
-                    b.Property<int>("RealtorFirmId")
+                    b.Property<int?>("RealtorFirmId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RealtorFirmId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("RealtorFirmId"));
 
                     b.Property<string>("Descrpition")
                         .IsRequired()
@@ -965,6 +965,96 @@ namespace HomeHavenAPI.Migrations
                             ResidenceDescription = "Lägenhet i nybyggd bostadsrättsförening med gemensam takterrass och närhet till shopping och kommunikationer.",
                             RoomCount = 5,
                             StartingPrice = 1400000
+                        },
+                        new
+                        {
+                            ResidenceId = 6,
+                            Address = "Kemigränd 12",
+                            BiArea = 10,
+                            CategoryId = 2,
+                            ConstructionYear = 1998,
+                            LandArea = 0,
+                            LivingArea = 90,
+                            MonthlyFee = 5200,
+                            OperatingCost = 32000,
+                            PictureListURL = "[\"https://www.maklarringen.se/contentassets/41cd42b001da48209ba3f20452da0e63/objektbilder/fasad?preset=ObjectImageListLarge\"]",
+                            RealtorId = "e8411d7f-4c81-4e1a-92fc-1890db0e5b81",
+                            RegionId = 2,
+                            ResidenceDescription = "Varmt välkomna till denna smakfulla och genomtänkta bostad placerad på ett idealiskt centrumnära läge. Med en kort promenad till stationsområdet är man alltid nära citys puls samtidigt som naturen är nära tack vare Bokhultets naturreservat och Växjösjön. Lägenhetens väl genomtänkta färg- och materialval genomsyrar hela bostaden och skapar en harmonisk och hemtrevlig känsla.\r\n\r\nHär erbjuds en bostad med välplanerad planlösning med öppna och sociala ytor som skapar rum för familj och vänner. Det generösa vardagsrummet har en öppen planlösning mot det stilrena köket och den trivsamma matplatsen. Vardagsrum och kök bildar tillsammans boendets hjärta. Från vardagsrummet når ni den väl tilltagna balkongen där man kan skapa sin egna gröna oas. Lägenhetens två sovrum erbjuder gott om plats både för säng och övrigt möblemang. Det helkaklade badrummet är rymligt och erbjuder en duschhörna. Här finns även en välutrustad tvätthörna med både tvättmaskin, torktumlare, arbetsbänk samt skåpsförvaring.",
+                            RoomCount = 4,
+                            StartingPrice = 2100000
+                        },
+                        new
+                        {
+                            ResidenceId = 7,
+                            Address = "Västra Grodgatan 2",
+                            BiArea = 20,
+                            CategoryId = 1,
+                            ConstructionYear = 2017,
+                            LandArea = 200,
+                            LivingArea = 240,
+                            MonthlyFee = 3750,
+                            OperatingCost = 50000,
+                            PictureListURL = "[\"https://assets-global.website-files.com/5fd75a3e2aa1abd3e9c84632/65cfb27503791a7b1edb8b3c_grand-villa-5-sterne-hotel-villa-contessa.webp\"]",
+                            RealtorId = "ac31313d-d278-43d9-a72d-39fc96dc2e92",
+                            RegionId = 5,
+                            ResidenceDescription = "Välkommen till detta fantastiska 1,5-planshus som ligger på en perfekt trädgårdstomt. Huset är noggrant planerat för att erbjuda både elegans och bekvämlighet. Du välkomnas av en praktisk entré med goda förvaringsmöjligheter. Det rymliga vardagsrummet har stora fönster som släpper in naturligt ljus och ger en fantastisk utsikt över trädgården. Det öppna köket är utrustat med toppmoderna apparater och generösa bänkytor, perfekt för både matlagning och socialt umgänge. på övre plan hittar vi ytterligare två sovrum och ett gemensamt badrum. Det finns även ett flexibelt utrymme som kan användas som kontor, bibliotek eller lekrum. Sovrummen på entréplanet är generösa och smakfullt inredda. Master bedroom har en egen utgång direkt till poolområdet. På baksidan av huset sträcker sig en soldränkt altan, perfekt för avkoppling och underhållning. Här finns gott om plats för utemöbler, en grillplats och en loungehörna. Altanen blickar ut över den välskötta trädgården och den inbjudande poolen.",
+                            RoomCount = 6,
+                            StartingPrice = 1800000
+                        },
+                        new
+                        {
+                            ResidenceId = 8,
+                            Address = "Biskopägen 23",
+                            BiArea = 0,
+                            CategoryId = 3,
+                            ConstructionYear = 2002,
+                            LandArea = 40,
+                            LivingArea = 120,
+                            MonthlyFee = 3750,
+                            OperatingCost = 20500,
+                            PictureListURL = "[\"https://tengbom.se/app/uploads/2017/03/07721-2000x1440.jpg\"]",
+                            RealtorId = "60205c1a-ef79-44ac-89b2-ac75176e3408",
+                            RegionId = 3,
+                            ResidenceDescription = "Nu har vi äntligen nöjet att presentera ett välrenoverat radhus om hela 125,5 kvm med en av de bästa hörntomterna i området. Bostaden har en öppen planlösning på entréplan, två badrum, separat tvättstuga samt fyra sovrum som samtliga är belägna på övre plan. Till höjdpunkterna hör dessutom en baksida med kvällssol. På baksidan finns ett inglasat uterum, trädäck samt stor trädgård med odlingsmöjligheter samt tre utvändiga förråd. 13 478 kr i inre reparationsfonden. Garage i länga som tillhör bostaden.\r\n\r\nHär bor du med närhet till bland annat skola, lekparker och en närbutik. För pendlaren är det endast 22 minuter in till Örebro och 10 min till Hallsberg. Ett perfekt boende för barnfamiljen!",
+                            RoomCount = 4,
+                            StartingPrice = 1400000
+                        },
+                        new
+                        {
+                            ResidenceId = 9,
+                            Address = "Teknologigatan 32",
+                            BiArea = 55,
+                            CategoryId = 4,
+                            ConstructionYear = 2000,
+                            LandArea = 100,
+                            LivingArea = 50,
+                            MonthlyFee = 14000,
+                            OperatingCost = 10000,
+                            PictureListURL = "[\"https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_760,h_500/https://www.borohus.se/wp-content/uploads/2022/04/1800x1300_forsta-tunet-760x500.jpg\"]",
+                            RealtorId = "3869a014-937b-4970-9021-3bb704bb10a2",
+                            RegionId = 1,
+                            ResidenceDescription = "Välkommen till detta charmiga fritidshushus om 33 kvadratmeter! Fridfullt och lugnt läge i växande Börtnäsheden.\r\nBostaden erbjuder välplanerade ytor med praktiskt kök, gott om förvaringsmöjligheter och fint ljusinsläpp. Vidare finns ett rymligt allrum, plats för både mat- och soffgrupp samt en rymlig sovalkov.\r\n\r\nTill fastigheten hör även en sovstuga med utrymme för flera sovplatser eller annat möblemang. Ytterligare en byggnad finns som inrymmer, förråd, bastu, dusch samt förbränningstoalett.\r\n\r\nHär har ni en trevlig tomt om 2451 kvm, välskött gräsmatta med många soltimmar och plats för lek.\r\n",
+                            RoomCount = 1,
+                            StartingPrice = 1400000
+                        },
+                        new
+                        {
+                            ResidenceId = 10,
+                            Address = "Aslövsgatan 3",
+                            BiArea = 70,
+                            CategoryId = 1,
+                            ConstructionYear = 2015,
+                            LandArea = 300,
+                            LivingArea = 250,
+                            MonthlyFee = 16000,
+                            OperatingCost = 60000,
+                            PictureListURL = "[\"https://static.wixstatic.com/media/d6d69b_3c2cf8100e304193bb5eed28a30db2dd~mv2.jpg/v1/fill/w_560,h_374,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/%C2%A9%20P%C3%A5l%20Ross%20Villa%20Luciani%20Grand%20DesignFasad%20Blue%20Hour.jpg\"]",
+                            RealtorId = "e8411d7f-4c81-4e1a-92fc-1890db0e5b81",
+                            RegionId = 4,
+                            ResidenceDescription = "Här lever du bekvämt med villakänsla och med bostadsrättens trygghet och smidighet.\r\nMed uteplatser i två väderstreck är det lätt att följa både sol och skugga efter behag.\r\nFrån Kuggås strand leder strandpromenaden till Nynässerveringen med bland annat minigolf och musikkvällar. Strax där ovanför finns köpingen med den pittoreska Storgatan där butikerna ligger på rad.\r\n\r\nAlla lägenheter är byggd med den höga standard som GBJ Bygg erbjuder, till exempel parkettgolv i alla bostadsrum, fönsterbänkar i sten, helkaklade badrum samt golvvärme i hela bostaden.\r\nEgen parkeringsplats som är förberedd för att installera laddstolpe till elbilen på framsidan och på baksidan finns den stensatta uteplatsen som följer med köpet samt förrådet på cirka 10 m².",
+                            RoomCount = 7,
+                            StartingPrice = 1900000
                         });
                 });
 
@@ -997,7 +1087,7 @@ namespace HomeHavenAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "96a53341-381f-47d7-a2cf-96907aec7123",
+                            Id = "853b628e-0dee-44ea-936d-090d528f7517",
                             Name = "User",
                             NormalizedName = "USER"
                         });

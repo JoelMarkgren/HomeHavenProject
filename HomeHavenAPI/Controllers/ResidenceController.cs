@@ -63,14 +63,7 @@ namespace HomeHavenAPI.Controllers
 			try
 			{
                 var realtorResidences = await residenceRepo.GetRealtorListAsync(id);
-				if (realtorResidences == null || realtorResidences.Count == 0)
-				{
-					return NotFound();
-				}
-				else
-				{
-					return Ok(realtorResidences);
-				}
+				return Ok(realtorResidences);
 			}
 
 			catch (Exception)

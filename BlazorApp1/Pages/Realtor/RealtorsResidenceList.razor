@@ -1,19 +1,21 @@
-﻿
-@page "/realtor/realtorresidencelist"
+﻿@page "/realtor/realtorresidencelist"
 @using System.IdentityModel.Tokens.Jwt
 @using System.Text.Json
 @inject ILocalStorageService localStorage
 @inject IResidenceService residenceService
 
-
-<CrudResidenceList DisplayResidences="RealtorResidenceList" />
-<br />
-<br />
-
+@if (RealtorResidenceList != null)
+{
+    <CrudResidenceList DisplayResidences="RealtorResidenceList" />
+}
+else
+{
+    <p>Du har inga bostäder just nu.</p>
+}
 
 
 @code {
-    public IEnumerable<Residence> RealtorResidenceList { get; set; } = new List<Residence>();
+    public IEnumerable<Residence>? RealtorResidenceList { get; set; } = null;
     public UserJwt User { get; set; } = new UserJwt();
 
     protected override async Task OnInitializedAsync()
@@ -29,6 +31,7 @@
         }
 
         RealtorResidenceList = await residenceService.GetRealtorResidencesAsync(User.Id);
+
     }
-    
+
 }
