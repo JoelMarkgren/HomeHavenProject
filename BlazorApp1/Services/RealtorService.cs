@@ -6,7 +6,8 @@ namespace HomeHavenBlazorProject.Services
 {
     public class RealtorService : IRealtorService
     {
-        private readonly HttpClient httpClient;
+		//Author Joel, Jakob
+		private readonly HttpClient httpClient;
 
         public RealtorService(HttpClient httpClient)
         {

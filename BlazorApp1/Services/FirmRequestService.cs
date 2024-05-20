@@ -6,6 +6,7 @@ namespace HomeHavenBlazorProject.Services
 {
 	public class FirmRequestService : IFirmRequestService
 	{
+		//Author Jakob
 		private readonly HttpClient httpClient;
 
 		public FirmRequestService(HttpClient httpClient)

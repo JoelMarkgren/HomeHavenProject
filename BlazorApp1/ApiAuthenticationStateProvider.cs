@@ -7,6 +7,7 @@ namespace HomeHavenBlazorProject
 {
 	public class ApiAuthenticationStateProvider : AuthenticationStateProvider
 	{
+		//Author Joel, Jakob
 		private readonly ILocalStorageService localStorage;
 		private readonly HttpClient httpClient;
 

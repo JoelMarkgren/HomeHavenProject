@@ -1,0 +1,28 @@
+﻿@inject ICategoryService categoryService
+
+@if (AllCategories != null)
+{
+    <div class="flex-row">
+        <select @onchange="ChosenRegion">
+            <option disabled selected>Bostadstyp</option>
+            @foreach (var category in AllCategories)
+            {
+                <option value="@category.CategoryName">@category.CategoryName</option>
+            }
+        </select>
+    </div>
+}
+@code {
+    //Author Joel
+    [Parameter]
+    public IEnumerable<Category> AllCategories { get; set; } = new List<Category>();
+    [Parameter]
+    public EventCallback<Category> Category { get; set; }
+
+    public async void ChosenRegion(ChangeEventArgs e)
+    {
+        var category = e.Value.ToString();
+        var selectedRegion = AllCategories.FirstOrDefault(r => r.CategoryName == category);
+        await Category.InvokeAsync(selectedRegion);
+    }
+}

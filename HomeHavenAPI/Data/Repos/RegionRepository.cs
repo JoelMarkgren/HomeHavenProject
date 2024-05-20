@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeHavenAPI.Data.Repos
 {
-    public class RegionRepository : IRegion
+	//Author Joel,Jakob
+	public class RegionRepository : IRegion
     {
         private readonly ApplicationDbContext applicationDbContext;
         public RegionRepository(ApplicationDbContext applicationDbContext)

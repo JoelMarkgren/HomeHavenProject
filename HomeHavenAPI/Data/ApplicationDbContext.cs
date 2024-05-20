@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace HomeHavenAPI.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<Realtor>
+	//Author Joel,Jakob
+	public class ApplicationDbContext : IdentityDbContext<Realtor>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

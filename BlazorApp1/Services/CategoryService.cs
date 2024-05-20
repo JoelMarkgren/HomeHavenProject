@@ -6,7 +6,8 @@ namespace HomeHavenBlazorProject.Services
 {
     public class CategoryService : ICategoryService
     {
-        private readonly HttpClient httpClient;
+		//Author Joel, Jakob
+		private readonly HttpClient httpClient;
 
         public CategoryService(HttpClient httpClient)
         {

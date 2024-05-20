@@ -31,72 +31,75 @@ else
 }
 
 @code {
-	[Parameter]
-	public int ResidenceId { get; set; }
 
-	public Residence ResidenceToDelete { get; set; } = null;
-	public UserJwt User { get; set; }
+    [Parameter]
+    public int ResidenceId { get; set; }
 
-	protected async override Task OnInitializedAsync()
-	{
-		try
-		{
-			var token = await localStorage.GetItemAsync<string>("Token");
+    public Residence ResidenceToDelete { get; set; } = null;
+    public UserJwt User { get; set; }
 
-			if (token != null)
-			{
-				JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
-				JwtSecurityToken jwt = handler.ReadJwtToken(token);
+    protected async override Task OnInitializedAsync()
+    {
+        //Author Joel
+        try
+        {
+            var token = await localStorage.GetItemAsync<string>("Token");
 
-				var jsonPayload = JsonSerializer.Serialize(jwt.Payload);
-				User = JsonSerializer.Deserialize<UserJwt>(jsonPayload);
-			}
+            if (token != null)
+            {
+                JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+                JwtSecurityToken jwt = handler.ReadJwtToken(token);
 
-			ResidenceToDelete = await residenceService.GetAsync(ResidenceId);
+                var jsonPayload = JsonSerializer.Serialize(jwt.Payload);
+                User = JsonSerializer.Deserialize<UserJwt>(jsonPayload);
+            }
 
-			if (ResidenceToDelete != null)
-			{
-				ResidenceToDelete.CategoryId = ResidenceToDelete.ResidenceCategory.CategoryId;
-				ResidenceToDelete.RegionId = ResidenceToDelete.ResidenceRegion.RegionId;
-				ResidenceToDelete.RealtorId = User.Id;
-			}
-			else
-			{
-				navManager.NavigateTo("/error");
-			}
-		}
-		catch (Exception ex)
-		{
-			Console.WriteLine($"Error in OnInitializedAsync: {ex.Message}");
-			navManager.NavigateTo("/error");
-		}
-	}
+            ResidenceToDelete = await residenceService.GetAsync(ResidenceId);
 
-	private async Task DeleteResidenceAsync()
-	{
-		try
-		{
-			if (ResidenceToDelete != null)
-			{
-				await residenceService.DeleteAsync(ResidenceToDelete);
-				navManager.NavigateTo("/realtor/realtorresidencelist");
-			}
-			else
-			{
-				Console.WriteLine("ResidenceToDelete is null in DeleteResidenceAsync");
-			}
-		}
-		catch (Exception ex)
-		{
-			Console.WriteLine($"Error in DeleteResidenceAsync: {ex.Message}");
-			navManager.NavigateTo("/error");
-		}
-	}
+            if (ResidenceToDelete != null)
+            {
+                ResidenceToDelete.CategoryId = ResidenceToDelete.ResidenceCategory.CategoryId;
+                ResidenceToDelete.RegionId = ResidenceToDelete.ResidenceRegion.RegionId;
+                ResidenceToDelete.RealtorId = User.Id;
+            }
+            else
+            {
+                navManager.NavigateTo("/error");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in OnInitializedAsync: {ex.Message}");
+            navManager.NavigateTo("/error");
+        }
+    }
 
-	private void Cancel()
-	{
-		navManager.NavigateTo("/realtor/realtorresidencelist");
-	}
+    private async Task DeleteResidenceAsync()
+    {
+        try
+        {
+            if (ResidenceToDelete != null)
+            {
+                await residenceService.DeleteAsync(ResidenceToDelete);
+                navManager.NavigateTo("/realtor/realtorresidencelist");
+            }
+            else
+            {
+                Console.WriteLine("ResidenceToDelete is null in DeleteResidenceAsync");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error in DeleteResidenceAsync: {ex.Message}");
+            navManager.NavigateTo("/error");
+        }
+    }
+
+    private void Cancel()
+    {
+        navManager.NavigateTo("/realtor/realtorresidencelist");
+    }
+
 }
 
 

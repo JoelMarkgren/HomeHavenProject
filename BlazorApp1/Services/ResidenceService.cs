@@ -7,7 +7,8 @@ namespace HomeHavenBlazorProject.Services
 {
     public class ResidenceService : IResidenceService
     {
-        private readonly HttpClient httpClient;
+		//Author Joel, Jakob
+		private readonly HttpClient httpClient;
 
         public ResidenceService(HttpClient httpClient)
         {
@@ -23,9 +24,6 @@ namespace HomeHavenBlazorProject.Services
 
         public async Task DeleteAsync(Residence residence)
         {
-            //var response = await httpClient.DeleteAsync($"api/Residence/{residence.ResidenceId}");
-            //response.EnsureSuccessStatusCode();
-          
             {
                 if (residence == null)
                 {
